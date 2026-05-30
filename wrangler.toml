@@ -12,7 +12,7 @@ MEDIA_PUBLIC_BASE = "/media"
 [[d1_databases]]
 binding = "DB"
 database_name = "woodlandspark-db"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "f810ce67-2b84-46d4-8da0-5b7b01f028df"
 migrations_dir = "migrations"
 
 [[r2_buckets]]

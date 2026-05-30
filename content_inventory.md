@@ -2181,9 +2181,14 @@ TODO: Production copy should still be reviewed by Woodlands before launch becaus
 - Removed public temporary testing links panel from the homepage.
 - Removed customer-facing wording that described the website as a local SQLite build, migration/debug page or source-copy reference.
 - README updated to remove published demo credentials and document the Cloudflare deployment path.
+- Cloudflare account actions completed on 2026-05-30:
+  - Created Pages project `woodlandspark`.
+  - Created D1 database `woodlandspark-db` with id `f810ce67-2b84-46d4-8da0-5b7b01f028df`.
+  - Applied `migrations/0001_initial.sql` to remote D1.
+  - Imported `seed-production-safe.sql` to remote D1.
 - Items still requiring live Cloudflare account action:
-  - Create D1 database and R2 bucket in the target account.
-  - Replace `REPLACE_WITH_D1_DATABASE_ID` in `wrangler.toml`.
+  - Enable R2 in the Cloudflare dashboard; `npx wrangler r2 bucket create woodlandspark-media` failed with Cloudflare code `10042` until R2 is enabled.
+  - Re-run `npx wrangler r2 bucket create woodlandspark-media`.
   - Set `ADMIN_BOOTSTRAP_TOKEN` as a Cloudflare Pages secret.
-  - Apply migrations and seed content against the remote D1 database.
-  - Deploy Pages project to `https://woodlandspark.shubodaya.dev`.
+  - Re-run `npm run cf:deploy`.
+  - Add/verify the custom domain `https://woodlandspark.shubodaya.dev`.

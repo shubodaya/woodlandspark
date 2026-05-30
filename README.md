@@ -43,7 +43,7 @@ npx wrangler d1 create woodlandspark-db
 npx wrangler r2 bucket create woodlandspark-media
 ```
 
-2. Copy the created D1 `database_id` into `wrangler.toml`.
+2. If the D1 database is recreated, copy the new `database_id` into `wrangler.toml`.
 
 3. Set secrets in Cloudflare Pages:
 
