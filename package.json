@@ -1,0 +1,45 @@
+{
+  "name": "woodlands",
+  "version": "1.0.0",
+  "description": "Enhanced Woodlands Family Theme Park website.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n server,site -c magenta,cyan \"npm:server:dev\" \"npm:dev:site\"",
+    "dev:site": "vite --host 127.0.0.1",
+    "server:dev": "nodemon server/index.js",
+    "server:start": "node server/index.js",
+    "db:migrate": "node server/db/migrate.js",
+    "db:seed": "node server/seed/seed.js",
+    "seeds:cloudflare": "node tools/generate-cloudflare-seeds.mjs",
+    "cf:pages:dev": "npm run build && npx wrangler pages dev dist --compatibility-date=2026-05-30",
+    "cf:d1:migrate": "npx wrangler d1 migrations apply woodlandspark-db --remote",
+    "cf:d1:seed": "npx wrangler d1 execute woodlandspark-db --remote --file=seed-production-safe.sql",
+    "cf:deploy": "npm run build && npx wrangler pages deploy dist --project-name woodlandspark",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^12.10.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "lucide-react": "^1.17.0",
+    "multer": "^2.1.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@vitejs/plugin-react": "^6.0.2",
+    "autoprefixer": "^10.5.0",
+    "concurrently": "^10.0.0",
+    "nodemon": "^3.1.14",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^3.4.17",
+    "vite": "^8.0.14"
+  }
+}

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /staff
+Disallow: /shifts
+Disallow: /tickets/account
+Disallow: /tickets/login
+Disallow: /tickets/register
+Disallow: /tickets/checkout
+
+Sitemap: https://woodlandspark.shubodaya.dev/sitemap.xml

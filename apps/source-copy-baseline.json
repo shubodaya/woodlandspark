@@ -1,0 +1,8 @@
+{
+  "createdAt": "2026-05-29",
+  "sourceProjects": {
+    "dutyorbit": "D:\\websites\\dutyorbit",
+    "ordercircuit": "D:\\websites\\ordercircuit"
+  },
+  "note": "Baseline marker for copied app work. Original source folders must remain untouched; integration changes belong under D:\\websites\\woodlands\\apps."
+}

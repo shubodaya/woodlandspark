@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-05-29T18:18:47.718Z",
+  "source": "https://www.woodlandspark.com",
+  "files": [
+    "src/data/pages/pages.json",
+    "src/data/events/events.json",
+    "src/data/events/event-archive.json",
+    "src/data/news/news.json",
+    "src/data/attractions/attractions.json",
+    "src/data/food/food-drink-pages.json",
+    "src/data/footer/footer-pages.json"
+  ],
+  "counts": {
+    "pages": 71,
+    "posts": 20,
+    "events": 4,
+    "eventArchive": 11,
+    "attractions": 30,
+    "food": 2,
+    "footer": 4
+  },
+  "note": "contentHtml preserves the WordPress rendered HTML for authorised migration review; textContent is a cleaned plain-text extraction."
+}

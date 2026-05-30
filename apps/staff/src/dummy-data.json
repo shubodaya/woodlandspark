@@ -1,0 +1,16 @@
+{
+  "employees": [
+    {
+      "id": "dummy-employee-001",
+      "name": "Sample Employee",
+      "role": "employee",
+      "notes": "Dummy data only. Replace with secure backend data later."
+    }
+  ],
+  "announcements": [
+    {
+      "title": "Welcome",
+      "body": "Staff portal scaffold only. Secure backend integration is required before launch."
+    }
+  ]
+}
