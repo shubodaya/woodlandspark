@@ -1,6 +1,6 @@
 # Woodlands Family Theme Park
 
-Modern React + Vite + Tailwind redesign for Woodlands Family Theme Park with route-based public pages, ticket reservations, admin/staff/shifts portals, cafe menu browsing, newsletter capture and local assets.
+Modern React + Vite + Tailwind redesign for Woodlands Family Theme Park with route-based public pages, ticket reservations, admin and staff operations, cafe menu browsing, newsletter capture and local assets.
 
 Production target: `https://woodlandspark.shubodaya.dev`
 
@@ -35,6 +35,48 @@ node tools/create-local-admin.mjs "Woodlands Staff" staff@example.com "use-a-lon
 ```
 
 By default, `npm run db:seed` does not create users or passwords. If example local users are needed, set `WOODLANDS_SEED_EXAMPLE_USERS=true` and provide all `WOODLANDS_SEED_*_PASSWORD` environment variables privately before running the seed script.
+
+## Staff Rota
+
+Rota/shifts now live inside the Staff Portal:
+
+```text
+http://127.0.0.1:5173/staff/rota
+http://127.0.0.1:5173/staff/rota/calendar
+http://127.0.0.1:5173/staff/rota/shifts
+http://127.0.0.1:5173/staff/rota/assignments
+```
+
+The old `/shifts` route redirects users to `/staff/rota`.
+
+Role access:
+
+- `staff`: view own assigned rota.
+- `supervisor`: view team rota and assign shifts in their department.
+- `manager`: create, edit and assign shifts.
+- `admin` / `super_admin`: full rota access.
+
+## Account Setup
+
+Local first admin:
+
+```powershell
+node tools/create-local-admin.mjs "Woodlands Admin" admin@example.com "use-a-long-private-password" super_admin
+```
+
+Production first admin:
+
+- Set `ADMIN_BOOTSTRAP_TOKEN` as a Cloudflare Pages secret.
+- Open `/admin/setup`.
+- Enter the private bootstrap token and a 14+ character admin password.
+- The setup endpoint refuses to create another admin after one admin exists.
+
+Staff accounts:
+
+- Sign in as `admin` or `super_admin`.
+- Go to `/admin`.
+- Use the Users tab to create staff, supervisor, manager and payroll-admin accounts.
+- Do not create public default passwords; use long temporary passwords and rotate/reset them through the future invite/password-reset flow.
 
 ## Production Setup
 

@@ -1,13 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
 import {
+  ArrowRight,
+  Ban,
   CalendarClock,
+  CalendarDays,
   FileImage,
   LayoutDashboard,
+  ListChecks,
   LockKeyhole,
   Save,
   ShieldCheck,
   Ticket,
   Upload,
+  UserCog,
+  UserPlus,
   Users,
   Utensils,
 } from "lucide-react";
@@ -16,18 +22,50 @@ import { AppLink } from "./Link.jsx";
 import { FoodMenuBrowser } from "./FoodMenuBrowser.jsx";
 
 const adminRoles = ["admin", "editor", "super_admin"];
+const userAdminRoles = ["admin", "super_admin"];
 const staffRoles = ["staff", "supervisor", "manager", "payroll_admin", "super_admin", "admin"];
 const shiftRoles = ["staff", "supervisor", "manager", "super_admin", "admin"];
+const allUserRoles = ["customer", "admin", "editor", "staff", "supervisor", "manager", "payroll_admin", "super_admin"];
 
-export function PortalRoute({ type, onNavigate }) {
+export function PortalRoute({ type, path = "", onNavigate }) {
+  if (type === "shiftRedirect") return <ShiftRedirect onNavigate={onNavigate} />;
+  if (type === "adminSetup") return <AdminSetupPortal />;
   if (type === "foodorder") return <FoodorderPortal />;
-  if (type === "shifts") return <ShiftsPortal />;
-  if (type === "staff") return <StaffPortal onNavigate={onNavigate} />;
+  if (type === "staff") return <StaffPortal path={path} onNavigate={onNavigate} />;
   return <AdminPortal />;
 }
 
 function isAllowed(user, roles) {
   return Boolean(user && roles.includes(user.role));
+}
+
+function ShiftRedirect({ onNavigate }) {
+  useEffect(() => {
+    const timer = window.setTimeout(() => onNavigate("/staff/rota"), 600);
+    return () => window.clearTimeout(timer);
+  }, [onNavigate]);
+
+  return (
+    <>
+      <PortalHero
+        eyebrow="staff.woodlandspark.com"
+        title="Rota / Shifts"
+        description="Rota is now inside the Staff Portal."
+        roles={["staff", "supervisor", "manager"]}
+      />
+      <PortalShell>
+        <div className="rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift">
+          <CalendarClock aria-hidden="true" className="text-berry" />
+          <h2 className="mt-3 font-display text-3xl font-black text-ink">Rota is now inside the Staff Portal.</h2>
+          <p className="mt-2 text-sm leading-6 text-slate-700">You will be redirected to the staff rota area.</p>
+          <AppLink href="/staff/rota" onNavigate={onNavigate} className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button">
+            Continue
+            <ArrowRight aria-hidden="true" size={18} />
+          </AppLink>
+        </div>
+      </PortalShell>
+    </>
+  );
 }
 
 function PortalHero({ eyebrow, title, description, roles = [] }) {
@@ -108,6 +146,63 @@ function PortalShell({ children }) {
   return <section className="mx-auto max-w-7xl px-4 py-12 lg:px-6">{children}</section>;
 }
 
+function AdminSetupPortal() {
+  const [form, setForm] = useState({ token: "", name: "", email: "", password: "" });
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async (event) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setMessage("");
+    setError("");
+    try {
+      await apiRequest("/setup/first-admin", {
+        method: "POST",
+        headers: { "X-Bootstrap-Token": form.token },
+        body: JSON.stringify({ name: form.name, email: form.email, password: form.password }),
+      });
+      setMessage("Admin account created. You can now sign in at /admin.");
+      setForm({ token: "", name: "", email: "", password: "" });
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <PortalHero
+        eyebrow="admin.woodlandspark.com"
+        title="Admin Setup"
+        description="Create the first administrator only when no admin account exists."
+        roles={["bootstrap token required"]}
+      />
+      <PortalShell>
+        <form className="mx-auto max-w-2xl rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift" onSubmit={submit}>
+          <p className="rounded-lg bg-sunshine/30 p-3 text-sm font-bold text-ink">
+            This setup route requires the private ADMIN_BOOTSTRAP_TOKEN. Do not store that token in the frontend or repository.
+          </p>
+          <div className="mt-5 grid gap-4">
+            <AdminInput label="Bootstrap Token" type="password" value={form.token} onChange={(value) => setForm((current) => ({ ...current, token: value }))} required />
+            <AdminInput label="Admin Name" value={form.name} onChange={(value) => setForm((current) => ({ ...current, name: value }))} required />
+            <AdminInput label="Admin Email" type="email" value={form.email} onChange={(value) => setForm((current) => ({ ...current, email: value }))} required />
+            <AdminInput label="Admin Password" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} required />
+          </div>
+          {message && <p className="mt-4 rounded-lg bg-leaf/10 p-3 text-sm font-bold text-canopy">{message}</p>}
+          {error && <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
+          <button className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit" disabled={submitting}>
+            <ShieldCheck aria-hidden="true" size={18} />
+            {submitting ? "Creating..." : "Create First Admin"}
+          </button>
+        </form>
+      </PortalShell>
+    </>
+  );
+}
+
 function AdminPortal() {
   const [user, setUser] = useState(null);
   const [activeTab, setActiveTab] = useState("pages");
@@ -123,12 +218,17 @@ function AdminPortal() {
     subscribers: [],
     ticketTypes: [],
     bookings: [],
+    users: [],
+    departments: [],
+    auditLogs: [],
   });
   const [saveMessage, setSaveMessage] = useState("");
 
   const loadAdmin = async () => {
-    const [dashboard, pages, events, faqs, openingTimes, media, documents, subscribers, ticketTypes, bookings] = await Promise.all([
+    const [dashboard, users, auditLogs, pages, events, faqs, openingTimes, media, documents, subscribers, ticketTypes, bookings] = await Promise.all([
       apiRequest("/admin/dashboard"),
+      apiRequest("/admin/users"),
+      apiRequest("/admin/audit-logs"),
       apiRequest("/admin/pages"),
       apiRequest("/admin/events"),
       apiRequest("/admin/faqs"),
@@ -150,6 +250,9 @@ function AdminPortal() {
       subscribers: subscribers.subscribers,
       ticketTypes: ticketTypes.ticketTypes,
       bookings: bookings.bookings,
+      users: users.users,
+      departments: users.departments,
+      auditLogs: auditLogs.auditLogs,
     });
   };
 
@@ -195,6 +298,7 @@ function AdminPortal() {
             <DashboardCounts counts={data.counts} />
             <TabButtons activeTab={activeTab} setActiveTab={setActiveTab} />
             {saveMessage && <p className="rounded-lg bg-leaf/10 p-3 text-sm font-bold text-canopy">{saveMessage}</p>}
+            {activeTab === "users" && <UsersManager users={data.users} departments={data.departments} setData={setData} setSaveMessage={setSaveMessage} currentUser={user} />}
             {activeTab === "pages" && <PagesManager pages={data.pages} setData={setData} setSaveMessage={setSaveMessage} />}
             {activeTab === "events" && <EventsManager events={data.events} setData={setData} setSaveMessage={setSaveMessage} />}
             {activeTab === "opening" && <OpeningManager openingTimes={data.openingTimes} setData={setData} setSaveMessage={setSaveMessage} />}
@@ -203,6 +307,7 @@ function AdminPortal() {
             {activeTab === "documents" && <DocumentsManager documents={data.documents} />}
             {activeTab === "newsletter" && <SubscriberManager subscribers={data.subscribers} />}
             {activeTab === "tickets" && <TicketAdmin ticketTypes={data.ticketTypes} bookings={data.bookings} setData={setData} setSaveMessage={setSaveMessage} />}
+            {activeTab === "audit" && <AuditLogManager auditLogs={data.auditLogs} />}
           </div>
         )}
       </PortalShell>
@@ -213,6 +318,7 @@ function AdminPortal() {
 function DashboardCounts({ counts }) {
   const cards = [
     ["Pages", counts.pages || 0, LayoutDashboard],
+    ["Users", counts.users || 0, Users],
     ["Events", counts.events || 0, CalendarClock],
     ["FAQs", counts.faqs || 0, ShieldCheck],
     ["Bookings", counts.bookings || 0, Ticket],
@@ -234,6 +340,7 @@ function DashboardCounts({ counts }) {
 
 function TabButtons({ activeTab, setActiveTab }) {
   const tabs = [
+    ["users", "Users"],
     ["pages", "Pages"],
     ["events", "Events"],
     ["opening", "Opening Times"],
@@ -242,6 +349,7 @@ function TabButtons({ activeTab, setActiveTab }) {
     ["documents", "Documents"],
     ["newsletter", "Newsletter"],
     ["tickets", "Tickets"],
+    ["audit", "Audit"],
   ];
   return (
     <div className="flex flex-wrap gap-2 rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
@@ -258,6 +366,182 @@ function TabButtons({ activeTab, setActiveTab }) {
         </button>
       ))}
     </div>
+  );
+}
+
+function UsersManager({ users, departments, setData, setSaveMessage, currentUser }) {
+  const canManageUsers = isAllowed(currentUser, userAdminRoles);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "staff",
+    departmentId: departments[0]?.id || "",
+    jobTitle: "Ranger",
+  });
+  const [error, setError] = useState("");
+
+  const createUser = async (event) => {
+    event.preventDefault();
+    setError("");
+    try {
+      const data = await apiRequest("/admin/users", {
+        method: "POST",
+        body: JSON.stringify(form),
+      });
+      setData((current) => ({ ...current, users: [data.user, ...current.users] }));
+      setSaveMessage(`Created user: ${data.user.email}`);
+      setForm({ name: "", email: "", password: "", role: "staff", departmentId: departments[0]?.id || "", jobTitle: "Ranger" });
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const updateUser = async (user, patch) => {
+    setError("");
+    try {
+      const payload = {
+        name: user.name,
+        role: user.role,
+        departmentId: user.departmentId ?? user.department_id ?? "",
+        jobTitle: user.job_title || "",
+        disabled: Boolean(user.disabled_at),
+        ...patch,
+      };
+      const data = await apiRequest(`/admin/users/${user.id}`, {
+        method: "PUT",
+        body: JSON.stringify(payload),
+      });
+      setData((current) => ({
+        ...current,
+        users: current.users.map((item) => (item.id === user.id ? { ...item, ...data.user } : item)),
+      }));
+      setSaveMessage(`Updated user: ${data.user.email}`);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  return (
+    <ManagerPanel title="User Management">
+      {!canManageUsers && (
+        <p className="rounded-lg bg-sunshine/30 p-3 text-sm font-bold text-ink">
+          User creation and role changes require an admin or super-admin account.
+        </p>
+      )}
+      {canManageUsers && (
+        <form className="rounded-lg border border-slate-200 bg-mist p-4" onSubmit={createUser}>
+          <div className="flex items-center gap-2">
+            <UserPlus aria-hidden="true" className="text-berry" />
+            <h3 className="font-display text-2xl font-black text-ink">Create Staff or Manager User</h3>
+          </div>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            <AdminInput label="Name" value={form.name} onChange={(value) => setForm((current) => ({ ...current, name: value }))} required />
+            <AdminInput label="Email" type="email" value={form.email} onChange={(value) => setForm((current) => ({ ...current, email: value }))} required />
+            <AdminInput label="Temporary Password" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} required />
+            <label className="grid gap-2">
+              <span className="text-sm font-extrabold text-ink">Role</span>
+              <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={form.role} onChange={(event) => setForm((current) => ({ ...current, role: event.target.value }))}>
+                {allUserRoles.map((role) => <option key={role} value={role}>{role}</option>)}
+              </select>
+            </label>
+            <label className="grid gap-2">
+              <span className="text-sm font-extrabold text-ink">Department</span>
+              <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={form.departmentId} onChange={(event) => setForm((current) => ({ ...current, departmentId: event.target.value }))}>
+                <option value="">No department</option>
+                {departments.map((department) => <option key={department.id} value={department.id}>{department.name}</option>)}
+              </select>
+            </label>
+            <AdminInput label="Job Title" value={form.jobTitle} onChange={(value) => setForm((current) => ({ ...current, jobTitle: value }))} />
+          </div>
+          {error && <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
+          <button className="focus-ring mt-4 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
+            <UserPlus aria-hidden="true" size={18} />
+            Create User
+          </button>
+        </form>
+      )}
+      <div className="overflow-auto rounded-lg border border-slate-200 bg-white">
+        <table className="w-full min-w-[920px] text-left text-sm">
+          <thead className="bg-mist text-ink">
+            <tr>
+              <th className="p-3">User</th>
+              <th className="p-3">Role</th>
+              <th className="p-3">Department</th>
+              <th className="p-3">Status</th>
+              <th className="p-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id} className="border-t border-slate-200">
+                <td className="p-3">
+                  <p className="font-black text-ink">{user.name}</p>
+                  <p className="text-xs font-bold text-slate-600">{user.email}</p>
+                </td>
+                <td className="p-3">
+                  <select
+                    className="focus-ring min-h-10 rounded-lg border border-slate-300 px-2"
+                    value={user.role}
+                    disabled={!canManageUsers}
+                    onChange={(event) => updateUser(user, { role: event.target.value })}
+                  >
+                    {allUserRoles.map((role) => <option key={role} value={role}>{role}</option>)}
+                  </select>
+                </td>
+                <td className="p-3">{user.department_name || "Not assigned"}</td>
+                <td className="p-3">
+                  <span className={`rounded-lg px-2 py-1 text-xs font-black uppercase ${user.disabled_at ? "bg-red-100 text-red-700" : "bg-leaf/10 text-canopy"}`}>
+                    {user.disabled_at ? "Disabled" : "Active"}
+                  </span>
+                </td>
+                <td className="p-3">
+                  {canManageUsers && (
+                    <button
+                      className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-lg bg-mist px-3 py-2 text-xs font-black uppercase tracking-wide text-ink hover:bg-sunshine"
+                      type="button"
+                      onClick={() => updateUser(user, { disabled: !user.disabled_at })}
+                    >
+                      {user.disabled_at ? <ShieldCheck aria-hidden="true" size={16} /> : <Ban aria-hidden="true" size={16} />}
+                      {user.disabled_at ? "Enable" : "Disable"}
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </ManagerPanel>
+  );
+}
+
+function AuditLogManager({ auditLogs }) {
+  return (
+    <ManagerPanel title="Audit Log">
+      <div className="overflow-auto rounded-lg border border-slate-200 bg-white">
+        <table className="w-full min-w-[760px] text-left text-sm">
+          <thead className="bg-mist text-ink">
+            <tr>
+              <th className="p-3">Time</th>
+              <th className="p-3">User</th>
+              <th className="p-3">Action</th>
+              <th className="p-3">Entity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {auditLogs.map((log) => (
+              <tr key={log.id} className="border-t border-slate-200">
+                <td className="p-3">{log.created_at}</td>
+                <td className="p-3">{log.user_name || log.user_email || "System"}</td>
+                <td className="p-3 font-black text-ink">{log.action}</td>
+                <td className="p-3">{log.entity_type || "-"} {log.entity_id ? `#${log.entity_id}` : ""}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </ManagerPanel>
   );
 }
 
@@ -507,7 +791,7 @@ function TicketAdmin({ ticketTypes, bookings, setData, setSaveMessage }) {
   );
 }
 
-function StaffPortal({ onNavigate }) {
+function StaffPortal({ path, onNavigate }) {
   const [user, setUser] = useState(null);
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -541,6 +825,8 @@ function StaffPortal({ onNavigate }) {
     setLoading(false);
   };
 
+  const isRotaRoute = path?.startsWith("/staff/rota");
+
   return (
     <>
       <PortalHero
@@ -554,6 +840,8 @@ function StaffPortal({ onNavigate }) {
           <LoadingCard label="Loading staff portal..." />
         ) : !isAllowed(user, staffRoles) ? (
           <PortalLogin title="Staff Login" currentUser={user} allowedRoles={staffRoles} onAuthenticated={reloadAfterLogin} />
+        ) : isRotaRoute ? (
+          <StaffRotaManager path={path} user={user} onNavigate={onNavigate} />
         ) : (
           <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
             <aside className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-sm">
@@ -565,8 +853,9 @@ function StaffPortal({ onNavigate }) {
                   {dashboard.employee.job_title} - {dashboard.employee.department_name}
                 </p>
               )}
-              <AppLink href="/shifts" onNavigate={onNavigate} className="focus-ring mt-5 inline-flex min-h-12 items-center rounded-lg bg-sunshine px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-ink shadow-button">
-                View Shifts
+              <AppLink href="/staff/rota" onNavigate={onNavigate} className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-sunshine px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-ink shadow-button">
+                <CalendarClock aria-hidden="true" size={18} />
+                Rota / Shifts
               </AppLink>
             </aside>
             <div className="grid gap-5">
@@ -612,26 +901,25 @@ function StaffPortal({ onNavigate }) {
   );
 }
 
-function ShiftsPortal() {
-  const [user, setUser] = useState(null);
-  const [data, setData] = useState({ shifts: [], assignments: [], employees: [], canManage: false });
+function StaffRotaManager({ path, user, onNavigate }) {
+  const [data, setData] = useState({ shifts: [], assignments: [], employees: [], departments: [], canManage: false, canCreate: false, canAssign: false, canEdit: false });
   const [loading, setLoading] = useState(true);
-  const [newShift, setNewShift] = useState({ title: "", date: "", startTime: "", endTime: "", location: "", employeeId: "" });
+  const [newShift, setNewShift] = useState({ title: "", date: "", startTime: "", endTime: "", location: "", departmentId: "", employeeId: "" });
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const view = path.endsWith("/calendar") ? "calendar" : path.endsWith("/shifts") ? "shifts" : path.endsWith("/assignments") ? "assignments" : "overview";
 
   const loadShifts = async () => {
-    const next = await apiRequest("/shifts");
+    const next = await apiRequest("/staff/rota");
     setData(next);
   };
 
   useEffect(() => {
     let isMounted = true;
-    apiRequest("/auth/me")
-      .then(async (auth) => {
-        if (!isMounted) return;
-        setUser(auth.user);
-        if (isAllowed(auth.user, shiftRoles)) await loadShifts();
+    loadShifts()
+      .catch((error) => {
+        if (isMounted) setError(error.message);
       })
-      .catch(() => undefined)
       .finally(() => {
         if (isMounted) setLoading(false);
       });
@@ -639,13 +927,6 @@ function ShiftsPortal() {
       isMounted = false;
     };
   }, []);
-
-  const reloadAfterLogin = async (nextUser) => {
-    setUser(nextUser);
-    setLoading(true);
-    await loadShifts();
-    setLoading(false);
-  };
 
   const assignmentsByShift = useMemo(() => {
     const map = new Map();
@@ -659,84 +940,344 @@ function ShiftsPortal() {
 
   const createShift = async (event) => {
     event.preventDefault();
-    await apiRequest("/shifts", {
-      method: "POST",
-      body: JSON.stringify(newShift),
-    });
-    setNewShift({ title: "", date: "", startTime: "", endTime: "", location: "", employeeId: "" });
-    await loadShifts();
+    setError("");
+    setMessage("");
+    try {
+      await apiRequest("/staff/rota/shifts", {
+        method: "POST",
+        body: JSON.stringify(newShift),
+      });
+      setNewShift({ title: "", date: "", startTime: "", endTime: "", location: "", departmentId: "", employeeId: "" });
+      setMessage("Shift created.");
+      await loadShifts();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const updateShift = async (shift, patch) => {
+    setError("");
+    setMessage("");
+    try {
+      await apiRequest(`/staff/rota/shifts/${shift.id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          title: shift.title,
+          date: shift.date,
+          startTime: shift.start_time,
+          endTime: shift.end_time,
+          location: shift.location || "",
+          departmentId: shift.department_id || "",
+          status: shift.status,
+          ...patch,
+        }),
+      });
+      setMessage("Shift updated.");
+      await loadShifts();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const assignEmployee = async (event) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const shiftId = form.get("shiftId");
+    const employeeId = form.get("employeeId");
+    setError("");
+    setMessage("");
+    try {
+      await apiRequest(`/staff/rota/shifts/${shiftId}/assignments`, {
+        method: "POST",
+        body: JSON.stringify({ employeeId }),
+      });
+      event.currentTarget.reset();
+      setMessage("Employee assigned.");
+      await loadShifts();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const unassignEmployee = async (shiftId, employeeId) => {
+    setError("");
+    setMessage("");
+    try {
+      await apiRequest(`/staff/rota/shifts/${shiftId}/assignments/${employeeId}`, { method: "DELETE" });
+      setMessage("Assignment removed.");
+      await loadShifts();
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
-    <>
-      <PortalHero
-        eyebrow="shifts.woodlandspark.com"
-        title="Shifts Portal"
-        description="Woodlands-branded shift and rota management for rangers and staff."
-        roles={["employee", "supervisor", "manager"]}
-      />
-      <PortalShell>
-        {loading ? (
-          <LoadingCard label="Loading shifts..." />
-        ) : !isAllowed(user, shiftRoles) ? (
-          <PortalLogin title="Shifts Login" currentUser={user} allowedRoles={shiftRoles} onAuthenticated={reloadAfterLogin} />
-        ) : (
-          <div className="grid gap-6">
-            {data.canManage && (
-              <form className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift" onSubmit={createShift}>
-                <h2 className="font-display text-3xl font-black text-ink">Create Shift</h2>
-                <div className="mt-5 grid gap-4 md:grid-cols-3">
-                  <AdminInput label="Title" value={newShift.title} onChange={(value) => setNewShift((current) => ({ ...current, title: value }))} required />
-                  <AdminInput label="Date" type="date" value={newShift.date} onChange={(value) => setNewShift((current) => ({ ...current, date: value }))} required />
-                  <AdminInput label="Location" value={newShift.location} onChange={(value) => setNewShift((current) => ({ ...current, location: value }))} />
-                  <AdminInput label="Start Time" type="time" value={newShift.startTime} onChange={(value) => setNewShift((current) => ({ ...current, startTime: value }))} required />
-                  <AdminInput label="End Time" type="time" value={newShift.endTime} onChange={(value) => setNewShift((current) => ({ ...current, endTime: value }))} required />
-                  <label className="grid gap-2">
-                    <span className="text-sm font-extrabold text-ink">Assign Employee</span>
-                    <select className="focus-ring min-h-12 rounded-lg border border-slate-300 px-3" value={newShift.employeeId} onChange={(event) => setNewShift((current) => ({ ...current, employeeId: event.target.value }))}>
-                      <option value="">Unassigned</option>
-                      {data.employees.map((employee) => (
-                        <option key={employee.id} value={employee.id}>{employee.name}</option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
-                <button className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
-                  <Save aria-hidden="true" size={18} />
-                  Save Shift
-                </button>
-              </form>
-            )}
-            <div className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <h2 className="font-display text-3xl font-black text-ink">Rota</h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-700">View scheduled shifts and ranger cover across Woodlands.</p>
-                </div>
-                <CalendarClock aria-hidden="true" className="text-berry" size={42} />
-              </div>
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {data.shifts.map((shift) => (
-                  <article key={shift.id} className="rounded-lg border border-slate-200 bg-mist p-4">
-                    <p className="text-sm font-black uppercase tracking-wide text-berry">{shift.date}</p>
-                    <h3 className="mt-2 font-display text-2xl font-black text-ink">{shift.title}</h3>
-                    <p className="mt-2 text-sm font-bold text-slate-700">{shift.start_time} - {shift.end_time}</p>
-                    <p className="mt-1 text-sm leading-6 text-slate-700">{shift.location || shift.department_name}</p>
-                    <div className="mt-3 grid gap-2">
-                      {(assignmentsByShift.get(shift.id) || []).map((assignment) => (
-                        <p key={`${shift.id}-${assignment.name}`} className="rounded-lg bg-white p-2 text-xs font-bold text-slate-700">
-                          {assignment.name} - {assignment.jobTitle || assignment.role}
-                        </p>
-                      ))}
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
+    <div className="grid gap-6">
+      <div className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-berry">Staff Portal</p>
+            <h2 className="mt-2 font-display text-4xl font-black text-ink">Rota / Shifts</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-700">
+              {data.canCreate ? "Create, edit and assign Woodlands shifts." : data.canAssign ? "View the team rota and assign staff in your department." : "View your assigned Woodlands rota."}
+            </p>
           </div>
-        )}
-      </PortalShell>
-    </>
+          <CalendarClock aria-hidden="true" className="text-berry" size={46} />
+        </div>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {[
+            ["/staff/rota", "Overview", LayoutDashboard],
+            ["/staff/rota/calendar", "Calendar", CalendarDays],
+            ["/staff/rota/shifts", "Shifts", ListChecks],
+            ["/staff/rota/assignments", "Assignments", UserCog],
+          ].map(([href, label, Icon]) => (
+            <AppLink key={href} href={href} onNavigate={onNavigate} className={`focus-ring inline-flex min-h-11 items-center gap-2 rounded-lg px-4 py-2 text-sm font-black uppercase tracking-wide ${path === href ? "bg-woodpink text-white" : "bg-mist text-ink hover:bg-sunshine"}`}>
+              <Icon aria-hidden="true" size={17} />
+              {label}
+            </AppLink>
+          ))}
+          <AppLink href="/staff" onNavigate={onNavigate} className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-black uppercase tracking-wide text-ink ring-1 ring-slate-200 hover:bg-sunshine">
+            Staff Dashboard
+          </AppLink>
+        </div>
+      </div>
+
+      {loading ? (
+        <LoadingCard label="Loading rota..." />
+      ) : !isAllowed(user, shiftRoles) ? (
+        <div className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-sm">
+          <p className="font-bold text-ink">This staff account does not have rota access.</p>
+        </div>
+      ) : (
+        <>
+          {message && <p className="rounded-lg bg-leaf/10 p-3 text-sm font-bold text-canopy">{message}</p>}
+          {error && <p className="rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
+          {(view === "overview" || view === "shifts") && data.canCreate && (
+            <form className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift" onSubmit={createShift}>
+              <h3 className="font-display text-3xl font-black text-ink">Create Shift</h3>
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
+                <AdminInput label="Title" value={newShift.title} onChange={(value) => setNewShift((current) => ({ ...current, title: value }))} required />
+                <AdminInput label="Date" type="date" value={newShift.date} onChange={(value) => setNewShift((current) => ({ ...current, date: value }))} required />
+                <AdminInput label="Location" value={newShift.location} onChange={(value) => setNewShift((current) => ({ ...current, location: value }))} />
+                <AdminInput label="Start Time" type="time" value={newShift.startTime} onChange={(value) => setNewShift((current) => ({ ...current, startTime: value }))} required />
+                <AdminInput label="End Time" type="time" value={newShift.endTime} onChange={(value) => setNewShift((current) => ({ ...current, endTime: value }))} required />
+                <label className="grid gap-2">
+                  <span className="text-sm font-extrabold text-ink">Department</span>
+                  <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={newShift.departmentId} onChange={(event) => setNewShift((current) => ({ ...current, departmentId: event.target.value }))}>
+                    <option value="">No department</option>
+                    {data.departments.map((department) => <option key={department.id} value={department.id}>{department.name}</option>)}
+                  </select>
+                </label>
+                <label className="grid gap-2">
+                  <span className="text-sm font-extrabold text-ink">Assign Employee</span>
+                  <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={newShift.employeeId} onChange={(event) => setNewShift((current) => ({ ...current, employeeId: event.target.value }))}>
+                    <option value="">Unassigned</option>
+                    {data.employees.map((employee) => <option key={employee.id} value={employee.id}>{employee.name} - {employee.department}</option>)}
+                  </select>
+                </label>
+              </div>
+              <button className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
+                <Save aria-hidden="true" size={18} />
+                Save Shift
+              </button>
+            </form>
+          )}
+
+          {view === "calendar" ? (
+            <RotaCalendar shifts={data.shifts} assignmentsByShift={assignmentsByShift} />
+          ) : view === "assignments" ? (
+            <RotaAssignments data={data} assignmentsByShift={assignmentsByShift} onAssign={assignEmployee} onUnassign={unassignEmployee} />
+          ) : (
+            <RotaShiftList data={data} assignmentsByShift={assignmentsByShift} onUpdate={updateShift} />
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+function RotaShiftList({ data, assignmentsByShift, onUpdate }) {
+  return (
+    <div className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h3 className="font-display text-3xl font-black text-ink">Scheduled Shifts</h3>
+          <p className="mt-2 text-sm leading-6 text-slate-700">Calendar and list information is stored in the Woodlands SQL database.</p>
+        </div>
+        <ListChecks aria-hidden="true" className="text-berry" size={42} />
+      </div>
+      <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {data.shifts.map((shift) => (
+          data.canEdit ? (
+            <EditableShiftCard key={shift.id} shift={shift} assignments={assignmentsByShift.get(shift.id) || []} onSave={onUpdate} />
+          ) : (
+            <ReadOnlyShiftCard key={shift.id} shift={shift} assignments={assignmentsByShift.get(shift.id) || []} />
+          )
+        ))}
+        {!data.shifts.length && <p className="rounded-lg bg-mist p-4 text-sm font-bold text-slate-700">No shifts are currently assigned.</p>}
+      </div>
+    </div>
+  );
+}
+
+function EditableShiftCard({ shift, assignments, onSave }) {
+  const [draft, setDraft] = useState({
+    title: shift.title,
+    date: shift.date,
+    startTime: shift.start_time,
+    endTime: shift.end_time,
+    location: shift.location || "",
+  });
+
+  useEffect(() => {
+    setDraft({
+      title: shift.title,
+      date: shift.date,
+      startTime: shift.start_time,
+      endTime: shift.end_time,
+      location: shift.location || "",
+    });
+  }, [shift]);
+
+  return (
+    <article className="rounded-lg border border-slate-200 bg-mist p-4">
+      <AdminInput label="Date" type="date" value={draft.date} onChange={(value) => setDraft((current) => ({ ...current, date: value }))} />
+      <div className="mt-3 grid gap-3">
+        <AdminInput label="Title" value={draft.title} onChange={(value) => setDraft((current) => ({ ...current, title: value }))} />
+        <div className="grid gap-3 sm:grid-cols-2">
+          <AdminInput label="Start" type="time" value={draft.startTime} onChange={(value) => setDraft((current) => ({ ...current, startTime: value }))} />
+          <AdminInput label="End" type="time" value={draft.endTime} onChange={(value) => setDraft((current) => ({ ...current, endTime: value }))} />
+        </div>
+        <AdminInput label="Location" value={draft.location} onChange={(value) => setDraft((current) => ({ ...current, location: value }))} />
+      </div>
+      <AssignmentBadges shift={shift} assignments={assignments} />
+      <button className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-woodpink px-4 py-2 text-xs font-black uppercase tracking-wide text-white shadow-button" type="button" onClick={() => onSave(shift, draft)}>
+        <Save aria-hidden="true" size={16} />
+        Save Changes
+      </button>
+    </article>
+  );
+}
+
+function ReadOnlyShiftCard({ shift, assignments }) {
+  return (
+    <article className="rounded-lg border border-slate-200 bg-mist p-4">
+      <p className="text-sm font-black uppercase tracking-wide text-berry">{shift.date}</p>
+      <h4 className="mt-2 font-display text-2xl font-black text-ink">{shift.title}</h4>
+      <p className="mt-2 text-sm font-bold text-slate-700">{shift.start_time} - {shift.end_time}</p>
+      <p className="mt-1 text-sm leading-6 text-slate-700">{shift.location || shift.department_name}</p>
+      <AssignmentBadges shift={shift} assignments={assignments} />
+    </article>
+  );
+}
+
+function AssignmentBadges({ shift, assignments }) {
+  return (
+    <div className="mt-3 grid gap-2">
+      {assignments.map((assignment) => (
+        <p key={`${shift.id}-${assignment.employeeId || assignment.name}`} className="rounded-lg bg-white p-2 text-xs font-bold text-slate-700">
+          {assignment.name} - {assignment.jobTitle || assignment.role}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function RotaCalendar({ shifts, assignmentsByShift }) {
+  const grouped = useMemo(() => {
+    const map = new Map();
+    for (const shift of shifts) {
+      const list = map.get(shift.date) || [];
+      list.push(shift);
+      map.set(shift.date, list);
+    }
+    return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
+  }, [shifts]);
+
+  return (
+    <div className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h3 className="font-display text-3xl font-black text-ink">Calendar View</h3>
+          <p className="mt-2 text-sm leading-6 text-slate-700">Grouped by shift date for fast rota scanning.</p>
+        </div>
+        <CalendarDays aria-hidden="true" className="text-berry" size={42} />
+      </div>
+      <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {grouped.map(([date, dateShifts]) => (
+          <section key={date} className="rounded-lg border border-slate-200 bg-mist p-4">
+            <h4 className="font-display text-2xl font-black text-ink">{date}</h4>
+            <div className="mt-3 grid gap-3">
+              {dateShifts.map((shift) => (
+                <article key={shift.id} className="rounded-lg bg-white p-3 text-sm shadow-sm">
+                  <p className="font-black text-berry">{shift.start_time} - {shift.end_time}</p>
+                  <p className="mt-1 font-black text-ink">{shift.title}</p>
+                  <p className="text-slate-700">{shift.location || shift.department_name}</p>
+                  <p className="mt-2 text-xs font-bold text-slate-600">
+                    {(assignmentsByShift.get(shift.id) || []).map((assignment) => assignment.name).join(", ") || "Unassigned"}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+        {!grouped.length && <p className="rounded-lg bg-mist p-4 text-sm font-bold text-slate-700">No shifts to show.</p>}
+      </div>
+    </div>
+  );
+}
+
+function RotaAssignments({ data, assignmentsByShift, onAssign, onUnassign }) {
+  return (
+    <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+      {data.canAssign && (
+        <form className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift" onSubmit={onAssign}>
+          <h3 className="font-display text-3xl font-black text-ink">Assign Staff</h3>
+          <label className="mt-5 grid gap-2">
+            <span className="text-sm font-extrabold text-ink">Shift</span>
+            <select name="shiftId" className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" required>
+              <option value="">Choose shift</option>
+              {data.shifts.map((shift) => <option key={shift.id} value={shift.id}>{shift.date} - {shift.title}</option>)}
+            </select>
+          </label>
+          <label className="mt-4 grid gap-2">
+            <span className="text-sm font-extrabold text-ink">Employee</span>
+            <select name="employeeId" className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" required>
+              <option value="">Choose employee</option>
+              {data.employees.map((employee) => <option key={employee.id} value={employee.id}>{employee.name} - {employee.department}</option>)}
+            </select>
+          </label>
+          <button className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
+            <UserCog aria-hidden="true" size={18} />
+            Assign
+          </button>
+        </form>
+      )}
+      <div className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift">
+        <h3 className="font-display text-3xl font-black text-ink">Current Assignments</h3>
+        <div className="mt-5 grid gap-4">
+          {data.shifts.map((shift) => (
+            <section key={shift.id} className="rounded-lg bg-mist p-4">
+              <p className="text-sm font-black uppercase tracking-wide text-berry">{shift.date}</p>
+              <h4 className="mt-1 font-display text-2xl font-black text-ink">{shift.title}</h4>
+              <div className="mt-3 grid gap-2">
+                {(assignmentsByShift.get(shift.id) || []).map((assignment) => (
+                  <div key={`${shift.id}-${assignment.employeeId || assignment.name}`} className="flex flex-wrap items-center justify-between gap-3 rounded-lg bg-white p-3 text-sm">
+                    <span className="font-bold text-slate-700">{assignment.name} - {assignment.jobTitle || assignment.role}</span>
+                    {data.canAssign && assignment.employeeId && (
+                      <button className="focus-ring rounded-lg bg-red-50 px-3 py-2 text-xs font-black uppercase tracking-wide text-red-700" type="button" onClick={() => onUnassign(shift.id, assignment.employeeId)}>
+                        Remove
+                      </button>
+                    )}
+                  </div>
+                ))}
+                {!(assignmentsByShift.get(shift.id) || []).length && <p className="rounded-lg bg-white p-3 text-sm font-bold text-slate-600">Unassigned</p>}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

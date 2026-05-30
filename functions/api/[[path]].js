@@ -1,6 +1,11 @@
 const adminRoles = ["admin", "editor", "super_admin"];
 const staffRoles = ["staff", "supervisor", "manager", "payroll_admin", "super_admin", "admin"];
 const managerRoles = ["manager", "supervisor", "admin", "super_admin"];
+const shiftCreateRoles = ["manager", "admin", "super_admin"];
+const shiftAssignRoles = ["supervisor", "manager", "admin", "super_admin"];
+const userAdminRoles = ["admin", "super_admin"];
+const allowedUserRoles = ["customer", "admin", "editor", "staff", "supervisor", "manager", "payroll_admin", "super_admin"];
+const employeeRoles = ["staff", "supervisor", "manager", "payroll_admin"];
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -36,8 +41,14 @@ export async function onRequest(context) {
 
     if (route.startsWith("admin/")) return withRole(request, env, adminRoles, (user) => adminRoute(route, request, env, user));
     if (route === "staff/dashboard" && request.method === "GET") return withRole(request, env, staffRoles, (user) => staffDashboard(env, user));
-    if (route === "shifts" && request.method === "GET") return withRole(request, env, staffRoles, (user) => listShifts(env, user));
-    if (route === "shifts" && request.method === "POST") return withRole(request, env, managerRoles, (user) => createShift(request, env, user));
+    if ((route === "staff/rota" || route === "staff/rota/shifts" || route === "shifts") && request.method === "GET") return withRole(request, env, staffRoles, (user) => listShifts(request, env, user));
+    if ((route === "staff/rota/shifts" || route === "shifts") && request.method === "POST") return withRole(request, env, shiftCreateRoles, (user) => createShift(request, env, user));
+    if ((route.startsWith("staff/rota/shifts/") || route.startsWith("shifts/")) && request.method === "PUT" && !route.includes("/assignments")) return withRole(request, env, shiftCreateRoles, (user) => updateShift(request, env, user, Number(route.split("/").filter(Boolean).pop())));
+    if ((route.startsWith("staff/rota/shifts/") || route.startsWith("shifts/")) && request.method === "POST" && route.endsWith("/assignments")) return withRole(request, env, shiftAssignRoles, (user) => assignShift(request, env, user, Number(route.split("/").filter(Boolean).slice(-2)[0])));
+    if ((route.startsWith("staff/rota/shifts/") || route.startsWith("shifts/")) && request.method === "DELETE" && route.includes("/assignments/")) {
+      const parts = route.split("/").filter(Boolean);
+      return withRole(request, env, shiftAssignRoles, (user) => removeAssignment(env, user, Number(parts[parts.indexOf("shifts") + 1]), Number(parts.at(-1))));
+    }
 
     return json({ ok: false, error: "API route not found." }, 404);
   } catch (error) {
@@ -162,7 +173,7 @@ async function getUserFromRequest(request, env) {
     WHERE sessions.token_hash = ?
   `).bind(tokenHash).first();
   if (!row) return null;
-  if (new Date(row.expires_at).getTime() <= Date.now()) {
+  if (row.disabled_at || new Date(row.expires_at).getTime() <= Date.now()) {
     await env.DB.prepare("DELETE FROM sessions WHERE id = ?").bind(row.session_id).run();
     return null;
   }
@@ -229,6 +240,7 @@ async function login(request, env) {
   const password = String(body.password || "");
   const user = await env.DB.prepare("SELECT * FROM users WHERE email = ?").bind(email).first();
   if (!user || !(await verifyPassword(password, user.password_hash))) return fail(401, "Invalid email or password.");
+  if (user.disabled_at) return fail(403, "This account has been disabled. Please contact Woodlands.");
   await audit(env, user.id, "auth.login", "users", user.id);
   const cookie = await createSession(request, env, user);
   return ok({ user: publicUser(user) }, { "Set-Cookie": cookie });
@@ -255,6 +267,8 @@ async function firstAdmin(request, env) {
   const email = String(body.email || "").trim().toLowerCase();
   const password = String(body.password || "");
   if (!name || !email || password.length < 14) return fail(400, "Name, email and a 14+ character password are required.");
+  const existingEmail = await env.DB.prepare("SELECT id FROM users WHERE email = ?").bind(email).first();
+  if (existingEmail) return fail(409, "A user already exists for this email address.");
   const passwordHash = await hashPassword(password);
   const result = await env.DB.prepare(`
     INSERT INTO users (name, email, password_hash, role, created_at, updated_at)
@@ -420,6 +434,7 @@ async function adminRoute(route, request, env, user) {
       bookings: "ticket_bookings",
       subscribers: "newsletter_subscribers",
       menuItems: "menu_items",
+      users: "users",
     };
     const counts = {};
     for (const [key, table] of Object.entries(tables)) {
@@ -428,6 +443,10 @@ async function adminRoute(route, request, env, user) {
     return ok({ counts });
   }
   if (route === "admin/pages" && request.method === "GET") return listRows(env, "pages", "path", "pages");
+  if (route === "admin/users" && request.method === "GET") return listUsers(env);
+  if (route === "admin/users" && request.method === "POST") return createUser(request, env, user);
+  if (route.startsWith("admin/users/") && request.method === "PUT") return updateUser(request, env, user, id);
+  if (route === "admin/audit-logs" && request.method === "GET") return listAuditLogs(env);
   if (route.startsWith("admin/pages/") && request.method === "PUT") return updatePage(request, env, user, id);
   if (route === "admin/events" && request.method === "GET") return listRows(env, "events", "event_date, title", "events");
   if (route.startsWith("admin/events/") && request.method === "PUT") return updateEvent(request, env, user, id);
@@ -524,6 +543,93 @@ async function uploadMedia(request, env, user) {
   return ok({ media: await env.DB.prepare("SELECT * FROM media_assets WHERE id = ?").bind(result.meta.last_row_id).first() });
 }
 
+async function listUsers(env) {
+  const { results: users } = await env.DB.prepare(`
+    SELECT users.id, users.name, users.email, users.role, users.disabled_at, users.created_at, users.updated_at,
+      employees.id AS employee_id, employees.department_id, employees.job_title, employees.employee_code, departments.name AS department_name
+    FROM users
+    LEFT JOIN employees ON employees.user_id = users.id
+    LEFT JOIN departments ON departments.id = employees.department_id
+    ORDER BY users.role, users.name
+  `).all();
+  const { results: departments } = await env.DB.prepare("SELECT id, name FROM departments ORDER BY name").all();
+  return ok({ users, departments });
+}
+
+async function createUser(request, env, user) {
+  if (!userAdminRoles.includes(user.role)) return fail(403, "Only admins can manage users.");
+  const body = await readJson(request);
+  const name = String(body.name || "").trim();
+  const email = String(body.email || "").trim().toLowerCase();
+  const password = String(body.password || "");
+  const role = String(body.role || "").trim();
+  if (!name || !email || !password || !allowedUserRoles.includes(role)) return fail(400, "Name, email, password and a valid role are required.");
+  if (password.length < 14) return fail(400, "Admin-created passwords must be at least 14 characters.");
+  const existing = await env.DB.prepare("SELECT id FROM users WHERE email = ?").bind(email).first();
+  if (existing) return fail(409, "A user already exists for this email address.");
+
+  const passwordHash = await hashPassword(password);
+  const result = await env.DB.prepare(`
+    INSERT INTO users (name, email, password_hash, role, created_at, updated_at)
+    VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+  `).bind(name, email, passwordHash, role).run();
+
+  if (employeeRoles.includes(role)) {
+    const code = `${role.slice(0, 3).toUpperCase()}${String(result.meta.last_row_id).padStart(4, "0")}`;
+    await env.DB.prepare(`
+      INSERT INTO employees (user_id, department_id, job_title, employee_code)
+      VALUES (?, ?, ?, ?)
+    `).bind(result.meta.last_row_id, body.departmentId || null, String(body.jobTitle || role.replace("_", " ")), code).run();
+  }
+
+  await audit(env, user.id, "admin.users.create", "users", result.meta.last_row_id, { role });
+  return ok({ user: await env.DB.prepare("SELECT id, name, email, role, disabled_at, created_at, updated_at FROM users WHERE id = ?").bind(result.meta.last_row_id).first() });
+}
+
+async function updateUser(request, env, user, id) {
+  if (!userAdminRoles.includes(user.role)) return fail(403, "Only admins can manage users.");
+  const existing = await env.DB.prepare("SELECT * FROM users WHERE id = ?").bind(id).first();
+  if (!existing) return fail(404, "User not found.");
+  const body = await readJson(request);
+  const role = String(body.role || existing.role).trim();
+  if (!allowedUserRoles.includes(role)) return fail(400, "A valid role is required.");
+  const disabled = Boolean(body.disabled);
+  if (id === user.id && disabled) return fail(400, "You cannot disable your own account.");
+  const name = String(body.name || existing.name).trim();
+
+  await env.DB.prepare("UPDATE users SET name = ?, role = ?, disabled_at = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
+    .bind(name, role, disabled ? (existing.disabled_at || new Date().toISOString()) : null, id)
+    .run();
+
+  const employee = await env.DB.prepare("SELECT id FROM employees WHERE user_id = ?").bind(id).first();
+  if (employeeRoles.includes(role)) {
+    if (employee) {
+      await env.DB.prepare("UPDATE employees SET department_id = ?, job_title = ? WHERE user_id = ?")
+        .bind(body.departmentId || null, String(body.jobTitle || role.replace("_", " ")), id)
+        .run();
+    } else {
+      const code = `${role.slice(0, 3).toUpperCase()}${String(id).padStart(4, "0")}`;
+      await env.DB.prepare("INSERT INTO employees (user_id, department_id, job_title, employee_code) VALUES (?, ?, ?, ?)")
+        .bind(id, body.departmentId || null, String(body.jobTitle || role.replace("_", " ")), code)
+        .run();
+    }
+  }
+
+  await audit(env, user.id, "admin.users.update", "users", id, { role, disabled });
+  return ok({ user: await env.DB.prepare("SELECT id, name, email, role, disabled_at, created_at, updated_at FROM users WHERE id = ?").bind(id).first() });
+}
+
+async function listAuditLogs(env) {
+  const { results: auditLogs } = await env.DB.prepare(`
+    SELECT audit_logs.*, users.name AS user_name, users.email AS user_email
+    FROM audit_logs
+    LEFT JOIN users ON users.id = audit_logs.user_id
+    ORDER BY audit_logs.created_at DESC, audit_logs.id DESC
+    LIMIT 200
+  `).all();
+  return ok({ auditLogs });
+}
+
 async function staffDashboard(env, user) {
   const employee = await env.DB.prepare(`
     SELECT employees.*, departments.name AS department_name
@@ -555,17 +661,35 @@ async function staffDashboard(env, user) {
   return ok({ employee, announcements, documents, shifts: [], managerView });
 }
 
-async function listShifts(env, user) {
-  const canManage = managerRoles.includes(user.role);
-  const employee = await env.DB.prepare("SELECT id FROM employees WHERE user_id = ?").bind(user.id).first();
-  const { results: shifts } = canManage
-    ? await env.DB.prepare(`
+async function listShifts(request, env, user) {
+  const url = new URL(request.url);
+  const departmentFilter = url.searchParams.get("departmentId") ? Number(url.searchParams.get("departmentId")) : null;
+  const canCreate = shiftCreateRoles.includes(user.role);
+  const canAssign = shiftAssignRoles.includes(user.role);
+  const employee = await env.DB.prepare("SELECT id, department_id FROM employees WHERE user_id = ?").bind(user.id).first();
+  let shifts = [];
+
+  if (user.role === "supervisor") {
+    const response = await env.DB.prepare(`
         SELECT shifts.*, departments.name AS department_name
         FROM shifts
         LEFT JOIN departments ON departments.id = shifts.department_id
+        WHERE (? IS NULL OR shifts.department_id = ?)
+          AND (? IS NULL OR shifts.department_id = ?)
         ORDER BY shifts.date, shifts.start_time
-      `).all()
-    : await env.DB.prepare(`
+      `).bind(departmentFilter, departmentFilter, employee?.department_id || null, employee?.department_id || null).all();
+    shifts = response.results;
+  } else if (canCreate) {
+    const response = await env.DB.prepare(`
+        SELECT shifts.*, departments.name AS department_name
+        FROM shifts
+        LEFT JOIN departments ON departments.id = shifts.department_id
+        WHERE (? IS NULL OR shifts.department_id = ?)
+        ORDER BY shifts.date, shifts.start_time
+      `).bind(departmentFilter, departmentFilter).all();
+    shifts = response.results;
+  } else {
+    const response = await env.DB.prepare(`
         SELECT shifts.*, departments.name AS department_name
         FROM rota_assignments
         JOIN shifts ON shifts.id = rota_assignments.shift_id
@@ -573,23 +697,37 @@ async function listShifts(env, user) {
         WHERE rota_assignments.employee_id = ?
         ORDER BY shifts.date, shifts.start_time
       `).bind(employee?.id || 0).all();
-  const { results: assignments } = await env.DB.prepare(`
-    SELECT rota_assignments.shift_id AS shiftId, users.name, users.role, employees.job_title AS jobTitle
-    FROM rota_assignments
-    JOIN employees ON employees.id = rota_assignments.employee_id
-    JOIN users ON users.id = employees.user_id
-    ORDER BY users.name
-  `).all();
-  const { results: employees } = canManage
+    shifts = response.results;
+  }
+
+  let assignments = [];
+  const shiftIds = shifts.map((shift) => shift.id);
+  if (shiftIds.length) {
+    const response = await env.DB.prepare(`
+      SELECT rota_assignments.shift_id AS shiftId, rota_assignments.employee_id AS employeeId,
+        users.name, users.role, employees.job_title AS jobTitle, departments.name AS department
+      FROM rota_assignments
+      JOIN employees ON employees.id = rota_assignments.employee_id
+      JOIN users ON users.id = employees.user_id
+      LEFT JOIN departments ON departments.id = employees.department_id
+      WHERE rota_assignments.shift_id IN (${shiftIds.map(() => "?").join(",")})
+      ORDER BY users.name
+    `).bind(...shiftIds).all();
+    assignments = response.results;
+  }
+
+  const { results: employees } = canAssign
     ? await env.DB.prepare(`
-        SELECT employees.id, users.name, users.role, departments.name AS department
+        SELECT employees.id, users.name, users.role, departments.name AS department, employees.department_id AS departmentId
         FROM employees
         JOIN users ON users.id = employees.user_id
         LEFT JOIN departments ON departments.id = employees.department_id
+        WHERE (? != 'supervisor' OR employees.department_id = ?)
         ORDER BY users.name
-      `).all()
+      `).bind(user.role, employee?.department_id || null).all()
     : { results: [] };
-  return ok({ shifts, assignments, employees, canManage });
+  const { results: departments } = await env.DB.prepare("SELECT id, name FROM departments ORDER BY name").all();
+  return ok({ shifts, assignments, employees, departments, canManage: canAssign, canCreate, canAssign, canEdit: canCreate });
 }
 
 async function createShift(request, env, user) {
@@ -610,4 +748,63 @@ async function createShift(request, env, user) {
   }
   await audit(env, user.id, "shifts.create", "shifts", result.meta.last_row_id);
   return ok({ shiftId: result.meta.last_row_id });
+}
+
+async function updateShift(request, env, user, shiftId) {
+  const existing = await env.DB.prepare("SELECT * FROM shifts WHERE id = ?").bind(shiftId).first();
+  if (!existing) return fail(404, "Shift not found.");
+  const body = await readJson(request);
+  const title = String(body.title || existing.title).trim();
+  const date = String(body.date || existing.date).trim();
+  const startTime = String(body.startTime || body.start_time || existing.start_time).trim();
+  const endTime = String(body.endTime || body.end_time || existing.end_time).trim();
+  if (!title || !date || !startTime || !endTime) return fail(400, "Title, date, start and end time are required.");
+  await env.DB.prepare(`
+    UPDATE shifts
+    SET department_id = ?, title = ?, date = ?, start_time = ?, end_time = ?, location = ?, status = ?, break_minutes = ?, updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?
+  `).bind(
+    body.departmentId || body.department_id || existing.department_id || null,
+    title,
+    date,
+    startTime,
+    endTime,
+    body.location ?? existing.location,
+    body.status || existing.status,
+    Number(body.breakMinutes ?? body.break_minutes ?? existing.break_minutes ?? 0),
+    shiftId,
+  ).run();
+  await audit(env, user.id, "shifts.update", "shifts", shiftId);
+  return ok({ shift: await env.DB.prepare("SELECT * FROM shifts WHERE id = ?").bind(shiftId).first() });
+}
+
+async function assignShift(request, env, user, shiftId) {
+  const body = await readJson(request);
+  const employeeId = Number(body.employeeId);
+  if (!employeeId) return fail(400, "Employee is required.");
+  const shift = await env.DB.prepare("SELECT * FROM shifts WHERE id = ?").bind(shiftId).first();
+  const employee = await env.DB.prepare("SELECT employees.*, users.role FROM employees JOIN users ON users.id = employees.user_id WHERE employees.id = ?").bind(employeeId).first();
+  if (!shift || !employee) return fail(404, "Shift or employee not found.");
+  const supervisor = await env.DB.prepare("SELECT department_id FROM employees WHERE user_id = ?").bind(user.id).first();
+  if (user.role === "supervisor" && (shift.department_id !== supervisor?.department_id || employee.department_id !== supervisor?.department_id)) {
+    return fail(403, "Supervisors can only assign shifts in their own department.");
+  }
+  await env.DB.prepare("INSERT OR IGNORE INTO rota_assignments (shift_id, employee_id, role) VALUES (?, ?, ?)")
+    .bind(shiftId, employeeId, body.role || shift.title)
+    .run();
+  await audit(env, user.id, "shifts.assign", "rota_assignments", shiftId, { employeeId });
+  return ok({ assigned: true });
+}
+
+async function removeAssignment(env, user, shiftId, employeeId) {
+  const shift = await env.DB.prepare("SELECT * FROM shifts WHERE id = ?").bind(shiftId).first();
+  const employee = await env.DB.prepare("SELECT * FROM employees WHERE id = ?").bind(employeeId).first();
+  if (!shift || !employee) return fail(404, "Assignment not found.");
+  const supervisor = await env.DB.prepare("SELECT department_id FROM employees WHERE user_id = ?").bind(user.id).first();
+  if (user.role === "supervisor" && (shift.department_id !== supervisor?.department_id || employee.department_id !== supervisor?.department_id)) {
+    return fail(403, "Supervisors can only update shifts in their own department.");
+  }
+  await env.DB.prepare("DELETE FROM rota_assignments WHERE shift_id = ? AND employee_id = ?").bind(shiftId, employeeId).run();
+  await audit(env, user.id, "shifts.unassign", "rota_assignments", shiftId, { employeeId });
+  return ok({ removed: true });
 }

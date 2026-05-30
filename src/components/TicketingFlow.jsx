@@ -21,7 +21,7 @@ function makeSelection(ticketTypes) {
 export function TicketingFlow({ mode = "overview", onNavigate, session, setSession }) {
   const [ticketTypes, setTicketTypes] = useState(fallbackTicketTypes);
   const [login, setLogin] = useState({ email: "", password: "" });
-  const [register, setRegister] = useState({ firstName: "", lastName: "", email: "", password: "" });
+  const [register, setRegister] = useState({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "" });
   const [selection, setSelection] = useState(session.selection || makeSelection(fallbackTicketTypes));
   const [authError, setAuthError] = useState("");
   const [flowError, setFlowError] = useState("");
@@ -82,11 +82,18 @@ export function TicketingFlow({ mode = "overview", onNavigate, session, setSessi
     setIsSubmitting(true);
     setAuthError("");
     try {
+      const firstName = register.firstName.trim();
+      const lastName = register.lastName.trim();
+      const email = register.email.trim().toLowerCase();
+      if (!firstName || !lastName) throw new Error("First name and last name are required.");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error("Enter a valid email address.");
+      if (register.password.length < 10) throw new Error("Password must be at least 10 characters.");
+      if (register.password !== register.confirmPassword) throw new Error("Passwords do not match.");
       const data = await apiRequest("/auth/register", {
         method: "POST",
         body: JSON.stringify({
-          name: `${register.firstName} ${register.lastName}`.trim(),
-          email: register.email,
+          name: `${firstName} ${lastName}`.trim(),
+          email,
           password: register.password,
         }),
       });
@@ -177,7 +184,11 @@ export function TicketingFlow({ mode = "overview", onNavigate, session, setSessi
               <Field label="Last Name" value={register.lastName} onChange={(value) => setRegister((current) => ({ ...current, lastName: value }))} required />
             </div>
             <Field label="Email Address" type="email" value={register.email} onChange={(value) => setRegister((current) => ({ ...current, email: value }))} required />
-            <Field label="Password" type="password" value={register.password} onChange={(value) => setRegister((current) => ({ ...current, password: value }))} required />
+            <Field label="Password" type="password" value={register.password} onChange={(value) => setRegister((current) => ({ ...current, password: value }))} required minLength={10} />
+            <Field label="Confirm Password" type="password" value={register.confirmPassword} onChange={(value) => setRegister((current) => ({ ...current, confirmPassword: value }))} required minLength={10} />
+            <p className="rounded-lg bg-sunshine/25 p-3 text-xs font-bold uppercase tracking-wide text-ink">
+              Use at least 10 characters. Do not use a real payment password; this site stores only reservation requests until payment integration is approved.
+            </p>
             {authError && <p className="rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{authError}</p>}
             <button className="focus-ring inline-flex min-h-12 items-center justify-center rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button transition hover:-translate-y-0.5" type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Creating Account..." : "Create Account"}
@@ -381,7 +392,7 @@ function TicketFormShell({ title, icon: Icon, children }) {
   );
 }
 
-function Field({ label, type = "text", value, onChange, required = false }) {
+function Field({ label, type = "text", value, onChange, required = false, minLength }) {
   const id = label.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   return (
     <label className="grid gap-2">
@@ -393,6 +404,7 @@ function Field({ label, type = "text", value, onChange, required = false }) {
         value={value}
         onChange={(event) => onChange(event.target.value)}
         required={required}
+        minLength={minLength}
       />
     </label>
   );

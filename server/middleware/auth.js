@@ -15,7 +15,7 @@ export function attachUser(req, _res, next) {
     WHERE sessions.token_hash = ?
   `).get(tokenHash);
 
-  if (!row || new Date(row.expires_at).getTime() <= Date.now()) {
+  if (!row || row.disabled_at || new Date(row.expires_at).getTime() <= Date.now()) {
     if (row) db.prepare("DELETE FROM sessions WHERE id = ?").run(row.session_id);
     return next();
   }

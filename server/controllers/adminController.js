@@ -1,17 +1,111 @@
 import { db, now } from "../db/connection.js";
 import { auditLog } from "../utils/audit.js";
-import { ok } from "../utils/responses.js";
+import { hashPassword } from "../utils/security.js";
+import { fail, ok } from "../utils/responses.js";
+
+const allowedRoles = new Set(["customer", "admin", "editor", "staff", "supervisor", "manager", "payroll_admin", "super_admin"]);
+const employeeRoles = new Set(["staff", "supervisor", "manager", "payroll_admin"]);
 
 export function dashboard(_req, res) {
   const counts = {
     pages: db.prepare("SELECT COUNT(*) AS count FROM pages").get().count,
     events: db.prepare("SELECT COUNT(*) AS count FROM events").get().count,
     faqs: db.prepare("SELECT COUNT(*) AS count FROM faqs").get().count,
+    users: db.prepare("SELECT COUNT(*) AS count FROM users").get().count,
     bookings: db.prepare("SELECT COUNT(*) AS count FROM ticket_bookings").get().count,
     subscribers: db.prepare("SELECT COUNT(*) AS count FROM newsletter_subscribers").get().count,
     menuItems: db.prepare("SELECT COUNT(*) AS count FROM menu_items").get().count,
   };
   return ok(res, { counts });
+}
+
+export function listUsers(_req, res) {
+  const users = db.prepare(`
+    SELECT users.id, users.name, users.email, users.role, users.disabled_at, users.created_at, users.updated_at,
+      employees.id AS employee_id, employees.department_id, employees.job_title, employees.employee_code, departments.name AS department_name
+    FROM users
+    LEFT JOIN employees ON employees.user_id = users.id
+    LEFT JOIN departments ON departments.id = employees.department_id
+    ORDER BY users.role, users.name
+  `).all();
+  const departments = db.prepare("SELECT id, name FROM departments ORDER BY name").all();
+  return ok(res, { users, departments });
+}
+
+export function createUser(req, res) {
+  const name = String(req.body.name || "").trim();
+  const email = String(req.body.email || "").trim().toLowerCase();
+  const password = String(req.body.password || "");
+  const role = String(req.body.role || "").trim();
+  const departmentId = req.body.departmentId ? Number(req.body.departmentId) : null;
+  const jobTitle = String(req.body.jobTitle || role.replace("_", " ")).trim();
+
+  if (!name || !email || !password || !allowedRoles.has(role)) return fail(res, 400, "Name, email, password and a valid role are required.");
+  if (password.length < 14) return fail(res, 400, "Admin-created passwords must be at least 14 characters.");
+  if (db.prepare("SELECT id FROM users WHERE email = ?").get(email)) return fail(res, 409, "A user already exists for this email address.");
+
+  const userId = db.transaction(() => {
+    const result = db.prepare(`
+      INSERT INTO users (name, email, password_hash, role, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run(name, email, hashPassword(password), role, now(), now());
+
+    if (employeeRoles.has(role)) {
+      const code = `${role.slice(0, 3).toUpperCase()}${String(result.lastInsertRowid).padStart(4, "0")}`;
+      db.prepare(`
+        INSERT INTO employees (user_id, department_id, job_title, employee_code)
+        VALUES (?, ?, ?, ?)
+      `).run(result.lastInsertRowid, departmentId, jobTitle, code);
+    }
+    return result.lastInsertRowid;
+  })();
+
+  auditLog(req.user.id, "admin.users.create", "users", userId, { role });
+  return ok(res, { user: db.prepare("SELECT id, name, email, role, disabled_at, created_at, updated_at FROM users WHERE id = ?").get(userId) });
+}
+
+export function updateUser(req, res) {
+  const userId = Number(req.params.id);
+  const existing = db.prepare("SELECT * FROM users WHERE id = ?").get(userId);
+  if (!existing) return fail(res, 404, "User not found.");
+  const role = String(req.body.role || existing.role).trim();
+  if (!allowedRoles.has(role)) return fail(res, 400, "A valid role is required.");
+  const disabled = Boolean(req.body.disabled);
+  if (userId === req.user.id && disabled) return fail(res, 400, "You cannot disable your own account.");
+
+  const name = String(req.body.name || existing.name).trim();
+  const departmentId = req.body.departmentId ? Number(req.body.departmentId) : null;
+  const jobTitle = String(req.body.jobTitle || role.replace("_", " ")).trim();
+
+  db.transaction(() => {
+    db.prepare("UPDATE users SET name = ?, role = ?, disabled_at = ?, updated_at = ? WHERE id = ?")
+      .run(name, role, disabled ? (existing.disabled_at || now()) : null, now(), userId);
+
+    const employee = db.prepare("SELECT id FROM employees WHERE user_id = ?").get(userId);
+    if (employeeRoles.has(role)) {
+      if (employee) {
+        db.prepare("UPDATE employees SET department_id = ?, job_title = ? WHERE user_id = ?").run(departmentId, jobTitle, userId);
+      } else {
+        const code = `${role.slice(0, 3).toUpperCase()}${String(userId).padStart(4, "0")}`;
+        db.prepare("INSERT INTO employees (user_id, department_id, job_title, employee_code) VALUES (?, ?, ?, ?)")
+          .run(userId, departmentId, jobTitle, code);
+      }
+    }
+  })();
+
+  auditLog(req.user.id, "admin.users.update", "users", userId, { role, disabled });
+  return ok(res, { user: db.prepare("SELECT id, name, email, role, disabled_at, created_at, updated_at FROM users WHERE id = ?").get(userId) });
+}
+
+export function listAuditLogs(_req, res) {
+  const logs = db.prepare(`
+    SELECT audit_logs.*, users.name AS user_name, users.email AS user_email
+    FROM audit_logs
+    LEFT JOIN users ON users.id = audit_logs.user_id
+    ORDER BY audit_logs.created_at DESC, audit_logs.id DESC
+    LIMIT 200
+  `).all();
+  return ok(res, { auditLogs: logs });
 }
 
 export function listPages(_req, res) {

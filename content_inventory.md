@@ -2198,3 +2198,33 @@ TODO: Production copy should still be reviewed by Woodlands before launch becaus
   - The custom domain `https://woodlandspark.shubodaya.dev` has been added to the Pages project, but Cloudflare reports it as `pending` with `CNAME record not set`.
   - Required DNS record: `CNAME woodlandspark -> woodlandspark.pages.dev` in the `shubodaya.dev` zone. The current local Wrangler OAuth token can manage Pages/D1/R2 but was rejected by the Cloudflare DNS API for zone record creation.
   - After the CNAME is added, recheck Pages custom domain validation and test `https://woodlandspark.shubodaya.dev`.
+
+## Staff Rota Integration Update - 2026-05-30
+
+- Standalone public-style `/shifts` experience removed from the redesigned website.
+- New staff rota routes:
+  - `/staff/rota`
+  - `/staff/rota/calendar`
+  - `/staff/rota/shifts`
+  - `/staff/rota/assignments`
+- `/shifts` now redirects users to `/staff/rota` with a short notice.
+- DutyOrbit source reference remains `D:\websites\dutyorbit`; the original project was not modified.
+- Rota now uses the Woodlands SQL/D1-backed tables already in this project:
+  - `departments`
+  - `employees`
+  - `shifts`
+  - `rota_assignments`
+  - `audit_logs`
+- Rota role rules implemented:
+  - `staff`: own assigned rota only.
+  - `supervisor`: department/team rota and assignment access.
+  - `manager`: create, edit and assign shifts.
+  - `admin` / `super_admin`: full rota access.
+- Added admin user management for creating staff/supervisor/manager users, updating roles, disabling accounts and viewing audit logs.
+- Added user disabled-state migration:
+  - `server/migrations/003_admin_users_rota.sql`
+  - `migrations/0003_admin_users_rota.sql`
+- Ticket registration update:
+  - Frontend validates name, email, 10+ character password and matching confirmation.
+  - Local and Cloudflare auth reject duplicate emails and disabled accounts.
+  - Successful registration creates a session and continues to `/tickets/select`.

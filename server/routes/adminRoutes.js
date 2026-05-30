@@ -3,6 +3,8 @@ import multer from "multer";
 import { config } from "../config.js";
 import {
   dashboard,
+  createUser,
+  listAuditLogs,
   listDocuments,
   listEvents,
   listFaqs,
@@ -12,11 +14,13 @@ import {
   listPages,
   listTicketBookings,
   listTicketTypes,
+  listUsers,
   updateEvent,
   updateFaq,
   updateOpeningTime,
   updatePage,
   updateTicketType,
+  updateUser,
   uploadMedia,
 } from "../controllers/adminController.js";
 import { adminRoles, attachUser, requireRoles } from "../middleware/auth.js";
@@ -28,6 +32,10 @@ export const adminRoutes = Router();
 
 adminRoutes.use(attachUser, requireRoles(adminRoles));
 adminRoutes.get("/dashboard", asyncHandler(dashboard));
+adminRoutes.get("/users", asyncHandler(listUsers));
+adminRoutes.post("/users", asyncHandler(createUser));
+adminRoutes.put("/users/:id", asyncHandler(updateUser));
+adminRoutes.get("/audit-logs", asyncHandler(listAuditLogs));
 adminRoutes.get("/pages", asyncHandler(listPages));
 adminRoutes.put("/pages/:id", asyncHandler(updatePage));
 adminRoutes.get("/events", asyncHandler(listEvents));

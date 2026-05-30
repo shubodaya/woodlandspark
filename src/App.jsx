@@ -363,16 +363,24 @@ export default function App() {
   };
   const portalRoutes = {
     "/admin": "admin",
-    "/shifts": "shifts",
+    "/admin/setup": "adminSetup",
+    "/shifts": "shiftRedirect",
     "/foodorder": "foodorder",
     "/staff": "staff",
+    "/staff/rota": "staff",
+    "/staff/rota/calendar": "staff",
+    "/staff/rota/shifts": "staff",
+    "/staff/rota/assignments": "staff",
   };
   const page = path === "/" || ticketModes[path] || portalRoutes[path] || path === "/newsletter" ? null : pageMap[path];
   const specialSeo =
     ticketModes[path]
       ? { title: "Tickets", summary: "Choose Woodlands tickets, review your reservation request and manage your ticket account." }
       : portalRoutes[path]
-        ? { title: `${portalRoutes[path][0].toUpperCase()}${portalRoutes[path].slice(1)} Portal`, summary: "Secure Woodlands staff and operations portal." }
+        ? {
+            title: portalRoutes[path] === "shiftRedirect" ? "Staff Rota" : portalRoutes[path] === "adminSetup" ? "Admin Setup" : `${portalRoutes[path][0].toUpperCase()}${portalRoutes[path].slice(1)} Portal`,
+            summary: "Secure Woodlands staff and operations area.",
+          }
         : path === "/newsletter"
           ? { title: "Newsletter", summary: "Sign up for Woodlands news, offers and events." }
           : path === "/visiting/opening-times"
@@ -397,7 +405,7 @@ export default function App() {
         {path === "/" ? (
           <HomePage onNavigate={navigate} />
         ) : portalType ? (
-          <PortalRoute type={portalType} onNavigate={navigate} />
+          <PortalRoute type={portalType} path={path} onNavigate={navigate} />
         ) : ticketMode ? (
           <TicketingFlow mode={ticketMode} onNavigate={navigate} session={ticketSession} setSession={setTicketSession} />
         ) : path === "/newsletter" ? (

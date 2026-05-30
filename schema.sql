@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
   email TEXT NOT NULL UNIQUE COLLATE NOCASE,
   password_hash TEXT NOT NULL,
   role TEXT NOT NULL REFERENCES roles(id),
+  disabled_at TEXT,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -305,6 +306,7 @@ CREATE TABLE IF NOT EXISTS audit_logs (
 CREATE INDEX IF NOT EXISTS idx_sessions_token_hash ON sessions(token_hash);
 CREATE INDEX IF NOT EXISTS idx_sessions_expires_at ON sessions(expires_at);
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
+CREATE INDEX IF NOT EXISTS idx_users_disabled_at ON users(disabled_at);
 CREATE INDEX IF NOT EXISTS idx_ticket_bookings_user_id ON ticket_bookings(user_id);
 CREATE INDEX IF NOT EXISTS idx_ticket_bookings_reference ON ticket_bookings(reference);
 CREATE INDEX IF NOT EXISTS idx_ticket_booking_items_booking_id ON ticket_booking_items(booking_id);
