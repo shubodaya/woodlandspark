@@ -2182,13 +2182,16 @@ TODO: Production copy should still be reviewed by Woodlands before launch becaus
 - Removed customer-facing wording that described the website as a local SQLite build, migration/debug page or source-copy reference.
 - README updated to remove published demo credentials and document the Cloudflare deployment path.
 - Cloudflare account actions completed on 2026-05-30:
-  - Created Pages project `woodlandspark`.
+  - Deleted the earlier direct-upload Pages project `woodlandspark` after Cloudflare returned code `8000069`: direct-upload projects cannot have the `source` object updated.
+  - Recreated Pages project `woodlandspark` as GitHub-linked to `shubodaya/woodlandspark`.
   - Created D1 database `woodlandspark-db` with id `f810ce67-2b84-46d4-8da0-5b7b01f028df`.
   - Applied `migrations/0001_initial.sql` to remote D1.
   - Imported `seed-production-safe.sql` to remote D1.
+  - Created R2 bucket `woodlandspark-media`.
+  - Configured production and preview bindings:
+    - D1 `DB` -> `woodlandspark-db`
+    - R2 `MEDIA_BUCKET` -> `woodlandspark-media`
+  - Set generated Cloudflare Pages secret `ADMIN_BOOTSTRAP_TOKEN`.
 - Items still requiring live Cloudflare account action:
-  - Enable R2 in the Cloudflare dashboard; `npx wrangler r2 bucket create woodlandspark-media` failed with Cloudflare code `10042` until R2 is enabled.
-  - Re-run `npx wrangler r2 bucket create woodlandspark-media`.
-  - Set `ADMIN_BOOTSTRAP_TOKEN` as a Cloudflare Pages secret.
-  - Re-run `npm run cf:deploy`.
+  - Confirm the GitHub-triggered deployment succeeds after the documentation trigger commit.
   - Add/verify the custom domain `https://woodlandspark.shubodaya.dev`.

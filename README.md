@@ -36,11 +36,23 @@ By default, `npm run db:seed` does not create users or passwords. If example loc
 
 ## Production Setup
 
-1. Create Cloudflare resources:
+Cloudflare production is configured as a GitHub-linked Pages project:
+
+- Project: `woodlandspark`
+- Repository: `shubodaya/woodlandspark`
+- Production branch: `main`
+- Build command: `npm run build`
+- Output directory: `dist`
+- D1 binding: `DB` -> `woodlandspark-db`
+- R2 binding: `MEDIA_BUCKET` -> `woodlandspark-media`
+
+Future pushes to `main` should trigger Cloudflare Pages deployments automatically.
+
+1. Cloudflare resources already created:
 
 ```powershell
-npx wrangler d1 create woodlandspark-db
-npx wrangler r2 bucket create woodlandspark-media
+woodlandspark-db
+woodlandspark-media
 ```
 
 2. If the D1 database is recreated, copy the new `database_id` into `wrangler.toml`.
@@ -58,12 +70,13 @@ npm run cf:d1:migrate
 npm run cf:d1:seed
 ```
 
-5. Build and deploy:
+5. Build locally before pushing:
 
 ```powershell
 npm run build
-npm run cf:deploy
 ```
+
+Deployment should run through the Cloudflare GitHub integration after pushing to `main`.
 
 6. Create the first production admin through the protected bootstrap endpoint:
 
