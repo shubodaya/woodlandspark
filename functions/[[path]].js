@@ -6,20 +6,32 @@ export async function onRequest(context) {
     return env.ASSETS.fetch(request);
   }
 
-  const assetResponse = await env.ASSETS.fetch(request);
-  if (assetResponse.status !== 404 || looksLikeFile(url.pathname)) {
-    return assetResponse;
-  }
-
   const accept = request.headers.get("Accept") || "";
-  if (!accept.includes("text/html") && !accept.includes("*/*")) {
+  if (!looksLikeFile(url.pathname) && acceptsHtml(accept)) {
+    return fetchIndex(request, env);
+  }
+
+  const assetResponse = await env.ASSETS.fetch(request);
+  if (assetResponse.status !== 404) {
     return assetResponse;
   }
 
+  if (acceptsHtml(accept)) {
+    return fetchIndex(request, env);
+  }
+
+  return assetResponse;
+}
+
+function fetchIndex(request, env) {
   const indexUrl = new URL(request.url);
   indexUrl.pathname = "/index.html";
   indexUrl.search = "";
   return env.ASSETS.fetch(new Request(indexUrl, request));
+}
+
+function acceptsHtml(accept) {
+  return accept.includes("text/html") || accept.includes("*/*");
 }
 
 function looksLikeFile(pathname) {
