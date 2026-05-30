@@ -4,6 +4,8 @@ Modern React + Vite + Tailwind redesign for Woodlands Family Theme Park with rou
 
 Production target: `https://woodlandspark.shubodaya.dev`
 
+Current Cloudflare Pages URL: `https://woodlandspark.pages.dev`
+
 ## Stack
 
 - Frontend: React, Vite, Tailwind CSS.
@@ -47,6 +49,26 @@ Cloudflare production is configured as a GitHub-linked Pages project:
 - R2 binding: `MEDIA_BUCKET` -> `woodlandspark-media`
 
 Future pushes to `main` should trigger Cloudflare Pages deployments automatically.
+
+Latest verified production deployment:
+
+- Commit: `d79c18a`
+- Pages URL: `https://woodlandspark.pages.dev`
+- Status: deployed successfully with SPA route fallback, D1 binding and R2 binding.
+
+Custom domain status:
+
+- `woodlandspark.shubodaya.dev` has been added to the Pages project.
+- Cloudflare currently reports the domain as pending because the CNAME record is not set.
+- Required DNS record in the `shubodaya.dev` zone:
+
+```text
+type: CNAME
+name: woodlandspark
+target: woodlandspark.pages.dev
+```
+
+The local Wrangler OAuth credentials used for this setup can manage Pages, D1 and R2, but were not accepted by the Cloudflare DNS API for zone record creation. Add the CNAME in the Cloudflare dashboard or with a DNS-scoped Cloudflare API token, then Cloudflare Pages should validate the custom domain.
 
 1. Cloudflare resources already created:
 
