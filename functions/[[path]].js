@@ -25,7 +25,7 @@ export async function onRequest(context) {
 
 function fetchIndex(request, env) {
   const indexUrl = new URL(request.url);
-  indexUrl.pathname = "/index.html";
+  indexUrl.pathname = "/";
   indexUrl.search = "";
   return env.ASSETS.fetch(new Request(indexUrl, request));
 }
