@@ -27,14 +27,7 @@ npm run dev
 
 `npm run dev` starts the local API and Vite frontend together. The frontend proxies `/api` and `/uploads` internally, so the browser only needs the Vite site.
 
-Create local users without committing credentials:
-
-```powershell
-node tools/create-local-admin.mjs "Woodlands Admin" admin@example.com "use-a-long-private-password" super_admin
-node tools/create-local-admin.mjs "Woodlands Staff" staff@example.com "use-a-long-private-password" staff
-```
-
-By default, `npm run db:seed` does not create users or passwords. If example local users are needed, set `WOODLANDS_SEED_EXAMPLE_USERS=true` and provide all `WOODLANDS_SEED_*_PASSWORD` environment variables privately before running the seed script.
+By default, `npm run db:seed` does not create users or passwords. Create local users through the protected first-admin setup flow, or use `tools/create-local-admin.mjs` with private values supplied from your own password manager or shell environment. Do not commit or document real credentials.
 
 ## Staff Rota
 
@@ -60,9 +53,10 @@ Role access:
 
 Local first admin:
 
-```powershell
-node tools/create-local-admin.mjs "Woodlands Admin" admin@example.com "use-a-long-private-password" super_admin
-```
+- Set `ADMIN_BOOTSTRAP_TOKEN` privately in the shell that starts `npm run dev`.
+- Open `/admin/setup`.
+- Enter the private setup token and the first administrator details.
+- After one `admin` or `super_admin` exists, `/admin/setup` is disabled.
 
 Production first admin:
 
@@ -73,10 +67,10 @@ Production first admin:
 
 Staff accounts:
 
-- Sign in as `admin` or `super_admin`.
-- Go to `/admin`.
+- Sign in at `/admin/login` as `admin` or `super_admin`.
+- Go to `/admin/users`.
 - Use the Users tab to create staff, supervisor, manager and payroll-admin accounts.
-- Do not create public default passwords; use long temporary passwords and rotate/reset them through the future invite/password-reset flow.
+- Use long temporary passwords and rotate/reset them through the admin password reset tool or a future invite flow.
 
 ## Production Setup
 
@@ -142,14 +136,7 @@ npm run build
 
 Deployment should run through the Cloudflare GitHub integration after pushing to `main`.
 
-6. Create the first production admin through the protected bootstrap endpoint:
-
-```powershell
-curl -X POST https://woodlandspark.shubodaya.dev/api/setup/first-admin `
-  -H "Content-Type: application/json" `
-  -H "X-Bootstrap-Token: <ADMIN_BOOTSTRAP_TOKEN>" `
-  -d "{\"name\":\"Woodlands Admin\",\"email\":\"admin@example.com\",\"password\":\"use-a-long-private-password\"}"
-```
+6. Create the first production admin through `https://woodlandspark.shubodaya.dev/admin/setup` using the private `ADMIN_BOOTSTRAP_TOKEN`. Do not publish the token, email or password.
 
 Disable or rotate `ADMIN_BOOTSTRAP_TOKEN` after the first admin is created.
 

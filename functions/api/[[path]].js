@@ -4,7 +4,7 @@ const managerRoles = ["manager", "supervisor", "admin", "super_admin"];
 const shiftCreateRoles = ["manager", "admin", "super_admin"];
 const shiftAssignRoles = ["supervisor", "manager", "admin", "super_admin"];
 const userAdminRoles = ["admin", "super_admin"];
-const allowedUserRoles = ["customer", "admin", "editor", "staff", "supervisor", "manager", "payroll_admin", "super_admin"];
+const manageableUserRoles = ["editor", "staff", "supervisor", "manager", "payroll_admin", "admin"];
 const employeeRoles = ["staff", "supervisor", "manager", "payroll_admin"];
 
 export async function onRequest(context) {
@@ -25,6 +25,7 @@ export async function onRequest(context) {
     if (route === "auth/login" && request.method === "POST") return login(request, env);
     if (route === "auth/logout" && request.method === "POST") return logout(request, env);
     if (route === "auth/me" && request.method === "GET") return me(request, env);
+    if (route === "setup/status" && request.method === "GET") return setupStatus(env);
     if (route === "setup/first-admin" && request.method === "POST") return firstAdmin(request, env);
 
     if (route === "tickets/types" && request.method === "GET") return ticketTypes(env);
@@ -152,6 +153,26 @@ async function hashPassword(password) {
   return `pbkdf2_sha256$${iterations}$${toBase64(salt)}$${toBase64(bits)}`;
 }
 
+function passwordStrengthError(password, minLength = 10) {
+  if (String(password || "").length < minLength) return `Password must be at least ${minLength} characters.`;
+  if (!/[a-z]/.test(password)) return "Password must include a lowercase letter.";
+  if (!/[A-Z]/.test(password)) return "Password must include an uppercase letter.";
+  if (!/[0-9]/.test(password)) return "Password must include a number.";
+  if (!/[^A-Za-z0-9]/.test(password)) return "Password must include a symbol.";
+  return "";
+}
+
+function canManageRole(actorRole, role) {
+  if (!manageableUserRoles.includes(role)) return false;
+  if (role === "admin" && actorRole !== "super_admin") return false;
+  return true;
+}
+
+async function activeAdminCount(env) {
+  const row = await env.DB.prepare("SELECT COUNT(*) AS count FROM users WHERE role IN ('admin', 'super_admin') AND disabled_at IS NULL").first();
+  return row?.count || 0;
+}
+
 async function verifyPassword(password, passwordHash) {
   const [scheme, iterationText, saltText, hashText] = String(passwordHash || "").split("$");
   if (scheme !== "pbkdf2_sha256") return false;
@@ -219,7 +240,8 @@ async function register(request, env) {
   const password = String(body.password || "");
   if (!name || !email || !password) return fail(400, "Name, email and password are required.");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail(400, "Enter a valid email address.");
-  if (password.length < 10) return fail(400, "Password must be at least 10 characters.");
+  const passwordError = passwordStrengthError(password, 10);
+  if (passwordError) return fail(400, passwordError);
   const existing = await env.DB.prepare("SELECT id FROM users WHERE email = ?").bind(email).first();
   if (existing) return fail(409, "An account already exists for this email address.");
   const passwordHash = await hashPassword(password);
@@ -257,6 +279,11 @@ async function me(request, env) {
   return ok({ user: publicUser(user) });
 }
 
+async function setupStatus(env) {
+  const existing = await env.DB.prepare("SELECT id FROM users WHERE role IN ('admin', 'super_admin') LIMIT 1").first();
+  return ok({ complete: Boolean(existing) });
+}
+
 async function firstAdmin(request, env) {
   if (!env.ADMIN_BOOTSTRAP_TOKEN) return fail(404, "First-admin setup is not enabled.");
   if (request.headers.get("X-Bootstrap-Token") !== env.ADMIN_BOOTSTRAP_TOKEN) return fail(403, "Invalid bootstrap token.");
@@ -266,7 +293,9 @@ async function firstAdmin(request, env) {
   const name = String(body.name || "").trim();
   const email = String(body.email || "").trim().toLowerCase();
   const password = String(body.password || "");
-  if (!name || !email || password.length < 14) return fail(400, "Name, email and a 14+ character password are required.");
+  if (!name || !email) return fail(400, "Name and email are required.");
+  const passwordError = passwordStrengthError(password, 14);
+  if (passwordError) return fail(400, passwordError);
   const existingEmail = await env.DB.prepare("SELECT id FROM users WHERE email = ?").bind(email).first();
   if (existingEmail) return fail(409, "A user already exists for this email address.");
   const passwordHash = await hashPassword(password);
@@ -445,6 +474,7 @@ async function adminRoute(route, request, env, user) {
   if (route === "admin/pages" && request.method === "GET") return listRows(env, "pages", "path", "pages");
   if (route === "admin/users" && request.method === "GET") return listUsers(env);
   if (route === "admin/users" && request.method === "POST") return createUser(request, env, user);
+  if (route.startsWith("admin/users/") && route.endsWith("/reset-password") && request.method === "POST") return resetUserPassword(request, env, user, Number(route.split("/").filter(Boolean).slice(-2)[0]));
   if (route.startsWith("admin/users/") && request.method === "PUT") return updateUser(request, env, user, id);
   if (route === "admin/audit-logs" && request.method === "GET") return listAuditLogs(env);
   if (route.startsWith("admin/pages/") && request.method === "PUT") return updatePage(request, env, user, id);
@@ -563,8 +593,9 @@ async function createUser(request, env, user) {
   const email = String(body.email || "").trim().toLowerCase();
   const password = String(body.password || "");
   const role = String(body.role || "").trim();
-  if (!name || !email || !password || !allowedUserRoles.includes(role)) return fail(400, "Name, email, password and a valid role are required.");
-  if (password.length < 14) return fail(400, "Admin-created passwords must be at least 14 characters.");
+  if (!name || !email || !password || !canManageRole(user.role, role)) return fail(400, "Name, email, password and a valid role are required.");
+  const passwordError = passwordStrengthError(password, 14);
+  if (passwordError) return fail(400, passwordError);
   const existing = await env.DB.prepare("SELECT id FROM users WHERE email = ?").bind(email).first();
   if (existing) return fail(409, "A user already exists for this email address.");
 
@@ -592,9 +623,18 @@ async function updateUser(request, env, user, id) {
   if (!existing) return fail(404, "User not found.");
   const body = await readJson(request);
   const role = String(body.role || existing.role).trim();
-  if (!allowedUserRoles.includes(role)) return fail(400, "A valid role is required.");
+  const roleChanged = role !== existing.role;
+  if (roleChanged) {
+    if (existing.role === "super_admin" || role === "super_admin") return fail(403, "Super-admin accounts are managed through the first-admin setup process.");
+    if (!canManageRole(user.role, role)) return fail(403, "You do not have permission to assign that role.");
+    if (existing.role === "admin" && user.role !== "super_admin") return fail(403, "Only a super-admin can manage admin accounts.");
+  }
   const disabled = Boolean(body.disabled);
   if (id === user.id && disabled) return fail(400, "You cannot disable your own account.");
+  if (disabled && ["admin", "super_admin"].includes(existing.role)) {
+    if (user.role !== "super_admin") return fail(403, "Only a super-admin can disable admin accounts.");
+    if ((await activeAdminCount(env)) <= 1 && !existing.disabled_at) return fail(400, "At least one active admin account is required.");
+  }
   const name = String(body.name || existing.name).trim();
 
   await env.DB.prepare("UPDATE users SET name = ?, role = ?, disabled_at = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
@@ -617,6 +657,22 @@ async function updateUser(request, env, user, id) {
 
   await audit(env, user.id, "admin.users.update", "users", id, { role, disabled });
   return ok({ user: await env.DB.prepare("SELECT id, name, email, role, disabled_at, created_at, updated_at FROM users WHERE id = ?").bind(id).first() });
+}
+
+async function resetUserPassword(request, env, user, id) {
+  if (!userAdminRoles.includes(user.role)) return fail(403, "Only admins can manage users.");
+  const existing = await env.DB.prepare("SELECT * FROM users WHERE id = ?").bind(id).first();
+  if (!existing) return fail(404, "User not found.");
+  if (existing.role === "super_admin") return fail(403, "Super-admin passwords must be reset through a secure recovery process.");
+  if (existing.role === "admin" && user.role !== "super_admin") return fail(403, "Only a super-admin can reset admin passwords.");
+  const body = await readJson(request);
+  const password = String(body.password || "");
+  const passwordError = passwordStrengthError(password, 14);
+  if (passwordError) return fail(400, passwordError);
+  await env.DB.prepare("UPDATE users SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?").bind(await hashPassword(password), id).run();
+  await env.DB.prepare("DELETE FROM sessions WHERE user_id = ?").bind(id).run();
+  await audit(env, user.id, "admin.users.reset_password", "users", id);
+  return ok({ reset: true });
 }
 
 async function listAuditLogs(env) {

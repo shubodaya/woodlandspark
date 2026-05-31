@@ -11,6 +11,15 @@ const cookieOptions = {
   path: "/",
 };
 
+function passwordStrengthError(password, minLength = 10) {
+  if (String(password || "").length < minLength) return `Password must be at least ${minLength} characters.`;
+  if (!/[a-z]/.test(password)) return "Password must include a lowercase letter.";
+  if (!/[A-Z]/.test(password)) return "Password must include an uppercase letter.";
+  if (!/[0-9]/.test(password)) return "Password must include a number.";
+  if (!/[^A-Za-z0-9]/.test(password)) return "Password must include a symbol.";
+  return "";
+}
+
 function createSession(res, req, user) {
   const token = createToken();
   const expiresAt = new Date(Date.now() + config.sessionDays * 24 * 60 * 60 * 1000);
@@ -26,7 +35,8 @@ export function register(req, res) {
   const cleanName = String(name || "").trim();
   const cleanEmail = String(email || "").trim().toLowerCase();
   if (!cleanName) return fail(res, 400, "Name is required.");
-  if (String(password || "").length < 10) return fail(res, 400, "Password must be at least 10 characters.");
+  const passwordError = passwordStrengthError(password, 10);
+  if (passwordError) return fail(res, 400, passwordError);
   const existing = db.prepare("SELECT id FROM users WHERE email = ?").get(cleanEmail);
   if (existing) return fail(res, 409, "An account already exists for this email address.");
 
@@ -65,6 +75,11 @@ export function me(req, res) {
   return ok(res, { user: req.user ? publicUser(req.user) : null });
 }
 
+export function setupStatus(_req, res) {
+  const existing = db.prepare("SELECT id FROM users WHERE role IN ('admin', 'super_admin') LIMIT 1").get();
+  return ok(res, { complete: Boolean(existing) });
+}
+
 export function firstAdmin(req, res) {
   const expectedToken = process.env.ADMIN_BOOTSTRAP_TOKEN || process.env.WOODLANDS_ADMIN_BOOTSTRAP_TOKEN;
   if (!expectedToken) return fail(res, 404, "First-admin setup is not enabled.");
@@ -75,7 +90,10 @@ export function firstAdmin(req, res) {
   const name = String(req.body.name || "").trim();
   const email = String(req.body.email || "").trim().toLowerCase();
   const password = String(req.body.password || "");
-  if (!name || !email || password.length < 14) return fail(res, 400, "Name, email and a 14+ character password are required.");
+  if (!name || !email) return fail(res, 400, "Name and email are required.");
+  const passwordError = passwordStrengthError(password, 14);
+  if (passwordError) return fail(res, 400, passwordError);
+  if (db.prepare("SELECT id FROM users WHERE email = ?").get(email)) return fail(res, 409, "A user already exists for this email address.");
 
   const result = db.prepare(`
     INSERT INTO users (name, email, password_hash, role, created_at, updated_at)

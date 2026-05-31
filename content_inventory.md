@@ -2228,3 +2228,42 @@ TODO: Production copy should still be reviewed by Woodlands before launch becaus
   - Frontend validates name, email, 10+ character password and matching confirmation.
   - Local and Cloudflare auth reject duplicate emails and disabled accounts.
   - Successful registration creates a session and continues to `/tickets/select`.
+
+## Admin Access Setup Update - 2026-05-31
+
+- Added hidden first-admin browser route:
+  - `/admin/setup`
+  - Checks `GET /api/setup/status`
+  - Shows "Admin setup is already complete" after any `admin` or `super_admin` exists.
+- First-admin creation remains token protected:
+  - `POST /api/setup/first-admin`
+  - Requires `ADMIN_BOOTSTRAP_TOKEN` through `X-Bootstrap-Token`
+  - Creates the first user as `super_admin`
+  - Logs `setup.first_admin` in `audit_logs`
+  - Rejects duplicate email addresses and any second setup attempt.
+- Admin login routes added:
+  - `/admin/login`
+  - `/admin` redirects unauthenticated users to `/admin/login`
+  - Admin login accepts only `admin`, `editor` and `super_admin`.
+- Staff login routes added:
+  - `/staff/login`
+  - `/staff` and `/staff/rota` redirect unauthenticated users to `/staff/login`
+  - `/shifts` redirects to `/staff/rota`; standalone shifts portal UI remains removed.
+- User management hardening:
+  - Staff self-registration is not available.
+  - Ticket/customer registration always creates `customer` role only.
+  - Admin Users section can create staff, supervisor, manager, editor and payroll-admin users.
+  - Only a logged-in `super_admin` can create or manage `admin` users.
+  - `super_admin` accounts are not created or role-changed from the Users section.
+  - Added admin password reset endpoint: `POST /api/admin/users/:id/reset-password`.
+  - User create, role update, disable and password reset actions are audited.
+- Password rules:
+  - Customer ticket registration: 10+ characters with uppercase, lowercase, number and symbol.
+  - Admin setup/admin-created/reset passwords: 14+ characters with uppercase, lowercase, number and symbol.
+- Local testing completed:
+  - `/admin/setup` incomplete state, invalid token, valid token, and disabled-after-setup state.
+  - `/admin/login`, `/admin/users`, staff creation, password reset and `/staff/login`.
+  - Manager rota shift creation, staff assignment and staff personal rota view.
+  - `/shifts` redirect to `/staff/rota`.
+  - `/tickets/register` customer role, admin/staff denial for customer users and ticket reservation creation.
+  - Local SQLite was reseeded after testing; no local test users or demo passwords remain in `server/db/woodlands.sqlite`.

@@ -18,6 +18,15 @@ function makeSelection(ticketTypes) {
   };
 }
 
+function passwordStrengthMessage(password) {
+  if (password.length < 10) return "Password must be at least 10 characters.";
+  if (!/[a-z]/.test(password)) return "Password must include a lowercase letter.";
+  if (!/[A-Z]/.test(password)) return "Password must include an uppercase letter.";
+  if (!/[0-9]/.test(password)) return "Password must include a number.";
+  if (!/[^A-Za-z0-9]/.test(password)) return "Password must include a symbol.";
+  return "";
+}
+
 export function TicketingFlow({ mode = "overview", onNavigate, session, setSession }) {
   const [ticketTypes, setTicketTypes] = useState(fallbackTicketTypes);
   const [login, setLogin] = useState({ email: "", password: "" });
@@ -87,7 +96,8 @@ export function TicketingFlow({ mode = "overview", onNavigate, session, setSessi
       const email = register.email.trim().toLowerCase();
       if (!firstName || !lastName) throw new Error("First name and last name are required.");
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error("Enter a valid email address.");
-      if (register.password.length < 10) throw new Error("Password must be at least 10 characters.");
+      const passwordError = passwordStrengthMessage(register.password);
+      if (passwordError) throw new Error(passwordError);
       if (register.password !== register.confirmPassword) throw new Error("Passwords do not match.");
       const data = await apiRequest("/auth/register", {
         method: "POST",
@@ -187,7 +197,7 @@ export function TicketingFlow({ mode = "overview", onNavigate, session, setSessi
             <Field label="Password" type="password" value={register.password} onChange={(value) => setRegister((current) => ({ ...current, password: value }))} required minLength={10} />
             <Field label="Confirm Password" type="password" value={register.confirmPassword} onChange={(value) => setRegister((current) => ({ ...current, confirmPassword: value }))} required minLength={10} />
             <p className="rounded-lg bg-sunshine/25 p-3 text-xs font-bold uppercase tracking-wide text-ink">
-              Use at least 10 characters. Do not use a real payment password; this site stores only reservation requests until payment integration is approved.
+              Use 10+ characters with uppercase, lowercase, number and symbol. Do not use a real payment password; this site stores only reservation requests until payment integration is approved.
             </p>
             {authError && <p className="rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{authError}</p>}
             <button className="focus-ring inline-flex min-h-12 items-center justify-center rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button transition hover:-translate-y-0.5" type="submit" disabled={isSubmitting}>

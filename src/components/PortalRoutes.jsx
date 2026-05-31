@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   ListChecks,
   LockKeyhole,
+  LogOut,
   Save,
   ShieldCheck,
   Ticket,
@@ -25,14 +26,17 @@ const adminRoles = ["admin", "editor", "super_admin"];
 const userAdminRoles = ["admin", "super_admin"];
 const staffRoles = ["staff", "supervisor", "manager", "payroll_admin", "super_admin", "admin"];
 const shiftRoles = ["staff", "supervisor", "manager", "super_admin", "admin"];
-const allUserRoles = ["customer", "admin", "editor", "staff", "supervisor", "manager", "payroll_admin", "super_admin"];
+const managedUserRoles = ["staff", "supervisor", "manager", "editor", "payroll_admin"];
+const superAdminManagedUserRoles = [...managedUserRoles, "admin"];
 
 export function PortalRoute({ type, path = "", onNavigate }) {
   if (type === "shiftRedirect") return <ShiftRedirect onNavigate={onNavigate} />;
-  if (type === "adminSetup") return <AdminSetupPortal />;
+  if (type === "adminLogin") return <AdminLoginPortal onNavigate={onNavigate} />;
+  if (type === "adminSetup") return <AdminSetupPortal onNavigate={onNavigate} />;
+  if (type === "staffLogin") return <StaffLoginPortal onNavigate={onNavigate} />;
   if (type === "foodorder") return <FoodorderPortal />;
   if (type === "staff") return <StaffPortal path={path} onNavigate={onNavigate} />;
-  return <AdminPortal />;
+  return <AdminPortal path={path} onNavigate={onNavigate} />;
 }
 
 function isAllowed(user, roles) {
@@ -89,6 +93,34 @@ function PortalHero({ eyebrow, title, description, roles = [] }) {
   );
 }
 
+function strongPasswordMessage(password, minLength = 14) {
+  if (password.length < minLength) return `Use at least ${minLength} characters.`;
+  if (!/[a-z]/.test(password)) return "Add a lowercase letter.";
+  if (!/[A-Z]/.test(password)) return "Add an uppercase letter.";
+  if (!/[0-9]/.test(password)) return "Add a number.";
+  if (!/[^A-Za-z0-9]/.test(password)) return "Add a symbol.";
+  return "";
+}
+
+function PortalRedirect({ title, message, to, onNavigate }) {
+  useEffect(() => {
+    const timer = window.setTimeout(() => onNavigate(to), 250);
+    return () => window.clearTimeout(timer);
+  }, [onNavigate, to]);
+
+  return (
+    <div className="rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift">
+      <LockKeyhole aria-hidden="true" className="text-berry" />
+      <h2 className="mt-3 font-display text-3xl font-black text-ink">{title}</h2>
+      <p className="mt-2 text-sm leading-6 text-slate-700">{message}</p>
+      <AppLink href={to} onNavigate={onNavigate} className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button">
+        Continue
+        <ArrowRight aria-hidden="true" size={18} />
+      </AppLink>
+    </div>
+  );
+}
+
 function PortalLogin({ title, currentUser, allowedRoles, onAuthenticated }) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -104,6 +136,7 @@ function PortalLogin({ title, currentUser, allowedRoles, onAuthenticated }) {
         body: JSON.stringify(credentials),
       });
       if (!allowedRoles.includes(data.user.role)) {
+        await apiRequest("/auth/logout", { method: "POST" }).catch(() => undefined);
         setError("This account does not have access to this portal.");
         return;
       }
@@ -146,11 +179,100 @@ function PortalShell({ children }) {
   return <section className="mx-auto max-w-7xl px-4 py-12 lg:px-6">{children}</section>;
 }
 
-function AdminSetupPortal() {
-  const [form, setForm] = useState({ token: "", name: "", email: "", password: "" });
+function AdminLoginPortal({ onNavigate }) {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    apiRequest("/auth/me")
+      .then((auth) => {
+        if (!isMounted) return;
+        setCurrentUser(auth.user);
+        if (isAllowed(auth.user, adminRoles)) onNavigate("/admin");
+      })
+      .catch(() => undefined)
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [onNavigate]);
+
+  return (
+    <>
+      <PortalHero eyebrow="admin.woodlandspark.com" title="Admin Login" description="Sign in with an authorised Woodlands admin, editor or super-admin account." roles={["admin", "editor", "super-admin"]} />
+      <PortalShell>
+        {loading ? (
+          <LoadingCard label="Checking session..." />
+        ) : (
+          <PortalLogin title="Admin Login" currentUser={currentUser} allowedRoles={adminRoles} onAuthenticated={() => onNavigate("/admin")} />
+        )}
+      </PortalShell>
+    </>
+  );
+}
+
+function StaffLoginPortal({ onNavigate }) {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    apiRequest("/auth/me")
+      .then((auth) => {
+        if (!isMounted) return;
+        setCurrentUser(auth.user);
+        if (isAllowed(auth.user, staffRoles)) onNavigate("/staff");
+      })
+      .catch(() => undefined)
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [onNavigate]);
+
+  return (
+    <>
+      <PortalHero eyebrow="staff.woodlandspark.com" title="Staff Login" description="Sign in with an authorised Woodlands staff account." roles={["staff", "supervisor", "manager", "payroll-admin"]} />
+      <PortalShell>
+        {loading ? (
+          <LoadingCard label="Checking session..." />
+        ) : (
+          <PortalLogin title="Staff Login" currentUser={currentUser} allowedRoles={staffRoles} onAuthenticated={() => onNavigate("/staff")} />
+        )}
+      </PortalShell>
+    </>
+  );
+}
+
+function AdminSetupPortal({ onNavigate }) {
+  const [form, setForm] = useState({ token: "", name: "", email: "", password: "", confirmPassword: "" });
+  const [setupComplete, setSetupComplete] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+    apiRequest("/setup/status")
+      .then((data) => {
+        if (isMounted) setSetupComplete(Boolean(data.complete));
+      })
+      .catch((error) => {
+        if (isMounted) setError(error.message);
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -158,13 +280,18 @@ function AdminSetupPortal() {
     setMessage("");
     setError("");
     try {
+      if (form.password !== form.confirmPassword) throw new Error("Passwords do not match.");
+      const passwordError = strongPasswordMessage(form.password, 14);
+      if (passwordError) throw new Error(passwordError);
       await apiRequest("/setup/first-admin", {
         method: "POST",
         headers: { "X-Bootstrap-Token": form.token },
         body: JSON.stringify({ name: form.name, email: form.email, password: form.password }),
       });
-      setMessage("Admin account created. You can now sign in at /admin.");
-      setForm({ token: "", name: "", email: "", password: "" });
+      setMessage("Admin account created. Redirecting to admin login.");
+      setForm({ token: "", name: "", email: "", password: "", confirmPassword: "" });
+      setSetupComplete(true);
+      window.setTimeout(() => onNavigate("/admin/login"), 650);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -181,6 +308,21 @@ function AdminSetupPortal() {
         roles={["bootstrap token required"]}
       />
       <PortalShell>
+        {loading ? (
+          <LoadingCard label="Checking setup status..." />
+        ) : setupComplete ? (
+          <div className="mx-auto max-w-2xl rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift">
+            <ShieldCheck aria-hidden="true" className="text-leaf" />
+            <h2 className="mt-3 font-display text-3xl font-black text-ink">Admin setup is already complete</h2>
+            <p className="mt-2 text-sm leading-6 text-slate-700">
+              The first administrator has already been created. Use the admin login page to continue.
+            </p>
+            <AppLink href="/admin/login" onNavigate={onNavigate} className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button">
+              Admin Login
+              <ArrowRight aria-hidden="true" size={18} />
+            </AppLink>
+          </div>
+        ) : (
         <form className="mx-auto max-w-2xl rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift" onSubmit={submit}>
           <p className="rounded-lg bg-sunshine/30 p-3 text-sm font-bold text-ink">
             This setup route requires the private ADMIN_BOOTSTRAP_TOKEN. Do not store that token in the frontend or repository.
@@ -190,6 +332,10 @@ function AdminSetupPortal() {
             <AdminInput label="Admin Name" value={form.name} onChange={(value) => setForm((current) => ({ ...current, name: value }))} required />
             <AdminInput label="Admin Email" type="email" value={form.email} onChange={(value) => setForm((current) => ({ ...current, email: value }))} required />
             <AdminInput label="Admin Password" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} required />
+            <AdminInput label="Confirm Password" type="password" value={form.confirmPassword} onChange={(value) => setForm((current) => ({ ...current, confirmPassword: value }))} required />
+            <p className="rounded-lg bg-sunshine/25 p-3 text-xs font-bold uppercase tracking-wide text-ink">
+              Use 14+ characters with uppercase, lowercase, number and symbol.
+            </p>
           </div>
           {message && <p className="mt-4 rounded-lg bg-leaf/10 p-3 text-sm font-bold text-canopy">{message}</p>}
           {error && <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
@@ -198,14 +344,15 @@ function AdminSetupPortal() {
             {submitting ? "Creating..." : "Create First Admin"}
           </button>
         </form>
+        )}
       </PortalShell>
     </>
   );
 }
 
-function AdminPortal() {
+function AdminPortal({ path, onNavigate }) {
   const [user, setUser] = useState(null);
-  const [activeTab, setActiveTab] = useState("pages");
+  const [activeTab, setActiveTab] = useState(path === "/admin/users" ? "users" : "pages");
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({
     counts: {},
@@ -273,11 +420,21 @@ function AdminPortal() {
     };
   }, []);
 
+  useEffect(() => {
+    if (path === "/admin/users") setActiveTab("users");
+  }, [path]);
+
   const reloadAfterLogin = async (nextUser) => {
     setUser(nextUser);
     setLoading(true);
     await loadAdmin();
     setLoading(false);
+  };
+
+  const logout = async () => {
+    await apiRequest("/auth/logout", { method: "POST" }).catch(() => undefined);
+    setUser(null);
+    onNavigate("/admin/login");
   };
 
   return (
@@ -292,9 +449,18 @@ function AdminPortal() {
         {loading ? (
           <LoadingCard label="Loading admin portal..." />
         ) : !isAllowed(user, adminRoles) ? (
-          <PortalLogin title="Admin Login" currentUser={user} allowedRoles={adminRoles} onAuthenticated={reloadAfterLogin} />
+          <PortalRedirect title="Admin Login Required" message="Admin access requires an authorised Woodlands admin, editor or super-admin account." to="/admin/login" onNavigate={onNavigate} />
         ) : (
           <div className="grid gap-8">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+              <p className="text-sm font-bold text-slate-700">
+                Signed in as <span className="font-black text-ink">{user.email}</span> ({user.role})
+              </p>
+              <button className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-lg bg-mist px-4 py-2 text-xs font-black uppercase tracking-wide text-ink hover:bg-sunshine" type="button" onClick={logout}>
+                <LogOut aria-hidden="true" size={16} />
+                Logout
+              </button>
+            </div>
             <DashboardCounts counts={data.counts} />
             <TabButtons activeTab={activeTab} setActiveTab={setActiveTab} />
             {saveMessage && <p className="rounded-lg bg-leaf/10 p-3 text-sm font-bold text-canopy">{saveMessage}</p>}
@@ -371,6 +537,12 @@ function TabButtons({ activeTab, setActiveTab }) {
 
 function UsersManager({ users, departments, setData, setSaveMessage, currentUser }) {
   const canManageUsers = isAllowed(currentUser, userAdminRoles);
+  const roleOptions = currentUser?.role === "super_admin" ? superAdminManagedUserRoles : managedUserRoles;
+  const resettableUsers = users.filter((user) => {
+    if (user.role === "super_admin") return false;
+    if (user.role === "admin" && currentUser?.role !== "super_admin") return false;
+    return true;
+  });
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -379,12 +551,15 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
     departmentId: departments[0]?.id || "",
     jobTitle: "Ranger",
   });
+  const [resetForm, setResetForm] = useState({ userId: "", password: "" });
   const [error, setError] = useState("");
 
   const createUser = async (event) => {
     event.preventDefault();
     setError("");
     try {
+      const passwordError = strongPasswordMessage(form.password, 14);
+      if (passwordError) throw new Error(passwordError);
       const data = await apiRequest("/admin/users", {
         method: "POST",
         body: JSON.stringify(form),
@@ -392,6 +567,25 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
       setData((current) => ({ ...current, users: [data.user, ...current.users] }));
       setSaveMessage(`Created user: ${data.user.email}`);
       setForm({ name: "", email: "", password: "", role: "staff", departmentId: departments[0]?.id || "", jobTitle: "Ranger" });
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const resetPassword = async (event) => {
+    event.preventDefault();
+    setError("");
+    try {
+      if (!resetForm.userId) throw new Error("Choose a user.");
+      const passwordError = strongPasswordMessage(resetForm.password, 14);
+      if (passwordError) throw new Error(passwordError);
+      await apiRequest(`/admin/users/${resetForm.userId}/reset-password`, {
+        method: "POST",
+        body: JSON.stringify({ password: resetForm.password }),
+      });
+      const target = users.find((user) => String(user.id) === String(resetForm.userId));
+      setResetForm({ userId: "", password: "" });
+      setSaveMessage(`Password reset for: ${target?.email || "selected user"}`);
     } catch (error) {
       setError(error.message);
     }
@@ -430,37 +624,63 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
         </p>
       )}
       {canManageUsers && (
-        <form className="rounded-lg border border-slate-200 bg-mist p-4" onSubmit={createUser}>
-          <div className="flex items-center gap-2">
-            <UserPlus aria-hidden="true" className="text-berry" />
-            <h3 className="font-display text-2xl font-black text-ink">Create Staff or Manager User</h3>
-          </div>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            <AdminInput label="Name" value={form.name} onChange={(value) => setForm((current) => ({ ...current, name: value }))} required />
-            <AdminInput label="Email" type="email" value={form.email} onChange={(value) => setForm((current) => ({ ...current, email: value }))} required />
-            <AdminInput label="Temporary Password" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} required />
-            <label className="grid gap-2">
-              <span className="text-sm font-extrabold text-ink">Role</span>
-              <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={form.role} onChange={(event) => setForm((current) => ({ ...current, role: event.target.value }))}>
-                {allUserRoles.map((role) => <option key={role} value={role}>{role}</option>)}
-              </select>
-            </label>
-            <label className="grid gap-2">
-              <span className="text-sm font-extrabold text-ink">Department</span>
-              <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={form.departmentId} onChange={(event) => setForm((current) => ({ ...current, departmentId: event.target.value }))}>
-                <option value="">No department</option>
-                {departments.map((department) => <option key={department.id} value={department.id}>{department.name}</option>)}
-              </select>
-            </label>
-            <AdminInput label="Job Title" value={form.jobTitle} onChange={(value) => setForm((current) => ({ ...current, jobTitle: value }))} />
-          </div>
-          {error && <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
-          <button className="focus-ring mt-4 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
-            <UserPlus aria-hidden="true" size={18} />
-            Create User
-          </button>
-        </form>
+        <div className="grid gap-4">
+          <form className="rounded-lg border border-slate-200 bg-mist p-4" onSubmit={createUser}>
+            <div className="flex items-center gap-2">
+              <UserPlus aria-hidden="true" className="text-berry" />
+              <h3 className="font-display text-2xl font-black text-ink">Create User</h3>
+            </div>
+            <div className="mt-4 grid gap-4 md:grid-cols-3">
+              <AdminInput label="Name" value={form.name} onChange={(value) => setForm((current) => ({ ...current, name: value }))} required />
+              <AdminInput label="Email" type="email" value={form.email} onChange={(value) => setForm((current) => ({ ...current, email: value }))} required />
+              <AdminInput label="Temporary Password" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} required />
+              <label className="grid gap-2">
+                <span className="text-sm font-extrabold text-ink">Role</span>
+                <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={form.role} onChange={(event) => setForm((current) => ({ ...current, role: event.target.value }))}>
+                  {roleOptions.map((role) => <option key={role} value={role}>{role}</option>)}
+                </select>
+              </label>
+              <label className="grid gap-2">
+                <span className="text-sm font-extrabold text-ink">Department</span>
+                <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={form.departmentId} onChange={(event) => setForm((current) => ({ ...current, departmentId: event.target.value }))}>
+                  <option value="">No department</option>
+                  {departments.map((department) => <option key={department.id} value={department.id}>{department.name}</option>)}
+                </select>
+              </label>
+              <AdminInput label="Job Title" value={form.jobTitle} onChange={(value) => setForm((current) => ({ ...current, jobTitle: value }))} />
+            </div>
+            <p className="mt-3 rounded-lg bg-sunshine/25 p-3 text-xs font-bold uppercase tracking-wide text-ink">
+              Temporary passwords must use 14+ characters with uppercase, lowercase, number and symbol.
+            </p>
+            <button className="focus-ring mt-4 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
+              <UserPlus aria-hidden="true" size={18} />
+              Create User
+            </button>
+          </form>
+
+          <form className="rounded-lg border border-slate-200 bg-white p-4" onSubmit={resetPassword}>
+            <div className="flex items-center gap-2">
+              <LockKeyhole aria-hidden="true" className="text-berry" />
+              <h3 className="font-display text-2xl font-black text-ink">Reset User Password</h3>
+            </div>
+            <div className="mt-4 grid gap-4 md:grid-cols-[1fr_1fr_auto] md:items-end">
+              <label className="grid gap-2">
+                <span className="text-sm font-extrabold text-ink">User</span>
+                <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={resetForm.userId} onChange={(event) => setResetForm((current) => ({ ...current, userId: event.target.value }))}>
+                  <option value="">Choose user</option>
+                  {resettableUsers.map((user) => <option key={user.id} value={user.id}>{user.name} - {user.role}</option>)}
+                </select>
+              </label>
+              <AdminInput label="New Temporary Password" type="password" value={resetForm.password} onChange={(value) => setResetForm((current) => ({ ...current, password: value }))} required />
+              <button className="focus-ring inline-flex min-h-12 items-center gap-2 rounded-lg bg-plum px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
+                <LockKeyhole aria-hidden="true" size={18} />
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
       )}
+      {error && <p className="rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
       <div className="overflow-auto rounded-lg border border-slate-200 bg-white">
         <table className="w-full min-w-[920px] text-left text-sm">
           <thead className="bg-mist text-ink">
@@ -483,10 +703,10 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
                   <select
                     className="focus-ring min-h-10 rounded-lg border border-slate-300 px-2"
                     value={user.role}
-                    disabled={!canManageUsers}
+                    disabled={!canManageUsers || user.role === "super_admin" || (user.role === "admin" && currentUser?.role !== "super_admin")}
                     onChange={(event) => updateUser(user, { role: event.target.value })}
                   >
-                    {allUserRoles.map((role) => <option key={role} value={role}>{role}</option>)}
+                    {[...new Set([user.role, ...roleOptions])].map((role) => <option key={role} value={role}>{role}</option>)}
                   </select>
                 </td>
                 <td className="p-3">{user.department_name || "Not assigned"}</td>
@@ -500,6 +720,7 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
                     <button
                       className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-lg bg-mist px-3 py-2 text-xs font-black uppercase tracking-wide text-ink hover:bg-sunshine"
                       type="button"
+                      disabled={user.id === currentUser?.id || (user.role === "admin" && currentUser?.role !== "super_admin") || user.role === "super_admin"}
                       onClick={() => updateUser(user, { disabled: !user.disabled_at })}
                     >
                       {user.disabled_at ? <ShieldCheck aria-hidden="true" size={16} /> : <Ban aria-hidden="true" size={16} />}
@@ -825,6 +1046,12 @@ function StaffPortal({ path, onNavigate }) {
     setLoading(false);
   };
 
+  const logout = async () => {
+    await apiRequest("/auth/logout", { method: "POST" }).catch(() => undefined);
+    setUser(null);
+    onNavigate("/staff/login");
+  };
+
   const isRotaRoute = path?.startsWith("/staff/rota");
 
   return (
@@ -839,15 +1066,22 @@ function StaffPortal({ path, onNavigate }) {
         {loading ? (
           <LoadingCard label="Loading staff portal..." />
         ) : !isAllowed(user, staffRoles) ? (
-          <PortalLogin title="Staff Login" currentUser={user} allowedRoles={staffRoles} onAuthenticated={reloadAfterLogin} />
+          <PortalRedirect title="Staff Login Required" message="Staff access requires an authorised Woodlands staff account." to="/staff/login" onNavigate={onNavigate} />
         ) : isRotaRoute ? (
-          <StaffRotaManager path={path} user={user} onNavigate={onNavigate} />
+          <div className="grid gap-6">
+            <StaffSessionBar user={user} onLogout={logout} />
+            <StaffRotaManager path={path} user={user} onNavigate={onNavigate} />
+          </div>
         ) : (
           <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
             <aside className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-sm">
               <ShieldCheck aria-hidden="true" className="text-berry" />
               <h2 className="mt-3 font-display text-3xl font-black text-ink">Hello, {user.name}</h2>
               <p className="mt-2 text-sm font-bold text-slate-700">Role: {user.role}</p>
+              <button className="focus-ring mt-4 inline-flex min-h-10 items-center gap-2 rounded-lg bg-mist px-4 py-2 text-xs font-black uppercase tracking-wide text-ink hover:bg-sunshine" type="button" onClick={logout}>
+                <LogOut aria-hidden="true" size={16} />
+                Logout
+              </button>
               {dashboard?.employee && (
                 <p className="mt-2 text-sm font-bold text-slate-700">
                   {dashboard.employee.job_title} - {dashboard.employee.department_name}
@@ -898,6 +1132,20 @@ function StaffPortal({ path, onNavigate }) {
         )}
       </PortalShell>
     </>
+  );
+}
+
+function StaffSessionBar({ user, onLogout }) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      <p className="text-sm font-bold text-slate-700">
+        Signed in as <span className="font-black text-ink">{user.email}</span> ({user.role})
+      </p>
+      <button className="focus-ring inline-flex min-h-10 items-center gap-2 rounded-lg bg-mist px-4 py-2 text-xs font-black uppercase tracking-wide text-ink hover:bg-sunshine" type="button" onClick={onLogout}>
+        <LogOut aria-hidden="true" size={16} />
+        Logout
+      </button>
+    </div>
   );
 }
 

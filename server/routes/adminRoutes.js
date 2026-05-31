@@ -15,6 +15,7 @@ import {
   listTicketBookings,
   listTicketTypes,
   listUsers,
+  resetUserPassword,
   updateEvent,
   updateFaq,
   updateOpeningTime,
@@ -34,6 +35,7 @@ adminRoutes.use(attachUser, requireRoles(adminRoles));
 adminRoutes.get("/dashboard", asyncHandler(dashboard));
 adminRoutes.get("/users", asyncHandler(listUsers));
 adminRoutes.post("/users", asyncHandler(createUser));
+adminRoutes.post("/users/:id/reset-password", asyncHandler(resetUserPassword));
 adminRoutes.put("/users/:id", asyncHandler(updateUser));
 adminRoutes.get("/audit-logs", asyncHandler(listAuditLogs));
 adminRoutes.get("/pages", asyncHandler(listPages));

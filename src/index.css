@@ -207,11 +207,12 @@ input {
 }
 
 .section-eyebrow {
-  -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.78);
+  -webkit-text-stroke: 0.95px rgba(0, 0, 0, 0.9);
   paint-order: stroke fill;
   text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.78),
-    0 3px 6px rgba(0, 0, 0, 0.32);
+    0 1px 0 rgba(0, 0, 0, 0.92),
+    0 2px 0 rgba(0, 0, 0, 0.66),
+    0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .section-title {

@@ -276,7 +276,7 @@ function GenericPage({ page, onNavigate }) {
                 </div>
               )}
             </div>
-            <div>
+            <div className="rounded-lg bg-white/90 p-5 shadow-sm ring-1 ring-white/60 backdrop-blur">
               <SectionHeading eyebrow="Key Information" title={page.title} text={page.summary} />
               <div className="mt-6">
                 <HighlightList items={page.highlights} />
@@ -363,10 +363,13 @@ export default function App() {
   };
   const portalRoutes = {
     "/admin": "admin",
+    "/admin/login": "adminLogin",
     "/admin/setup": "adminSetup",
+    "/admin/users": "admin",
     "/shifts": "shiftRedirect",
     "/foodorder": "foodorder",
     "/staff": "staff",
+    "/staff/login": "staffLogin",
     "/staff/rota": "staff",
     "/staff/rota/calendar": "staff",
     "/staff/rota/shifts": "staff",
@@ -378,7 +381,16 @@ export default function App() {
       ? { title: "Tickets", summary: "Choose Woodlands tickets, review your reservation request and manage your ticket account." }
       : portalRoutes[path]
         ? {
-            title: portalRoutes[path] === "shiftRedirect" ? "Staff Rota" : portalRoutes[path] === "adminSetup" ? "Admin Setup" : `${portalRoutes[path][0].toUpperCase()}${portalRoutes[path].slice(1)} Portal`,
+            title:
+              portalRoutes[path] === "shiftRedirect"
+                ? "Staff Rota"
+                : portalRoutes[path] === "adminSetup"
+                  ? "Admin Setup"
+                  : portalRoutes[path] === "adminLogin"
+                    ? "Admin Login"
+                    : portalRoutes[path] === "staffLogin"
+                      ? "Staff Login"
+                      : `${portalRoutes[path][0].toUpperCase()}${portalRoutes[path].slice(1)} Portal`,
             summary: "Secure Woodlands staff and operations area.",
           }
         : path === "/newsletter"

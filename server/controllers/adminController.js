@@ -3,8 +3,36 @@ import { auditLog } from "../utils/audit.js";
 import { hashPassword } from "../utils/security.js";
 import { fail, ok } from "../utils/responses.js";
 
-const allowedRoles = new Set(["customer", "admin", "editor", "staff", "supervisor", "manager", "payroll_admin", "super_admin"]);
+const userAdminRoles = new Set(["admin", "super_admin"]);
+const manageableRoles = new Set(["editor", "staff", "supervisor", "manager", "payroll_admin", "admin"]);
 const employeeRoles = new Set(["staff", "supervisor", "manager", "payroll_admin"]);
+
+function passwordStrengthError(password, minLength = 14) {
+  if (String(password || "").length < minLength) return `Password must be at least ${minLength} characters.`;
+  if (!/[a-z]/.test(password)) return "Password must include a lowercase letter.";
+  if (!/[A-Z]/.test(password)) return "Password must include an uppercase letter.";
+  if (!/[0-9]/.test(password)) return "Password must include a number.";
+  if (!/[^A-Za-z0-9]/.test(password)) return "Password must include a symbol.";
+  return "";
+}
+
+function assertCanManageUsers(req, res) {
+  if (!userAdminRoles.has(req.user.role)) {
+    fail(res, 403, "Only admins can manage users.");
+    return false;
+  }
+  return true;
+}
+
+function canManageRole(actorRole, role) {
+  if (!manageableRoles.has(role)) return false;
+  if (role === "admin" && actorRole !== "super_admin") return false;
+  return true;
+}
+
+function activeAdminCount() {
+  return db.prepare("SELECT COUNT(*) AS count FROM users WHERE role IN ('admin', 'super_admin') AND disabled_at IS NULL").get().count;
+}
 
 export function dashboard(_req, res) {
   const counts = {
@@ -33,6 +61,7 @@ export function listUsers(_req, res) {
 }
 
 export function createUser(req, res) {
+  if (!assertCanManageUsers(req, res)) return;
   const name = String(req.body.name || "").trim();
   const email = String(req.body.email || "").trim().toLowerCase();
   const password = String(req.body.password || "");
@@ -40,8 +69,9 @@ export function createUser(req, res) {
   const departmentId = req.body.departmentId ? Number(req.body.departmentId) : null;
   const jobTitle = String(req.body.jobTitle || role.replace("_", " ")).trim();
 
-  if (!name || !email || !password || !allowedRoles.has(role)) return fail(res, 400, "Name, email, password and a valid role are required.");
-  if (password.length < 14) return fail(res, 400, "Admin-created passwords must be at least 14 characters.");
+  if (!name || !email || !password || !canManageRole(req.user.role, role)) return fail(res, 400, "Name, email, password and a valid role are required.");
+  const passwordError = passwordStrengthError(password, 14);
+  if (passwordError) return fail(res, 400, passwordError);
   if (db.prepare("SELECT id FROM users WHERE email = ?").get(email)) return fail(res, 409, "A user already exists for this email address.");
 
   const userId = db.transaction(() => {
@@ -65,13 +95,23 @@ export function createUser(req, res) {
 }
 
 export function updateUser(req, res) {
+  if (!assertCanManageUsers(req, res)) return;
   const userId = Number(req.params.id);
   const existing = db.prepare("SELECT * FROM users WHERE id = ?").get(userId);
   if (!existing) return fail(res, 404, "User not found.");
   const role = String(req.body.role || existing.role).trim();
-  if (!allowedRoles.has(role)) return fail(res, 400, "A valid role is required.");
+  const roleChanged = role !== existing.role;
+  if (roleChanged) {
+    if (existing.role === "super_admin" || role === "super_admin") return fail(res, 403, "Super-admin accounts are managed through the first-admin setup process.");
+    if (!canManageRole(req.user.role, role)) return fail(res, 403, "You do not have permission to assign that role.");
+    if (existing.role === "admin" && req.user.role !== "super_admin") return fail(res, 403, "Only a super-admin can manage admin accounts.");
+  }
   const disabled = Boolean(req.body.disabled);
   if (userId === req.user.id && disabled) return fail(res, 400, "You cannot disable your own account.");
+  if (disabled && ["admin", "super_admin"].includes(existing.role)) {
+    if (req.user.role !== "super_admin") return fail(res, 403, "Only a super-admin can disable admin accounts.");
+    if (activeAdminCount() <= 1 && !existing.disabled_at) return fail(res, 400, "At least one active admin account is required.");
+  }
 
   const name = String(req.body.name || existing.name).trim();
   const departmentId = req.body.departmentId ? Number(req.body.departmentId) : null;
@@ -95,6 +135,22 @@ export function updateUser(req, res) {
 
   auditLog(req.user.id, "admin.users.update", "users", userId, { role, disabled });
   return ok(res, { user: db.prepare("SELECT id, name, email, role, disabled_at, created_at, updated_at FROM users WHERE id = ?").get(userId) });
+}
+
+export function resetUserPassword(req, res) {
+  if (!assertCanManageUsers(req, res)) return;
+  const userId = Number(req.params.id);
+  const existing = db.prepare("SELECT * FROM users WHERE id = ?").get(userId);
+  if (!existing) return fail(res, 404, "User not found.");
+  if (existing.role === "super_admin") return fail(res, 403, "Super-admin passwords must be reset through a secure recovery process.");
+  if (existing.role === "admin" && req.user.role !== "super_admin") return fail(res, 403, "Only a super-admin can reset admin passwords.");
+  const password = String(req.body.password || "");
+  const passwordError = passwordStrengthError(password, 14);
+  if (passwordError) return fail(res, 400, passwordError);
+  db.prepare("UPDATE users SET password_hash = ?, updated_at = ? WHERE id = ?").run(hashPassword(password), now(), userId);
+  db.prepare("DELETE FROM sessions WHERE user_id = ?").run(userId);
+  auditLog(req.user.id, "admin.users.reset_password", "users", userId);
+  return ok(res, { reset: true });
 }
 
 export function listAuditLogs(_req, res) {

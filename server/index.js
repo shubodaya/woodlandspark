@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import { mkdirSync } from "node:fs";
 import { config } from "./config.js";
 import { db } from "./db/connection.js";
-import { firstAdmin } from "./controllers/authController.js";
+import { firstAdmin, setupStatus } from "./controllers/authController.js";
 import { authRoutes } from "./routes/authRoutes.js";
 import { ticketRoutes } from "./routes/ticketRoutes.js";
 import { publicRoutes } from "./routes/publicRoutes.js";
@@ -25,6 +25,7 @@ app.get("/api/health", (_req, res) => {
   res.json({ ok: true, status: "ready", database: "sqlite", migrations });
 });
 
+app.get("/api/setup/status", setupStatus);
 app.post("/api/setup/first-admin", firstAdmin);
 app.use("/api/auth", authRoutes);
 app.use("/api/tickets", ticketRoutes);
