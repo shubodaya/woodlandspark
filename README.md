@@ -89,6 +89,7 @@ Future pushes to `main` should trigger Cloudflare Pages deployments automaticall
 Latest verified production deployment:
 
 - Source: current `main` deployment.
+- Deployment refresh requested: `2026-05-31 19:42:24 +01:00`.
 - Pages URL: `https://woodlandspark.pages.dev`
 - Status: deployed successfully with SPA route fallback, D1 binding and R2 binding.
 
