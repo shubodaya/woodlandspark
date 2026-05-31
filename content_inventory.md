@@ -2193,7 +2193,7 @@ TODO: Production copy should still be reviewed by Woodlands before launch becaus
     - R2 `MEDIA_BUCKET` -> `woodlandspark-media`
   - Set generated Cloudflare Pages secret `ADMIN_BOOTSTRAP_TOKEN`.
 - Items still requiring live Cloudflare account action:
-  - Production deployment for commit `d79c18a` succeeded at `https://woodlandspark.pages.dev`.
+  - Production deployment from current `main` succeeded at `https://woodlandspark.pages.dev`.
   - GitHub-linked Pages deployment was confirmed with `Git Provider: Yes`; setup deployments were triggered through the Cloudflare Pages API using Git commit metadata because no automatic webhook run appeared after push during testing.
   - The custom domain `https://woodlandspark.shubodaya.dev` has been added to the Pages project, but Cloudflare reports it as `pending` with `CNAME record not set`.
   - Required DNS record: `CNAME woodlandspark -> woodlandspark.pages.dev` in the `shubodaya.dev` zone. The current local Wrangler OAuth token can manage Pages/D1/R2 but was rejected by the Cloudflare DNS API for zone record creation.
@@ -2267,3 +2267,5 @@ TODO: Production copy should still be reviewed by Woodlands before launch becaus
   - `/shifts` redirect to `/staff/rota`.
   - `/tickets/register` customer role, admin/staff denial for customer users and ticket reservation creation.
   - Local SQLite was reseeded after testing; no local test users or demo passwords remain in `server/db/woodlands.sqlite`.
+  - Production D1 was also cleaned after ticket-flow testing; `users` count is `0` until the first real admin is created through `/admin/setup`.
+  - `ADMIN_BOOTSTRAP_TOKEN` exists as an encrypted Cloudflare Pages secret; its value is not present in the repository.
