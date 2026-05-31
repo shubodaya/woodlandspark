@@ -65,6 +65,47 @@ export function login(req, res) {
   return ok(res, { user: publicUser(user) });
 }
 
+export function changePassword(req, res) {
+  if (!req.user) return fail(res, 401, "Authentication required.");
+  const currentPassword = String(req.body.currentPassword || "");
+  const nextPassword = String(req.body.newPassword || "");
+  const user = db.prepare("SELECT * FROM users WHERE id = ?").get(req.user.id);
+  if (!user || !verifyPassword(currentPassword, user.password_hash)) return fail(res, 401, "Current password is incorrect.");
+  const passwordError = passwordStrengthError(nextPassword, 14);
+  if (passwordError) return fail(res, 400, passwordError);
+  db.prepare("UPDATE users SET password_hash = ?, must_reset_password = 0, invite_accepted_at = COALESCE(invite_accepted_at, ?), updated_at = ? WHERE id = ?")
+    .run(hashPassword(nextPassword), now(), now(), user.id);
+  db.prepare("DELETE FROM sessions WHERE user_id = ? AND id != ?").run(user.id, req.user.sessionId || 0);
+  auditLog(user.id, "auth.password.change", "users", user.id);
+  const updated = db.prepare("SELECT * FROM users WHERE id = ?").get(user.id);
+  return ok(res, { user: publicUser(updated) });
+}
+
+export function inviteDetails(req, res) {
+  const tokenHash = hashToken(String(req.params.token || ""));
+  const user = db.prepare("SELECT id, name, email, role, invite_accepted_at FROM users WHERE invite_token_hash = ? AND disabled_at IS NULL").get(tokenHash);
+  if (!user || user.invite_accepted_at) return fail(res, 404, "Invite is no longer available.");
+  return ok(res, { invite: { name: user.name, email: user.email, role: user.role } });
+}
+
+export function acceptInvite(req, res) {
+  const tokenHash = hashToken(String(req.params.token || ""));
+  const user = db.prepare("SELECT * FROM users WHERE invite_token_hash = ? AND disabled_at IS NULL").get(tokenHash);
+  if (!user || user.invite_accepted_at) return fail(res, 404, "Invite is no longer available.");
+  const password = String(req.body.password || "");
+  const passwordError = passwordStrengthError(password, 14);
+  if (passwordError) return fail(res, 400, passwordError);
+  db.prepare(`
+    UPDATE users
+    SET password_hash = ?, must_reset_password = 0, invite_accepted_at = ?, invite_token_hash = NULL, updated_at = ?
+    WHERE id = ?
+  `).run(hashPassword(password), now(), now(), user.id);
+  const updated = db.prepare("SELECT * FROM users WHERE id = ?").get(user.id);
+  createSession(res, req, updated);
+  auditLog(updated.id, "auth.invite.accept", "users", updated.id);
+  return ok(res, { user: publicUser(updated) });
+}
+
 export function logout(req, res) {
   if (req.user?.sessionId) db.prepare("DELETE FROM sessions WHERE id = ?").run(req.user.sessionId);
   res.clearCookie(config.sessionCookie, cookieOptions);

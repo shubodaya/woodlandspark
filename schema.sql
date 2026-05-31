@@ -10,6 +10,10 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash TEXT NOT NULL,
   role TEXT NOT NULL REFERENCES roles(id),
   disabled_at TEXT,
+  must_reset_password INTEGER NOT NULL DEFAULT 0,
+  invite_token_hash TEXT,
+  invite_sent_at TEXT,
+  invite_accepted_at TEXT,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -251,6 +255,7 @@ CREATE TABLE IF NOT EXISTS shifts (
   location TEXT,
   status TEXT NOT NULL DEFAULT 'scheduled',
   break_minutes INTEGER NOT NULL DEFAULT 0,
+  paid_break INTEGER NOT NULL DEFAULT 0,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -303,10 +308,22 @@ CREATE TABLE IF NOT EXISTS audit_logs (
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS email_outbox (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  to_email TEXT NOT NULL,
+  subject TEXT NOT NULL,
+  body TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'queued',
+  provider_response TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  sent_at TEXT
+);
+
 CREATE INDEX IF NOT EXISTS idx_sessions_token_hash ON sessions(token_hash);
 CREATE INDEX IF NOT EXISTS idx_sessions_expires_at ON sessions(expires_at);
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 CREATE INDEX IF NOT EXISTS idx_users_disabled_at ON users(disabled_at);
+CREATE INDEX IF NOT EXISTS idx_users_invite_token_hash ON users(invite_token_hash);
 CREATE INDEX IF NOT EXISTS idx_ticket_bookings_user_id ON ticket_bookings(user_id);
 CREATE INDEX IF NOT EXISTS idx_ticket_bookings_reference ON ticket_bookings(reference);
 CREATE INDEX IF NOT EXISTS idx_ticket_booking_items_booking_id ON ticket_booking_items(booking_id);
@@ -320,3 +337,4 @@ CREATE INDEX IF NOT EXISTS idx_menu_items_cafe_category ON menu_items(cafe_id, c
 CREATE INDEX IF NOT EXISTS idx_shifts_date ON shifts(date);
 CREATE INDEX IF NOT EXISTS idx_rota_assignments_shift ON rota_assignments(shift_id);
 CREATE INDEX IF NOT EXISTS idx_audit_logs_created_at ON audit_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_email_outbox_status ON email_outbox(status);

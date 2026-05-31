@@ -17,6 +17,7 @@ import { foodMenuData } from "../../src/data/food/menuData.js";
 function clearTables() {
   db.exec(`
     DELETE FROM audit_logs;
+    DELETE FROM email_outbox;
     DELETE FROM payslip_placeholders;
     DELETE FROM staff_documents;
     DELETE FROM announcements;

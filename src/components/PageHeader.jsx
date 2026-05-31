@@ -1,4 +1,4 @@
-import { image } from "../data/assets.js";
+import { mediaSource } from "../data/assets.js";
 import { Breadcrumbs } from "./Breadcrumbs.jsx";
 import { CtaButton } from "./Button.jsx";
 
@@ -7,7 +7,7 @@ export function PageHeader({ page, onNavigate }) {
     <section className="relative isolate overflow-hidden bg-ink text-white">
       <img
         className="absolute inset-0 -z-10 h-full w-full object-cover opacity-45"
-        src={image(page.image)}
+        src={mediaSource(page.image)}
         alt={page.alt || page.title}
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/78 to-ink/20" />

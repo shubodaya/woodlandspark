@@ -13,7 +13,7 @@ import {
   visitingPages,
   zooPages,
 } from "./data/siteData.js";
-import { image } from "./data/assets.js";
+import { image, mediaSource } from "./data/assets.js";
 import { Navbar } from "./components/Navbar.jsx";
 import { Footer } from "./components/Footer.jsx";
 import { Hero } from "./components/Hero.jsx";
@@ -262,7 +262,7 @@ function GenericPage({ page, onNavigate }) {
         <section className="mx-auto max-w-7xl px-4 py-12 lg:px-6">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
             <div>
-              <img className="aspect-[4/3] w-full rounded-lg border border-slate-200 object-cover shadow-sm" src={image(page.image)} alt={page.alt || page.title} />
+              <img className="aspect-[4/3] w-full rounded-lg border border-slate-200 object-cover shadow-sm" src={mediaSource(page.image)} alt={page.alt || page.title} />
               {page.externalCta && (
                 <div className="mt-4 flex flex-wrap gap-3">
                   <a
@@ -351,6 +351,42 @@ function NotFound({ onNavigate }) {
 export default function App() {
   const [path, navigate] = useRoute();
   const [ticketSession, setTicketSession] = useState({ user: null, selection: null, booking: null, confirmationRef: "" });
+  const [cmsPages, setCmsPages] = useState({});
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch("/api/pages", { credentials: "include" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload) => {
+        if (!isMounted || !payload?.ok) return;
+        const map = Object.fromEntries(
+          (payload.data.pages || []).map((item) => [
+            item.path,
+            {
+              ...item,
+              sourceUrl: item.sourceUrl || item.source_url,
+              sections: (item.sections || []).map((section) => ({
+                title: section.title,
+                body: section.body,
+              })),
+            },
+          ]),
+        );
+        setCmsPages(map);
+      })
+      .catch(() => undefined);
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const dynamicPageMap = useMemo(() => {
+    const merged = { ...pageMap };
+    for (const [pagePath, cmsPage] of Object.entries(cmsPages)) {
+      merged[pagePath] = { ...(merged[pagePath] || {}), ...cmsPage };
+    }
+    return merged;
+  }, [cmsPages]);
   const ticketModes = {
     "/tickets": "overview",
     "/visiting/tickets": "overview",
@@ -366,6 +402,7 @@ export default function App() {
     "/admin/login": "adminLogin",
     "/admin/setup": "adminSetup",
     "/admin/users": "admin",
+    "/admin/rota": "admin",
     "/shifts": "shiftRedirect",
     "/foodorder": "foodorder",
     "/staff": "staff",
@@ -375,7 +412,8 @@ export default function App() {
     "/staff/rota/shifts": "staff",
     "/staff/rota/assignments": "staff",
   };
-  const page = path === "/" || ticketModes[path] || portalRoutes[path] || path === "/newsletter" ? null : pageMap[path];
+  const staffInviteToken = path.startsWith("/staff/invite/") ? path.split("/").filter(Boolean).pop() : "";
+  const page = path === "/" || ticketModes[path] || portalRoutes[path] || staffInviteToken || path === "/newsletter" ? null : dynamicPageMap[path];
   const specialSeo =
     ticketModes[path]
       ? { title: "Tickets", summary: "Choose Woodlands tickets, review your reservation request and manage your ticket account." }
@@ -395,14 +433,16 @@ export default function App() {
           }
         : path === "/newsletter"
           ? { title: "Newsletter", summary: "Sign up for Woodlands news, offers and events." }
-          : path === "/visiting/opening-times"
-            ? pageMap["/visiting/opening-times"]
+          : staffInviteToken
+            ? { title: "Staff Invite", summary: "Set your Woodlands staff portal password." }
+            : path === "/visiting/opening-times"
+            ? dynamicPageMap["/visiting/opening-times"]
             : path === "/visiting/birthday-parties"
-          ? pageMap["/visiting/birthday-parties"]
+          ? dynamicPageMap["/visiting/birthday-parties"]
           : path === "/visiting/faqs"
-            ? pageMap["/visiting/faqs"]
+            ? dynamicPageMap["/visiting/faqs"]
             : null;
-  const protectedRoute = Boolean(portalRoutes[path]) || path.startsWith("/tickets/login") || path.startsWith("/tickets/register") || path.startsWith("/tickets/account") || path.startsWith("/tickets/checkout");
+  const protectedRoute = Boolean(portalRoutes[path]) || Boolean(staffInviteToken) || path.startsWith("/tickets/login") || path.startsWith("/tickets/register") || path.startsWith("/tickets/account") || path.startsWith("/tickets/checkout");
   useSeo(page || specialSeo, protectedRoute);
   useScrollReveal(path);
 
@@ -416,6 +456,8 @@ export default function App() {
       <main id="main-content">
         {path === "/" ? (
           <HomePage onNavigate={navigate} />
+        ) : staffInviteToken ? (
+          <PortalRoute type="staffInvite" token={staffInviteToken} onNavigate={navigate} />
         ) : portalType ? (
           <PortalRoute type={portalType} path={path} onNavigate={navigate} />
         ) : ticketMode ? (

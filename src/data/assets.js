@@ -15,6 +15,12 @@ export function image(name) {
   return modules[key] || "";
 }
 
+export function mediaSource(name) {
+  if (!name) return "";
+  if (String(name).startsWith("/") || String(name).startsWith("data:")) return name;
+  return image(name) || name;
+}
+
 export function documentAsset(name) {
   const key = `../assets/documents/${name}`;
   return documentModules[key] || "";

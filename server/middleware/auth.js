@@ -25,6 +25,7 @@ export function attachUser(req, _res, next) {
     name: row.name,
     email: row.email,
     role: row.role,
+    must_reset_password: row.must_reset_password,
     sessionId: row.session_id,
   };
   return next();

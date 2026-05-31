@@ -9,9 +9,12 @@ import {
   ListChecks,
   LockKeyhole,
   LogOut,
+  Plus,
   Save,
+  Send,
   ShieldCheck,
   Ticket,
+  Trash2,
   Upload,
   UserCog,
   UserPlus,
@@ -29,11 +32,12 @@ const shiftRoles = ["staff", "supervisor", "manager", "super_admin", "admin"];
 const managedUserRoles = ["staff", "supervisor", "manager", "editor", "payroll_admin"];
 const superAdminManagedUserRoles = [...managedUserRoles, "admin"];
 
-export function PortalRoute({ type, path = "", onNavigate }) {
+export function PortalRoute({ type, path = "", token = "", onNavigate }) {
   if (type === "shiftRedirect") return <ShiftRedirect onNavigate={onNavigate} />;
   if (type === "adminLogin") return <AdminLoginPortal onNavigate={onNavigate} />;
   if (type === "adminSetup") return <AdminSetupPortal onNavigate={onNavigate} />;
   if (type === "staffLogin") return <StaffLoginPortal onNavigate={onNavigate} />;
+  if (type === "staffInvite") return <StaffInvitePortal token={token} onNavigate={onNavigate} />;
   if (type === "foodorder") return <FoodorderPortal />;
   if (type === "staff") return <StaffPortal path={path} onNavigate={onNavigate} />;
   return <AdminPortal path={path} onNavigate={onNavigate} />;
@@ -249,6 +253,129 @@ function StaffLoginPortal({ onNavigate }) {
   );
 }
 
+function StaffInvitePortal({ token, onNavigate }) {
+  const [invite, setInvite] = useState(null);
+  const [form, setForm] = useState({ password: "", confirmPassword: "" });
+  const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let isMounted = true;
+    apiRequest(`/auth/invites/${token}`)
+      .then((data) => {
+        if (isMounted) setInvite(data.invite);
+      })
+      .catch((error) => {
+        if (isMounted) setError(error.message);
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [token]);
+
+  const submit = async (event) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setError("");
+    try {
+      const passwordError = strongPasswordMessage(form.password, 14);
+      if (passwordError) throw new Error(passwordError);
+      if (form.password !== form.confirmPassword) throw new Error("Passwords do not match.");
+      await apiRequest(`/auth/invites/${token}/accept`, {
+        method: "POST",
+        body: JSON.stringify({ password: form.password }),
+      });
+      onNavigate("/staff");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <PortalHero eyebrow="staff.woodlandspark.com" title="Set Staff Password" description="Use your private invitation link to activate your Woodlands staff portal access." roles={["invite link required"]} />
+      <PortalShell>
+        {loading ? (
+          <LoadingCard label="Checking invite..." />
+        ) : error && !invite ? (
+          <div className="mx-auto max-w-xl rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift">
+            <Ban aria-hidden="true" className="text-berry" />
+            <h2 className="mt-3 font-display text-3xl font-black text-ink">Invite unavailable</h2>
+            <p className="mt-2 text-sm font-bold text-red-700">{error}</p>
+          </div>
+        ) : (
+          <form className="mx-auto max-w-xl rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift" onSubmit={submit}>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-berry">{invite.email}</p>
+            <h2 className="mt-2 font-display text-3xl font-black text-ink">Welcome, {invite.name}</h2>
+            <p className="mt-2 rounded-lg bg-sunshine/25 p-3 text-xs font-bold uppercase tracking-wide text-ink">
+              Role: {invite.role}. Choose a strong password before signing in.
+            </p>
+            <div className="mt-5 grid gap-4">
+              <AdminInput label="Password" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} required />
+              <AdminInput label="Confirm Password" type="password" value={form.confirmPassword} onChange={(value) => setForm((current) => ({ ...current, confirmPassword: value }))} required />
+            </div>
+            {error && <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
+            <button className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit" disabled={submitting}>
+              <ShieldCheck aria-hidden="true" size={18} />
+              {submitting ? "Saving..." : "Set Password"}
+            </button>
+          </form>
+        )}
+      </PortalShell>
+    </>
+  );
+}
+
+function PasswordResetRequired({ user, onComplete }) {
+  const [form, setForm] = useState({ currentPassword: "", newPassword: "", confirmPassword: "" });
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async (event) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setError("");
+    try {
+      const passwordError = strongPasswordMessage(form.newPassword, 14);
+      if (passwordError) throw new Error(passwordError);
+      if (form.newPassword !== form.confirmPassword) throw new Error("Passwords do not match.");
+      const data = await apiRequest("/auth/change-password", {
+        method: "POST",
+        body: JSON.stringify({ currentPassword: form.currentPassword, newPassword: form.newPassword }),
+      });
+      onComplete(data.user);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <form className="mx-auto max-w-xl rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift" onSubmit={submit}>
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-berry">{user.email}</p>
+      <h2 className="mt-2 font-display text-3xl font-black text-ink">Reset Your Password</h2>
+      <p className="mt-2 text-sm leading-6 text-slate-700">A password change is required before this account can continue.</p>
+      <div className="mt-5 grid gap-4">
+        <AdminInput label="Current Password" type="password" value={form.currentPassword} onChange={(value) => setForm((current) => ({ ...current, currentPassword: value }))} required />
+        <AdminInput label="New Password" type="password" value={form.newPassword} onChange={(value) => setForm((current) => ({ ...current, newPassword: value }))} required />
+        <AdminInput label="Confirm New Password" type="password" value={form.confirmPassword} onChange={(value) => setForm((current) => ({ ...current, confirmPassword: value }))} required />
+      </div>
+      {error && <p className="mt-4 rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
+      <button className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit" disabled={submitting}>
+        <Save aria-hidden="true" size={18} />
+        {submitting ? "Saving..." : "Save Password"}
+      </button>
+    </form>
+  );
+}
+
 function AdminSetupPortal({ onNavigate }) {
   const [form, setForm] = useState({ token: "", name: "", email: "", password: "", confirmPassword: "" });
   const [setupComplete, setSetupComplete] = useState(false);
@@ -352,7 +479,7 @@ function AdminSetupPortal({ onNavigate }) {
 
 function AdminPortal({ path, onNavigate }) {
   const [user, setUser] = useState(null);
-  const [activeTab, setActiveTab] = useState(path === "/admin/users" ? "users" : "pages");
+  const [activeTab, setActiveTab] = useState(path === "/admin/users" ? "users" : path === "/admin/rota" ? "rota" : "pages");
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({
     counts: {},
@@ -422,6 +549,7 @@ function AdminPortal({ path, onNavigate }) {
 
   useEffect(() => {
     if (path === "/admin/users") setActiveTab("users");
+    if (path === "/admin/rota") setActiveTab("rota");
   }, [path]);
 
   const reloadAfterLogin = async (nextUser) => {
@@ -450,6 +578,8 @@ function AdminPortal({ path, onNavigate }) {
           <LoadingCard label="Loading admin portal..." />
         ) : !isAllowed(user, adminRoles) ? (
           <PortalRedirect title="Admin Login Required" message="Admin access requires an authorised Woodlands admin, editor or super-admin account." to="/admin/login" onNavigate={onNavigate} />
+        ) : user?.mustResetPassword ? (
+          <PasswordResetRequired user={user} onComplete={(nextUser) => setUser(nextUser)} />
         ) : (
           <div className="grid gap-8">
             <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
@@ -461,7 +591,7 @@ function AdminPortal({ path, onNavigate }) {
                 Logout
               </button>
             </div>
-            <DashboardCounts counts={data.counts} />
+            <DashboardCounts counts={data.counts} onSelectTab={setActiveTab} />
             <TabButtons activeTab={activeTab} setActiveTab={setActiveTab} />
             {saveMessage && <p className="rounded-lg bg-leaf/10 p-3 text-sm font-bold text-canopy">{saveMessage}</p>}
             {activeTab === "users" && <UsersManager users={data.users} departments={data.departments} setData={setData} setSaveMessage={setSaveMessage} currentUser={user} />}
@@ -470,9 +600,10 @@ function AdminPortal({ path, onNavigate }) {
             {activeTab === "opening" && <OpeningManager openingTimes={data.openingTimes} setData={setData} setSaveMessage={setSaveMessage} />}
             {activeTab === "faqs" && <FaqManager faqs={data.faqs} setData={setData} setSaveMessage={setSaveMessage} />}
             {activeTab === "media" && <MediaManager media={data.media} setData={setData} setSaveMessage={setSaveMessage} />}
-            {activeTab === "documents" && <DocumentsManager documents={data.documents} />}
-            {activeTab === "newsletter" && <SubscriberManager subscribers={data.subscribers} />}
+            {activeTab === "documents" && <DocumentsManager documents={data.documents} setData={setData} setSaveMessage={setSaveMessage} />}
+            {activeTab === "newsletter" && <SubscriberManager subscribers={data.subscribers} setData={setData} setSaveMessage={setSaveMessage} />}
             {activeTab === "tickets" && <TicketAdmin ticketTypes={data.ticketTypes} bookings={data.bookings} setData={setData} setSaveMessage={setSaveMessage} />}
+            {activeTab === "rota" && <StaffRotaManager path="/staff/rota/shifts" user={user} onNavigate={onNavigate} />}
             {activeTab === "audit" && <AuditLogManager auditLogs={data.auditLogs} />}
           </div>
         )}
@@ -481,24 +612,25 @@ function AdminPortal({ path, onNavigate }) {
   );
 }
 
-function DashboardCounts({ counts }) {
+function DashboardCounts({ counts, onSelectTab }) {
   const cards = [
-    ["Pages", counts.pages || 0, LayoutDashboard],
-    ["Users", counts.users || 0, Users],
-    ["Events", counts.events || 0, CalendarClock],
-    ["FAQs", counts.faqs || 0, ShieldCheck],
-    ["Bookings", counts.bookings || 0, Ticket],
-    ["Subscribers", counts.subscribers || 0, Users],
-    ["Menu Items", counts.menuItems || 0, Utensils],
+    ["Pages", counts.pages || 0, LayoutDashboard, "pages"],
+    ["Users", counts.users || 0, Users, "users"],
+    ["Rota / Shifts", counts.shifts || 0, CalendarClock, "rota"],
+    ["Events", counts.events || 0, CalendarClock, "events"],
+    ["FAQs", counts.faqs || 0, ShieldCheck, "faqs"],
+    ["Bookings", counts.bookings || 0, Ticket, "tickets"],
+    ["Subscribers", counts.subscribers || 0, Users, "newsletter"],
+    ["Menu Items", counts.menuItems || 0, Utensils, "tickets"],
   ];
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {cards.map(([label, value, Icon]) => (
-        <article key={label} className="rounded-lg border-2 border-sunshine bg-white p-5 text-ink shadow-sm">
+      {cards.map(([label, value, Icon, tab]) => (
+        <button key={label} type="button" className="focus-ring rounded-lg border-2 border-sunshine bg-white p-5 text-left text-ink shadow-sm transition hover:-translate-y-1 hover:bg-sunshine/20" onClick={() => onSelectTab(tab)}>
           <Icon aria-hidden="true" className="text-berry" />
           <p className="mt-3 text-sm font-black uppercase tracking-wide text-slate-600">{label}</p>
           <p className="font-display text-4xl font-black">{value}</p>
-        </article>
+        </button>
       ))}
     </div>
   );
@@ -515,6 +647,7 @@ function TabButtons({ activeTab, setActiveTab }) {
     ["documents", "Documents"],
     ["newsletter", "Newsletter"],
     ["tickets", "Tickets"],
+    ["rota", "Rota / Shifts"],
     ["audit", "Audit"],
   ];
   return (
@@ -558,14 +691,16 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
     event.preventDefault();
     setError("");
     try {
-      const passwordError = strongPasswordMessage(form.password, 14);
-      if (passwordError) throw new Error(passwordError);
+      if (form.password) {
+        const passwordError = strongPasswordMessage(form.password, 14);
+        if (passwordError) throw new Error(passwordError);
+      }
       const data = await apiRequest("/admin/users", {
         method: "POST",
         body: JSON.stringify(form),
       });
       setData((current) => ({ ...current, users: [data.user, ...current.users] }));
-      setSaveMessage(`Created user: ${data.user.email}`);
+      setSaveMessage(data.inviteUrl ? `Created user and queued invite: ${data.user.email}. Invite link: ${data.inviteUrl}` : `Created user: ${data.user.email}`);
       setForm({ name: "", email: "", password: "", role: "staff", departmentId: departments[0]?.id || "", jobTitle: "Ranger" });
     } catch (error) {
       setError(error.message);
@@ -616,6 +751,20 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
     }
   };
 
+  const resendInvite = async (user) => {
+    setError("");
+    try {
+      const data = await apiRequest(`/admin/users/${user.id}/invite`, { method: "POST" });
+      setData((current) => ({
+        ...current,
+        users: current.users.map((item) => (item.id === user.id ? { ...item, invite_sent_at: new Date().toISOString(), invite_accepted_at: null } : item)),
+      }));
+      setSaveMessage(`Invite queued for ${user.email}. Invite link: ${data.inviteUrl}`);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <ManagerPanel title="User Management">
       {!canManageUsers && (
@@ -633,7 +782,7 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
             <div className="mt-4 grid gap-4 md:grid-cols-3">
               <AdminInput label="Name" value={form.name} onChange={(value) => setForm((current) => ({ ...current, name: value }))} required />
               <AdminInput label="Email" type="email" value={form.email} onChange={(value) => setForm((current) => ({ ...current, email: value }))} required />
-              <AdminInput label="Temporary Password" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} required />
+              <AdminInput label="Temporary Password (optional)" type="password" value={form.password} onChange={(value) => setForm((current) => ({ ...current, password: value }))} />
               <label className="grid gap-2">
                 <span className="text-sm font-extrabold text-ink">Role</span>
                 <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={form.role} onChange={(event) => setForm((current) => ({ ...current, role: event.target.value }))}>
@@ -650,7 +799,7 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
               <AdminInput label="Job Title" value={form.jobTitle} onChange={(value) => setForm((current) => ({ ...current, jobTitle: value }))} />
             </div>
             <p className="mt-3 rounded-lg bg-sunshine/25 p-3 text-xs font-bold uppercase tracking-wide text-ink">
-              Temporary passwords must use 14+ characters with uppercase, lowercase, number and symbol.
+              Leave the temporary password blank to send an invite link. Any temporary password must use 14+ characters with uppercase, lowercase, number and symbol.
             </p>
             <button className="focus-ring mt-4 inline-flex min-h-12 items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
               <UserPlus aria-hidden="true" size={18} />
@@ -689,6 +838,7 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
               <th className="p-3">Role</th>
               <th className="p-3">Department</th>
               <th className="p-3">Status</th>
+              <th className="p-3">Invite</th>
               <th className="p-3">Actions</th>
             </tr>
           </thead>
@@ -714,6 +864,16 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
                   <span className={`rounded-lg px-2 py-1 text-xs font-black uppercase ${user.disabled_at ? "bg-red-100 text-red-700" : "bg-leaf/10 text-canopy"}`}>
                     {user.disabled_at ? "Disabled" : "Active"}
                   </span>
+                  {user.must_reset_password ? <p className="mt-1 text-xs font-bold text-berry">Password reset required</p> : null}
+                </td>
+                <td className="p-3">
+                  <p className="text-xs font-bold text-slate-600">{user.invite_accepted_at ? "Accepted" : user.invite_sent_at ? "Sent" : "Not sent"}</p>
+                  {canManageUsers && user.role !== "super_admin" && (
+                    <button className="focus-ring mt-2 inline-flex min-h-9 items-center gap-2 rounded-lg bg-sunshine px-3 py-2 text-xs font-black uppercase tracking-wide text-ink" type="button" onClick={() => resendInvite(user)}>
+                      <Send aria-hidden="true" size={15} />
+                      Invite
+                    </button>
+                  )}
                 </td>
                 <td className="p-3">
                   {canManageUsers && (
@@ -767,42 +927,193 @@ function AuditLogManager({ auditLogs }) {
 }
 
 function PagesManager({ pages, setData, setSaveMessage }) {
+  const [selectedId, setSelectedId] = useState(pages[0]?.id || "");
+  const [newPage, setNewPage] = useState({ path: "", title: "", summary: "", image: "", source_url: "", status: "draft" });
+  const [newSection, setNewSection] = useState({ title: "", body: "", sort_order: 0 });
+  const selectedPage = pages.find((page) => String(page.id) === String(selectedId)) || pages[0];
+
+  useEffect(() => {
+    if (!selectedId && pages[0]?.id) setSelectedId(pages[0].id);
+  }, [pages, selectedId]);
+
+  const createPage = async (event) => {
+    event.preventDefault();
+    const data = await apiRequest("/admin/pages", { method: "POST", body: JSON.stringify(newPage) });
+    setData((current) => ({ ...current, pages: [data.page, ...current.pages] }));
+    setSelectedId(data.page.id);
+    setNewPage({ path: "", title: "", summary: "", image: "", source_url: "", status: "draft" });
+    setSaveMessage(`Created page: ${data.page.title}`);
+  };
+
   const updatePage = async (page) => {
-    await apiRequest(`/admin/pages/${page.id}`, {
+    const data = await apiRequest(`/admin/pages/${page.id}`, {
       method: "PUT",
       body: JSON.stringify(page),
     });
+    setData((current) => updateRecord(current, "pages", page.id, data.page));
     setSaveMessage(`Saved page: ${page.title}`);
   };
+
+  const deletePage = async (page) => {
+    if (!window.confirm(`Delete ${page.title}?`)) return;
+    await apiRequest(`/admin/pages/${page.id}`, { method: "DELETE" });
+    setData((current) => removeRecord(current, "pages", page.id));
+    setSelectedId("");
+    setSaveMessage(`Deleted page: ${page.title}`);
+  };
+
+  const createSection = async (event) => {
+    event.preventDefault();
+    if (!selectedPage) return;
+    const data = await apiRequest(`/admin/pages/${selectedPage.id}/sections`, {
+      method: "POST",
+      body: JSON.stringify(newSection),
+    });
+    setData((current) => addPageSection(current, selectedPage.id, data.section));
+    setNewSection({ title: "", body: "", sort_order: 0 });
+    setSaveMessage(`Created section: ${data.section.title}`);
+  };
+
+  const updateSection = async (section) => {
+    const data = await apiRequest(`/admin/page-sections/${section.id}`, {
+      method: "PUT",
+      body: JSON.stringify(section),
+    });
+    setData((current) => updatePageSectionRecord(current, selectedPage.id, section.id, data.section));
+    setSaveMessage(`Saved section: ${section.title}`);
+  };
+
+  const deleteSection = async (section) => {
+    if (!window.confirm(`Delete section ${section.title}?`)) return;
+    await apiRequest(`/admin/page-sections/${section.id}`, { method: "DELETE" });
+    setData((current) => removePageSection(current, selectedPage.id, section.id));
+    setSaveMessage(`Deleted section: ${section.title}`);
+  };
+
   return (
     <ManagerPanel title="Pages & Content">
-      {pages.slice(0, 12).map((page) => (
-        <EditableCard key={page.id} title={page.path}>
-          <AdminInput label="Title" value={page.title} onChange={(value) => setData((current) => updateRecord(current, "pages", page.id, { title: value }))} />
-          <AdminTextarea label="Summary" value={page.summary || ""} onChange={(value) => setData((current) => updateRecord(current, "pages", page.id, { summary: value }))} />
-          <SaveButton onClick={() => updatePage(page)} />
-        </EditableCard>
-      ))}
+      <form className="rounded-lg border border-slate-200 bg-sunshine/15 p-4" onSubmit={createPage}>
+        <h3 className="font-display text-2xl font-black text-ink">Create Page</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <AdminInput label="Path" value={newPage.path} onChange={(value) => setNewPage((current) => ({ ...current, path: value }))} required />
+          <AdminInput label="Title" value={newPage.title} onChange={(value) => setNewPage((current) => ({ ...current, title: value }))} required />
+          <AdminInput label="Hero Image / Media Path" value={newPage.image} onChange={(value) => setNewPage((current) => ({ ...current, image: value }))} />
+          <AdminTextarea label="Summary" value={newPage.summary} onChange={(value) => setNewPage((current) => ({ ...current, summary: value }))} />
+          <AdminInput label="Source URL" value={newPage.source_url} onChange={(value) => setNewPage((current) => ({ ...current, source_url: value }))} />
+          <AdminSelect label="Status" value={newPage.status} onChange={(value) => setNewPage((current) => ({ ...current, status: value }))} options={["draft", "published"]} />
+        </div>
+        <CreateButton label="Create Page" />
+      </form>
+
+      <div className="grid gap-5 lg:grid-cols-[0.38fr_0.62fr]">
+        <aside className="max-h-[760px] overflow-auto rounded-lg border border-slate-200 bg-mist p-3">
+          {pages.map((page) => (
+            <button key={page.id} type="button" className={`focus-ring mb-2 block w-full rounded-lg p-3 text-left text-sm font-black ${String(selectedPage?.id) === String(page.id) ? "bg-woodpink text-white" : "bg-white text-ink hover:bg-sunshine"}`} onClick={() => setSelectedId(page.id)}>
+              <span className="block">{page.title}</span>
+              <span className="block truncate text-xs opacity-80">{page.path}</span>
+            </button>
+          ))}
+        </aside>
+        {selectedPage && (
+          <div className="grid gap-4">
+            <EditableCard title={selectedPage.path}>
+              <div className="grid gap-4 md:grid-cols-2">
+                <AdminInput label="Path" value={selectedPage.path} onChange={(value) => setData((current) => updateRecord(current, "pages", selectedPage.id, { path: value }))} />
+                <AdminInput label="Title" value={selectedPage.title} onChange={(value) => setData((current) => updateRecord(current, "pages", selectedPage.id, { title: value }))} />
+                <AdminInput label="Hero Image / Media Path" value={selectedPage.image || ""} onChange={(value) => setData((current) => updateRecord(current, "pages", selectedPage.id, { image: value }))} />
+                <AdminInput label="Source URL" value={selectedPage.source_url || ""} onChange={(value) => setData((current) => updateRecord(current, "pages", selectedPage.id, { source_url: value }))} />
+                <AdminSelect label="Status" value={selectedPage.status || "published"} onChange={(value) => setData((current) => updateRecord(current, "pages", selectedPage.id, { status: value }))} options={["draft", "published"]} />
+              </div>
+              <AdminTextarea label="Summary" value={selectedPage.summary || ""} onChange={(value) => setData((current) => updateRecord(current, "pages", selectedPage.id, { summary: value }))} />
+              <ActionRow>
+                <SaveButton onClick={() => updatePage(selectedPage)} />
+                <DeleteButton onClick={() => deletePage(selectedPage)} />
+              </ActionRow>
+            </EditableCard>
+
+            <form className="rounded-lg border border-slate-200 bg-white p-4" onSubmit={createSection}>
+              <h3 className="font-display text-2xl font-black text-ink">Add Content Section</h3>
+              <div className="mt-4 grid gap-4 md:grid-cols-[1fr_2fr_0.4fr]">
+                <AdminInput label="Section Title" value={newSection.title} onChange={(value) => setNewSection((current) => ({ ...current, title: value }))} required />
+                <AdminTextarea label="Section Body" value={newSection.body} onChange={(value) => setNewSection((current) => ({ ...current, body: value }))} />
+                <AdminInput label="Order" type="number" value={newSection.sort_order} onChange={(value) => setNewSection((current) => ({ ...current, sort_order: value }))} />
+              </div>
+              <CreateButton label="Add Section" />
+            </form>
+
+            {(selectedPage.sections || []).map((section) => (
+              <EditableCard key={section.id} title={`Section ${section.id}`}>
+                <div className="grid gap-4 md:grid-cols-[1fr_0.25fr]">
+                  <AdminInput label="Section Title" value={section.title} onChange={(value) => setData((current) => updatePageSectionRecord(current, selectedPage.id, section.id, { title: value }))} />
+                  <AdminInput label="Order" type="number" value={section.sort_order || 0} onChange={(value) => setData((current) => updatePageSectionRecord(current, selectedPage.id, section.id, { sort_order: value }))} />
+                </div>
+                <AdminTextarea label="Body Text" value={section.body || ""} onChange={(value) => setData((current) => updatePageSectionRecord(current, selectedPage.id, section.id, { body: value }))} />
+                <ActionRow>
+                  <SaveButton onClick={() => updateSection(section)} />
+                  <DeleteButton onClick={() => deleteSection(section)} />
+                </ActionRow>
+              </EditableCard>
+            ))}
+          </div>
+        )}
+      </div>
     </ManagerPanel>
   );
 }
 
 function EventsManager({ events, setData, setSaveMessage }) {
+  const [form, setForm] = useState({ path: "", title: "", event_date: "", summary: "", image: "", source_url: "", status: "draft" });
+  const createEvent = async (event) => {
+    event.preventDefault();
+    const data = await apiRequest("/admin/events", { method: "POST", body: JSON.stringify(form) });
+    setData((current) => ({ ...current, events: [data.event, ...current.events] }));
+    setForm({ path: "", title: "", event_date: "", summary: "", image: "", source_url: "", status: "draft" });
+    setSaveMessage(`Created event: ${data.event.title}`);
+  };
   const updateEvent = async (event) => {
-    await apiRequest(`/admin/events/${event.id}`, {
+    const data = await apiRequest(`/admin/events/${event.id}`, {
       method: "PUT",
       body: JSON.stringify(event),
     });
+    if (data.event) setData((current) => updateRecord(current, "events", event.id, data.event));
     setSaveMessage(`Saved event: ${event.title}`);
+  };
+  const deleteEvent = async (event) => {
+    if (!window.confirm(`Delete ${event.title}?`)) return;
+    await apiRequest(`/admin/events/${event.id}`, { method: "DELETE" });
+    setData((current) => removeRecord(current, "events", event.id));
+    setSaveMessage(`Deleted event: ${event.title}`);
   };
   return (
     <ManagerPanel title="Events Manager">
-      {events.slice(0, 12).map((event) => (
+      <form className="rounded-lg border border-slate-200 bg-sunshine/15 p-4" onSubmit={createEvent}>
+        <h3 className="font-display text-2xl font-black text-ink">Create Event</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <AdminInput label="Title" value={form.title} onChange={(value) => setForm((current) => ({ ...current, title: value }))} required />
+          <AdminInput label="Path" value={form.path} onChange={(value) => setForm((current) => ({ ...current, path: value }))} />
+          <AdminInput label="Date" value={form.event_date} onChange={(value) => setForm((current) => ({ ...current, event_date: value }))} />
+          <AdminInput label="Image / Media Path" value={form.image} onChange={(value) => setForm((current) => ({ ...current, image: value }))} />
+          <AdminInput label="Source URL" value={form.source_url} onChange={(value) => setForm((current) => ({ ...current, source_url: value }))} />
+          <AdminSelect label="Status" value={form.status} onChange={(value) => setForm((current) => ({ ...current, status: value }))} options={["draft", "published"]} />
+        </div>
+        <AdminTextarea label="Summary" value={form.summary} onChange={(value) => setForm((current) => ({ ...current, summary: value }))} />
+        <CreateButton label="Create Event" />
+      </form>
+      {events.map((event) => (
         <EditableCard key={event.id} title={event.source_url || "Event"}>
-          <AdminInput label="Title" value={event.title} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { title: value }))} />
-          <AdminInput label="Date" value={event.event_date || ""} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { event_date: value }))} />
+          <div className="grid gap-4 md:grid-cols-3">
+            <AdminInput label="Title" value={event.title} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { title: value }))} />
+            <AdminInput label="Path" value={event.path || ""} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { path: value }))} />
+            <AdminInput label="Date" value={event.event_date || ""} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { event_date: value }))} />
+            <AdminInput label="Image / Media Path" value={event.image || ""} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { image: value }))} />
+            <AdminInput label="Source URL" value={event.source_url || ""} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { source_url: value }))} />
+            <AdminSelect label="Status" value={event.status || "published"} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { status: value }))} options={["draft", "published"]} />
+          </div>
           <AdminTextarea label="Summary" value={event.summary || ""} onChange={(value) => setData((current) => updateRecord(current, "events", event.id, { summary: value }))} />
-          <SaveButton onClick={() => updateEvent(event)} />
+          <ActionRow>
+            <SaveButton onClick={() => updateEvent(event)} />
+            <DeleteButton onClick={() => deleteEvent(event)} />
+          </ActionRow>
         </EditableCard>
       ))}
     </ManagerPanel>
@@ -810,16 +1121,43 @@ function EventsManager({ events, setData, setSaveMessage }) {
 }
 
 function OpeningManager({ openingTimes, setData, setSaveMessage }) {
+  const [form, setForm] = useState({ date: "", status: "closed", season_label: "Park Closed", open_time: "", close_time: "", notes: "" });
+  const createOpening = async (event) => {
+    event.preventDefault();
+    const data = await apiRequest("/admin/opening-times", { method: "POST", body: JSON.stringify(form) });
+    setData((current) => ({ ...current, openingTimes: [...current.openingTimes, data.openingTime].sort((a, b) => a.date.localeCompare(b.date)) }));
+    setForm({ date: "", status: "closed", season_label: "Park Closed", open_time: "", close_time: "", notes: "" });
+    setSaveMessage(`Created opening date: ${data.openingTime.date}`);
+  };
   const updateOpening = async (row) => {
-    await apiRequest(`/admin/opening-times/${row.id}`, {
+    const data = await apiRequest(`/admin/opening-times/${row.id}`, {
       method: "PUT",
       body: JSON.stringify(row),
     });
+    if (data.openingTime) setData((current) => updateRecord(current, "openingTimes", row.id, data.openingTime));
     setSaveMessage(`Saved opening time: ${row.date}`);
+  };
+  const deleteOpening = async (row) => {
+    if (!window.confirm(`Delete opening date ${row.date}?`)) return;
+    await apiRequest(`/admin/opening-times/${row.id}`, { method: "DELETE" });
+    setData((current) => removeRecord(current, "openingTimes", row.id));
+    setSaveMessage(`Deleted opening date: ${row.date}`);
   };
   return (
     <ManagerPanel title="Opening Times">
-      {openingTimes.slice(0, 28).map((row) => (
+      <form className="rounded-lg border border-slate-200 bg-sunshine/15 p-4" onSubmit={createOpening}>
+        <h3 className="font-display text-2xl font-black text-ink">Create Opening Date</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <AdminInput label="Date" type="date" value={form.date} onChange={(value) => setForm((current) => ({ ...current, date: value }))} required />
+          <AdminSelect label="Status" value={form.status} onChange={(value) => setForm((current) => ({ ...current, status: value }))} options={["main", "off-peak", "winter", "closed"]} />
+          <AdminInput label="Season Label" value={form.season_label} onChange={(value) => setForm((current) => ({ ...current, season_label: value }))} />
+          <AdminInput label="Open Time" value={form.open_time} onChange={(value) => setForm((current) => ({ ...current, open_time: value }))} />
+          <AdminInput label="Close Time" value={form.close_time} onChange={(value) => setForm((current) => ({ ...current, close_time: value }))} />
+        </div>
+        <AdminTextarea label="Notes" value={form.notes} onChange={(value) => setForm((current) => ({ ...current, notes: value }))} />
+        <CreateButton label="Create Opening Date" />
+      </form>
+      {openingTimes.map((row) => (
         <EditableCard key={row.id} title={row.date}>
           <label className="grid gap-2">
             <span className="text-sm font-extrabold text-ink">Status</span>
@@ -836,8 +1174,12 @@ function OpeningManager({ openingTimes, setData, setSaveMessage }) {
           </label>
           <AdminInput label="Open Time" value={row.open_time || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", row.id, { open_time: value }))} />
           <AdminInput label="Close Time" value={row.close_time || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", row.id, { close_time: value }))} />
+          <AdminInput label="Season Label" value={row.season_label || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", row.id, { season_label: value }))} />
           <AdminTextarea label="Notes" value={row.notes || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", row.id, { notes: value }))} />
-          <SaveButton onClick={() => updateOpening(row)} />
+          <ActionRow>
+            <SaveButton onClick={() => updateOpening(row)} />
+            <DeleteButton onClick={() => deleteOpening(row)} />
+          </ActionRow>
         </EditableCard>
       ))}
     </ManagerPanel>
@@ -845,20 +1187,52 @@ function OpeningManager({ openingTimes, setData, setSaveMessage }) {
 }
 
 function FaqManager({ faqs, setData, setSaveMessage }) {
+  const [form, setForm] = useState({ group_title: "General", question: "", answer: "", sort_order: 0, active: true });
+  const createFaq = async (event) => {
+    event.preventDefault();
+    const data = await apiRequest("/admin/faqs", { method: "POST", body: JSON.stringify(form) });
+    setData((current) => ({ ...current, faqs: [...current.faqs, data.faq] }));
+    setForm({ group_title: "General", question: "", answer: "", sort_order: 0, active: true });
+    setSaveMessage(`Created FAQ: ${data.faq.question}`);
+  };
   const updateFaq = async (faq) => {
-    await apiRequest(`/admin/faqs/${faq.id}`, {
+    const data = await apiRequest(`/admin/faqs/${faq.id}`, {
       method: "PUT",
       body: JSON.stringify(faq),
     });
+    if (data.faq) setData((current) => updateRecord(current, "faqs", faq.id, data.faq));
     setSaveMessage(`Saved FAQ: ${faq.question}`);
+  };
+  const deleteFaq = async (faq) => {
+    if (!window.confirm(`Delete FAQ ${faq.question}?`)) return;
+    await apiRequest(`/admin/faqs/${faq.id}`, { method: "DELETE" });
+    setData((current) => removeRecord(current, "faqs", faq.id));
+    setSaveMessage(`Deleted FAQ: ${faq.question}`);
   };
   return (
     <ManagerPanel title="FAQ Manager">
-      {faqs.slice(0, 16).map((faq) => (
+      <form className="rounded-lg border border-slate-200 bg-sunshine/15 p-4" onSubmit={createFaq}>
+        <h3 className="font-display text-2xl font-black text-ink">Create FAQ</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-[0.8fr_1.2fr_0.4fr]">
+          <AdminInput label="Group" value={form.group_title} onChange={(value) => setForm((current) => ({ ...current, group_title: value }))} />
+          <AdminInput label="Question" value={form.question} onChange={(value) => setForm((current) => ({ ...current, question: value }))} required />
+          <AdminInput label="Order" type="number" value={form.sort_order} onChange={(value) => setForm((current) => ({ ...current, sort_order: value }))} />
+        </div>
+        <AdminTextarea label="Answer" value={form.answer} onChange={(value) => setForm((current) => ({ ...current, answer: value }))} />
+        <CreateButton label="Create FAQ" />
+      </form>
+      {faqs.map((faq) => (
         <EditableCard key={faq.id} title={faq.group_title}>
-          <AdminInput label="Question" value={faq.question} onChange={(value) => setData((current) => updateRecord(current, "faqs", faq.id, { question: value }))} />
+          <div className="grid gap-4 md:grid-cols-[0.8fr_1.2fr_0.4fr]">
+            <AdminInput label="Group" value={faq.group_title || ""} onChange={(value) => setData((current) => updateRecord(current, "faqs", faq.id, { group_title: value }))} />
+            <AdminInput label="Question" value={faq.question} onChange={(value) => setData((current) => updateRecord(current, "faqs", faq.id, { question: value }))} />
+            <AdminInput label="Order" type="number" value={faq.sort_order || 0} onChange={(value) => setData((current) => updateRecord(current, "faqs", faq.id, { sort_order: value }))} />
+          </div>
           <AdminTextarea label="Answer" value={faq.answer} onChange={(value) => setData((current) => updateRecord(current, "faqs", faq.id, { answer: value }))} />
-          <SaveButton onClick={() => updateFaq(faq)} />
+          <ActionRow>
+            <SaveButton onClick={() => updateFaq(faq)} />
+            <DeleteButton onClick={() => deleteFaq(faq)} />
+          </ActionRow>
         </EditableCard>
       ))}
     </ManagerPanel>
@@ -890,6 +1264,22 @@ function MediaManager({ media, setData, setSaveMessage }) {
     setFile(null);
   };
 
+  const updateMedia = async (item) => {
+    const data = await apiRequest(`/admin/media/${item.id}`, {
+      method: "PUT",
+      body: JSON.stringify(item),
+    });
+    setData((current) => updateRecord(current, "media", item.id, data.media));
+    setSaveMessage(`Saved media: ${data.media.title}`);
+  };
+
+  const deleteMedia = async (item) => {
+    if (!window.confirm(`Delete media ${item.title}?`)) return;
+    await apiRequest(`/admin/media/${item.id}`, { method: "DELETE" });
+    setData((current) => removeRecord(current, "media", item.id));
+    setSaveMessage(`Deleted media: ${item.title}`);
+  };
+
   return (
     <ManagerPanel title="Media Manager">
       <form className="rounded-lg border border-slate-200 bg-mist p-4" onSubmit={submitUpload}>
@@ -905,11 +1295,19 @@ function MediaManager({ media, setData, setSaveMessage }) {
         </button>
       </form>
       <div className="grid gap-4 md:grid-cols-3">
-        {media.slice(0, 24).map((item) => (
+        {media.map((item) => (
           <article key={item.id} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
             <FileImage aria-hidden="true" className="text-berry" />
-            <h3 className="mt-2 font-display text-xl font-black text-ink">{item.title}</h3>
+            <div className="mt-3 grid gap-3">
+              <AdminInput label="Title" value={item.title || ""} onChange={(value) => setData((current) => updateRecord(current, "media", item.id, { title: value }))} />
+              <AdminInput label="Alt Text" value={item.alt_text || ""} onChange={(value) => setData((current) => updateRecord(current, "media", item.id, { alt_text: value }))} />
+              <AdminInput label="Usage" value={item.usage || ""} onChange={(value) => setData((current) => updateRecord(current, "media", item.id, { usage: value }))} />
+            </div>
             <p className="mt-1 break-all text-xs font-bold text-slate-600">{item.path}</p>
+            <ActionRow>
+              <SaveButton onClick={() => updateMedia(item)} />
+              <DeleteButton onClick={() => deleteMedia(item)} />
+            </ActionRow>
           </article>
         ))}
       </div>
@@ -917,17 +1315,56 @@ function MediaManager({ media, setData, setSaveMessage }) {
   );
 }
 
-function DocumentsManager({ documents }) {
+function DocumentsManager({ documents, setData, setSaveMessage }) {
+  const [form, setForm] = useState({ title: "", description: "", local_path: "", source_url: "", page_paths: "" });
+  const createDocument = async (event) => {
+    event.preventDefault();
+    const data = await apiRequest("/admin/documents", { method: "POST", body: JSON.stringify(form) });
+    setData((current) => ({ ...current, documents: [...current.documents, data.document] }));
+    setForm({ title: "", description: "", local_path: "", source_url: "", page_paths: "" });
+    setSaveMessage(`Created document: ${data.document.title}`);
+  };
+  const updateDocument = async (document) => {
+    const data = await apiRequest(`/admin/documents/${document.id}`, { method: "PUT", body: JSON.stringify(document) });
+    setData((current) => updateRecord(current, "documents", document.id, data.document));
+    setSaveMessage(`Saved document: ${data.document.title}`);
+  };
+  const deleteDocument = async (document) => {
+    if (!window.confirm(`Delete document ${document.title}?`)) return;
+    await apiRequest(`/admin/documents/${document.id}`, { method: "DELETE" });
+    setData((current) => removeRecord(current, "documents", document.id));
+    setSaveMessage(`Deleted document: ${document.title}`);
+  };
   return (
     <ManagerPanel title="Documents">
+      <form className="rounded-lg border border-slate-200 bg-sunshine/15 p-4" onSubmit={createDocument}>
+        <h3 className="font-display text-2xl font-black text-ink">Create Document Link</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <AdminInput label="Title" value={form.title} onChange={(value) => setForm((current) => ({ ...current, title: value }))} required />
+          <AdminInput label="Local Path" value={form.local_path} onChange={(value) => setForm((current) => ({ ...current, local_path: value }))} required />
+          <AdminInput label="Page Paths" value={form.page_paths} onChange={(value) => setForm((current) => ({ ...current, page_paths: value }))} />
+          <AdminInput label="Source URL" value={form.source_url} onChange={(value) => setForm((current) => ({ ...current, source_url: value }))} />
+        </div>
+        <AdminTextarea label="Description" value={form.description} onChange={(value) => setForm((current) => ({ ...current, description: value }))} />
+        <CreateButton label="Create Document" />
+      </form>
       <div className="grid gap-4 md:grid-cols-2">
         {documents.map((document) => (
           <article key={document.id} className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-            <h3 className="font-display text-xl font-black text-ink">{document.title}</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-700">{document.description}</p>
+            <div className="grid gap-3">
+              <AdminInput label="Title" value={document.title || ""} onChange={(value) => setData((current) => updateRecord(current, "documents", document.id, { title: value }))} />
+              <AdminInput label="Local Path" value={document.local_path || ""} onChange={(value) => setData((current) => updateRecord(current, "documents", document.id, { local_path: value }))} />
+              <AdminInput label="Page Paths" value={document.page_paths || ""} onChange={(value) => setData((current) => updateRecord(current, "documents", document.id, { page_paths: value }))} />
+              <AdminInput label="Source URL" value={document.source_url || ""} onChange={(value) => setData((current) => updateRecord(current, "documents", document.id, { source_url: value }))} />
+              <AdminTextarea label="Description" value={document.description || ""} onChange={(value) => setData((current) => updateRecord(current, "documents", document.id, { description: value }))} />
+            </div>
             <a className="mt-3 inline-flex text-sm font-black text-berry underline" href={document.local_path} target="_blank" rel="noreferrer">
               Open document
             </a>
+            <ActionRow>
+              <SaveButton onClick={() => updateDocument(document)} />
+              <DeleteButton onClick={() => deleteDocument(document)} />
+            </ActionRow>
           </article>
         ))}
       </div>
@@ -935,26 +1372,62 @@ function DocumentsManager({ documents }) {
   );
 }
 
-function SubscriberManager({ subscribers }) {
+function SubscriberManager({ subscribers, setData, setSaveMessage }) {
+  const [form, setForm] = useState({ email: "", first_name: "", last_name: "", status: "subscribed" });
+  const createSubscriber = async (event) => {
+    event.preventDefault();
+    const data = await apiRequest("/admin/newsletter-subscribers", { method: "POST", body: JSON.stringify(form) });
+    setData((current) => ({ ...current, subscribers: [data.subscriber, ...current.subscribers] }));
+    setForm({ email: "", first_name: "", last_name: "", status: "subscribed" });
+    setSaveMessage(`Created subscriber: ${data.subscriber.email}`);
+  };
+  const updateSubscriber = async (subscriber) => {
+    const data = await apiRequest(`/admin/newsletter-subscribers/${subscriber.id}`, { method: "PUT", body: JSON.stringify(subscriber) });
+    setData((current) => updateRecord(current, "subscribers", subscriber.id, data.subscriber));
+    setSaveMessage(`Saved subscriber: ${data.subscriber.email}`);
+  };
+  const deleteSubscriber = async (subscriber) => {
+    if (!window.confirm(`Delete subscriber ${subscriber.email}?`)) return;
+    await apiRequest(`/admin/newsletter-subscribers/${subscriber.id}`, { method: "DELETE" });
+    setData((current) => removeRecord(current, "subscribers", subscriber.id));
+    setSaveMessage(`Deleted subscriber: ${subscriber.email}`);
+  };
   return (
     <ManagerPanel title="Newsletter Subscribers">
+      <form className="rounded-lg border border-slate-200 bg-sunshine/15 p-4" onSubmit={createSubscriber}>
+        <h3 className="font-display text-2xl font-black text-ink">Create Subscriber</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-4">
+          <AdminInput label="Email" type="email" value={form.email} onChange={(value) => setForm((current) => ({ ...current, email: value }))} required />
+          <AdminInput label="First Name" value={form.first_name} onChange={(value) => setForm((current) => ({ ...current, first_name: value }))} />
+          <AdminInput label="Last Name" value={form.last_name} onChange={(value) => setForm((current) => ({ ...current, last_name: value }))} />
+          <AdminSelect label="Status" value={form.status} onChange={(value) => setForm((current) => ({ ...current, status: value }))} options={["subscribed", "unsubscribed"]} />
+        </div>
+        <CreateButton label="Create Subscriber" />
+      </form>
       <div className="overflow-auto rounded-lg border border-slate-200 bg-white">
-        <table className="w-full min-w-[680px] text-left text-sm">
+        <table className="w-full min-w-[900px] text-left text-sm">
           <thead className="bg-mist text-ink">
             <tr>
               <th className="p-3">Email</th>
               <th className="p-3">First Name</th>
               <th className="p-3">Last Name</th>
               <th className="p-3">Consent</th>
+              <th className="p-3">Actions</th>
             </tr>
           </thead>
           <tbody>
             {subscribers.map((subscriber) => (
               <tr key={subscriber.id} className="border-t border-slate-200">
-                <td className="p-3 font-bold">{subscriber.email}</td>
-                <td className="p-3">{subscriber.first_name}</td>
-                <td className="p-3">{subscriber.last_name}</td>
+                <td className="p-3"><input className="focus-ring min-h-10 rounded-lg border border-slate-300 px-2 font-bold" value={subscriber.email || ""} onChange={(event) => setData((current) => updateRecord(current, "subscribers", subscriber.id, { email: event.target.value }))} /></td>
+                <td className="p-3"><input className="focus-ring min-h-10 rounded-lg border border-slate-300 px-2" value={subscriber.first_name || ""} onChange={(event) => setData((current) => updateRecord(current, "subscribers", subscriber.id, { first_name: event.target.value }))} /></td>
+                <td className="p-3"><input className="focus-ring min-h-10 rounded-lg border border-slate-300 px-2" value={subscriber.last_name || ""} onChange={(event) => setData((current) => updateRecord(current, "subscribers", subscriber.id, { last_name: event.target.value }))} /></td>
                 <td className="p-3">{subscriber.consent ? "Yes" : "No"}</td>
+                <td className="p-3">
+                  <ActionRow>
+                    <SaveButton onClick={() => updateSubscriber(subscriber)} />
+                    <DeleteButton onClick={() => deleteSubscriber(subscriber)} />
+                  </ActionRow>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -965,22 +1438,53 @@ function SubscriberManager({ subscribers }) {
 }
 
 function TicketAdmin({ ticketTypes, bookings, setData, setSaveMessage }) {
+  const [form, setForm] = useState({ slug: "", name: "", description: "", price_label: "", sort_order: 0, active: true });
+  const createTicketType = async (event) => {
+    event.preventDefault();
+    const data = await apiRequest("/admin/ticket-types", { method: "POST", body: JSON.stringify(form) });
+    setData((current) => ({ ...current, ticketTypes: [...current.ticketTypes, data.ticketType] }));
+    setForm({ slug: "", name: "", description: "", price_label: "", sort_order: 0, active: true });
+    setSaveMessage(`Created ticket type: ${data.ticketType.name}`);
+  };
   const updateTicketType = async (ticketType) => {
-    await apiRequest(`/admin/ticket-types/${ticketType.id}`, {
+    const data = await apiRequest(`/admin/ticket-types/${ticketType.id}`, {
       method: "PUT",
       body: JSON.stringify(ticketType),
     });
+    if (data.ticketType) setData((current) => updateRecord(current, "ticketTypes", ticketType.id, data.ticketType));
     setSaveMessage(`Saved ticket type: ${ticketType.name}`);
+  };
+  const deleteTicketType = async (ticketType) => {
+    if (!window.confirm(`Delete ticket type ${ticketType.name}?`)) return;
+    await apiRequest(`/admin/ticket-types/${ticketType.id}`, { method: "DELETE" });
+    setData((current) => removeRecord(current, "ticketTypes", ticketType.id));
+    setSaveMessage(`Deleted ticket type: ${ticketType.name}`);
   };
   return (
     <ManagerPanel title="Ticket Types & Bookings">
+      <form className="rounded-lg border border-slate-200 bg-sunshine/15 p-4" onSubmit={createTicketType}>
+        <h3 className="font-display text-2xl font-black text-ink">Create Ticket Type</h3>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <AdminInput label="Slug" value={form.slug} onChange={(value) => setForm((current) => ({ ...current, slug: value }))} />
+          <AdminInput label="Name" value={form.name} onChange={(value) => setForm((current) => ({ ...current, name: value }))} required />
+          <AdminInput label="Price Label" value={form.price_label} onChange={(value) => setForm((current) => ({ ...current, price_label: value }))} />
+          <AdminInput label="Order" type="number" value={form.sort_order} onChange={(value) => setForm((current) => ({ ...current, sort_order: value }))} />
+        </div>
+        <AdminTextarea label="Description" value={form.description} onChange={(value) => setForm((current) => ({ ...current, description: value }))} />
+        <CreateButton label="Create Ticket Type" />
+      </form>
       <div className="grid gap-4 md:grid-cols-2">
         {ticketTypes.map((ticketType) => (
           <EditableCard key={ticketType.id} title={ticketType.slug}>
+            <AdminInput label="Slug" value={ticketType.slug || ""} onChange={(value) => setData((current) => updateRecord(current, "ticketTypes", ticketType.id, { slug: value }))} />
             <AdminInput label="Name" value={ticketType.name} onChange={(value) => setData((current) => updateRecord(current, "ticketTypes", ticketType.id, { name: value }))} />
             <AdminTextarea label="Description" value={ticketType.description || ""} onChange={(value) => setData((current) => updateRecord(current, "ticketTypes", ticketType.id, { description: value }))} />
             <AdminInput label="Price Label" value={ticketType.price_label || ""} onChange={(value) => setData((current) => updateRecord(current, "ticketTypes", ticketType.id, { price_label: value }))} />
-            <SaveButton onClick={() => updateTicketType(ticketType)} />
+            <AdminInput label="Order" type="number" value={ticketType.sort_order || 0} onChange={(value) => setData((current) => updateRecord(current, "ticketTypes", ticketType.id, { sort_order: value }))} />
+            <ActionRow>
+              <SaveButton onClick={() => updateTicketType(ticketType)} />
+              <DeleteButton onClick={() => deleteTicketType(ticketType)} />
+            </ActionRow>
           </EditableCard>
         ))}
       </div>
@@ -1067,6 +1571,8 @@ function StaffPortal({ path, onNavigate }) {
           <LoadingCard label="Loading staff portal..." />
         ) : !isAllowed(user, staffRoles) ? (
           <PortalRedirect title="Staff Login Required" message="Staff access requires an authorised Woodlands staff account." to="/staff/login" onNavigate={onNavigate} />
+        ) : user?.mustResetPassword ? (
+          <PasswordResetRequired user={user} onComplete={(nextUser) => setUser(nextUser)} />
         ) : isRotaRoute ? (
           <div className="grid gap-6">
             <StaffSessionBar user={user} onLogout={logout} />
@@ -1152,7 +1658,7 @@ function StaffSessionBar({ user, onLogout }) {
 function StaffRotaManager({ path, user, onNavigate }) {
   const [data, setData] = useState({ shifts: [], assignments: [], employees: [], departments: [], canManage: false, canCreate: false, canAssign: false, canEdit: false });
   const [loading, setLoading] = useState(true);
-  const [newShift, setNewShift] = useState({ title: "", date: "", startTime: "", endTime: "", location: "", departmentId: "", employeeId: "" });
+  const [newShift, setNewShift] = useState({ title: "", date: "", startTime: "", endTime: "", location: "", departmentId: "", employeeId: "", breakMinutes: 0, paidBreak: false });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const view = path.endsWith("/calendar") ? "calendar" : path.endsWith("/shifts") ? "shifts" : path.endsWith("/assignments") ? "assignments" : "overview";
@@ -1195,7 +1701,7 @@ function StaffRotaManager({ path, user, onNavigate }) {
         method: "POST",
         body: JSON.stringify(newShift),
       });
-      setNewShift({ title: "", date: "", startTime: "", endTime: "", location: "", departmentId: "", employeeId: "" });
+      setNewShift({ title: "", date: "", startTime: "", endTime: "", location: "", departmentId: "", employeeId: "", breakMinutes: 0, paidBreak: false });
       setMessage("Shift created.");
       await loadShifts();
     } catch (error) {
@@ -1217,6 +1723,8 @@ function StaffRotaManager({ path, user, onNavigate }) {
           location: shift.location || "",
           departmentId: shift.department_id || "",
           status: shift.status,
+          breakMinutes: shift.break_minutes || 0,
+          paidBreak: Boolean(shift.paid_break),
           ...patch,
         }),
       });
@@ -1241,6 +1749,19 @@ function StaffRotaManager({ path, user, onNavigate }) {
       });
       event.currentTarget.reset();
       setMessage("Employee assigned.");
+      await loadShifts();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const deleteShift = async (shift) => {
+    if (!window.confirm(`Delete shift ${shift.title} on ${shift.date}?`)) return;
+    setError("");
+    setMessage("");
+    try {
+      await apiRequest(`/staff/rota/shifts/${shift.id}`, { method: "DELETE" });
+      setMessage("Shift deleted.");
       await loadShifts();
     } catch (error) {
       setError(error.message);
@@ -1309,6 +1830,11 @@ function StaffRotaManager({ path, user, onNavigate }) {
                 <AdminInput label="Location" value={newShift.location} onChange={(value) => setNewShift((current) => ({ ...current, location: value }))} />
                 <AdminInput label="Start Time" type="time" value={newShift.startTime} onChange={(value) => setNewShift((current) => ({ ...current, startTime: value }))} required />
                 <AdminInput label="End Time" type="time" value={newShift.endTime} onChange={(value) => setNewShift((current) => ({ ...current, endTime: value }))} required />
+                <AdminInput label="Break Minutes" type="number" value={newShift.breakMinutes} onChange={(value) => setNewShift((current) => ({ ...current, breakMinutes: value }))} />
+                <label className="flex min-h-12 items-center gap-3 rounded-lg border border-slate-300 bg-white px-3 text-sm font-extrabold text-ink">
+                  <input type="checkbox" checked={newShift.paidBreak} onChange={(event) => setNewShift((current) => ({ ...current, paidBreak: event.target.checked }))} />
+                  Paid Break
+                </label>
                 <label className="grid gap-2">
                   <span className="text-sm font-extrabold text-ink">Department</span>
                   <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={newShift.departmentId} onChange={(event) => setNewShift((current) => ({ ...current, departmentId: event.target.value }))}>
@@ -1336,7 +1862,7 @@ function StaffRotaManager({ path, user, onNavigate }) {
           ) : view === "assignments" ? (
             <RotaAssignments data={data} assignmentsByShift={assignmentsByShift} onAssign={assignEmployee} onUnassign={unassignEmployee} />
           ) : (
-            <RotaShiftList data={data} assignmentsByShift={assignmentsByShift} onUpdate={updateShift} />
+            <RotaShiftList data={data} assignmentsByShift={assignmentsByShift} onUpdate={updateShift} onDelete={deleteShift} />
           )}
         </>
       )}
@@ -1344,7 +1870,7 @@ function StaffRotaManager({ path, user, onNavigate }) {
   );
 }
 
-function RotaShiftList({ data, assignmentsByShift, onUpdate }) {
+function RotaShiftList({ data, assignmentsByShift, onUpdate, onDelete }) {
   return (
     <div className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-lift">
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -1357,7 +1883,7 @@ function RotaShiftList({ data, assignmentsByShift, onUpdate }) {
       <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {data.shifts.map((shift) => (
           data.canEdit ? (
-            <EditableShiftCard key={shift.id} shift={shift} assignments={assignmentsByShift.get(shift.id) || []} onSave={onUpdate} />
+            <EditableShiftCard key={shift.id} shift={shift} assignments={assignmentsByShift.get(shift.id) || []} onSave={onUpdate} onDelete={onDelete} />
           ) : (
             <ReadOnlyShiftCard key={shift.id} shift={shift} assignments={assignmentsByShift.get(shift.id) || []} />
           )
@@ -1368,13 +1894,15 @@ function RotaShiftList({ data, assignmentsByShift, onUpdate }) {
   );
 }
 
-function EditableShiftCard({ shift, assignments, onSave }) {
+function EditableShiftCard({ shift, assignments, onSave, onDelete }) {
   const [draft, setDraft] = useState({
     title: shift.title,
     date: shift.date,
     startTime: shift.start_time,
     endTime: shift.end_time,
     location: shift.location || "",
+    breakMinutes: shift.break_minutes || 0,
+    paidBreak: Boolean(shift.paid_break),
   });
 
   useEffect(() => {
@@ -1384,6 +1912,8 @@ function EditableShiftCard({ shift, assignments, onSave }) {
       startTime: shift.start_time,
       endTime: shift.end_time,
       location: shift.location || "",
+      breakMinutes: shift.break_minutes || 0,
+      paidBreak: Boolean(shift.paid_break),
     });
   }, [shift]);
 
@@ -1397,12 +1927,17 @@ function EditableShiftCard({ shift, assignments, onSave }) {
           <AdminInput label="End" type="time" value={draft.endTime} onChange={(value) => setDraft((current) => ({ ...current, endTime: value }))} />
         </div>
         <AdminInput label="Location" value={draft.location} onChange={(value) => setDraft((current) => ({ ...current, location: value }))} />
+        <AdminInput label="Break Minutes" type="number" value={draft.breakMinutes} onChange={(value) => setDraft((current) => ({ ...current, breakMinutes: value }))} />
+        <label className="flex min-h-12 items-center gap-3 rounded-lg border border-slate-300 bg-white px-3 text-sm font-extrabold text-ink">
+          <input type="checkbox" checked={draft.paidBreak} onChange={(event) => setDraft((current) => ({ ...current, paidBreak: event.target.checked }))} />
+          Paid Break
+        </label>
       </div>
       <AssignmentBadges shift={shift} assignments={assignments} />
-      <button className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-woodpink px-4 py-2 text-xs font-black uppercase tracking-wide text-white shadow-button" type="button" onClick={() => onSave(shift, draft)}>
-        <Save aria-hidden="true" size={16} />
-        Save Changes
-      </button>
+      <ActionRow>
+        <SaveButton onClick={() => onSave(shift, draft)} />
+        <DeleteButton onClick={() => onDelete(shift)} />
+      </ActionRow>
     </article>
   );
 }
@@ -1588,11 +2123,44 @@ function AdminTextarea({ label, value, onChange }) {
   );
 }
 
+function AdminSelect({ label, value, onChange, options }) {
+  return (
+    <label className="grid gap-2">
+      <span className="text-sm font-extrabold text-ink">{label}</span>
+      <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={value ?? ""} onChange={(event) => onChange(event.target.value)}>
+        {options.map((option) => <option key={option} value={option}>{option}</option>)}
+      </select>
+    </label>
+  );
+}
+
+function ActionRow({ children }) {
+  return <div className="mt-4 flex flex-wrap items-center gap-3">{children}</div>;
+}
+
+function CreateButton({ label }) {
+  return (
+    <button className="focus-ring mt-4 inline-flex min-h-12 w-fit items-center gap-2 rounded-lg bg-leaf px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="submit">
+      <Plus aria-hidden="true" size={18} />
+      {label}
+    </button>
+  );
+}
+
 function SaveButton({ onClick }) {
   return (
-    <button className="focus-ring inline-flex min-h-12 w-fit items-center gap-2 rounded-lg bg-woodpink px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-white shadow-button" type="button" onClick={onClick}>
+    <button className="focus-ring inline-flex min-h-11 w-fit items-center gap-2 rounded-lg bg-woodpink px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-button" type="button" onClick={onClick}>
       <Save aria-hidden="true" size={18} />
       Save
+    </button>
+  );
+}
+
+function DeleteButton({ onClick }) {
+  return (
+    <button className="focus-ring inline-flex min-h-11 w-fit items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-button" type="button" onClick={onClick}>
+      <Trash2 aria-hidden="true" size={18} />
+      Delete
     </button>
   );
 }
@@ -1618,5 +2186,41 @@ function updateRecord(current, key, id, patch) {
   return {
     ...current,
     [key]: current[key].map((item) => (item.id === id ? { ...item, ...patch } : item)),
+  };
+}
+
+function removeRecord(current, key, id) {
+  return {
+    ...current,
+    [key]: current[key].filter((item) => item.id !== id),
+  };
+}
+
+function addPageSection(current, pageId, section) {
+  return {
+    ...current,
+    pages: current.pages.map((page) => (page.id === pageId ? { ...page, sections: [...(page.sections || []), section] } : page)),
+  };
+}
+
+function updatePageSectionRecord(current, pageId, sectionId, patch) {
+  return {
+    ...current,
+    pages: current.pages.map((page) => (
+      page.id === pageId
+        ? { ...page, sections: (page.sections || []).map((section) => (section.id === sectionId ? { ...section, ...patch } : section)) }
+        : page
+    )),
+  };
+}
+
+function removePageSection(current, pageId, sectionId) {
+  return {
+    ...current,
+    pages: current.pages.map((page) => (
+      page.id === pageId
+        ? { ...page, sections: (page.sections || []).filter((section) => section.id !== sectionId) }
+        : page
+    )),
   };
 }

@@ -24,5 +24,6 @@ export function publicUser(user) {
     name: user.name,
     email: user.email,
     role: user.role,
+    mustResetPassword: Boolean(user.must_reset_password),
   };
 }

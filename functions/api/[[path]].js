@@ -2,7 +2,7 @@ const adminRoles = ["admin", "editor", "super_admin"];
 const staffRoles = ["staff", "supervisor", "manager", "payroll_admin", "super_admin", "admin"];
 const managerRoles = ["manager", "supervisor", "admin", "super_admin"];
 const shiftCreateRoles = ["manager", "admin", "super_admin"];
-const shiftAssignRoles = ["supervisor", "manager", "admin", "super_admin"];
+const shiftAssignRoles = ["manager", "admin", "super_admin"];
 const userAdminRoles = ["admin", "super_admin"];
 const manageableUserRoles = ["editor", "staff", "supervisor", "manager", "payroll_admin", "admin"];
 const employeeRoles = ["staff", "supervisor", "manager", "payroll_admin"];
@@ -25,6 +25,9 @@ export async function onRequest(context) {
     if (route === "auth/login" && request.method === "POST") return login(request, env);
     if (route === "auth/logout" && request.method === "POST") return logout(request, env);
     if (route === "auth/me" && request.method === "GET") return me(request, env);
+    if (route === "auth/change-password" && request.method === "POST") return withUser(request, env, (user) => changePassword(request, env, user));
+    if (route.startsWith("auth/invites/") && route.endsWith("/accept") && request.method === "POST") return acceptInvite(request, env, route.split("/").filter(Boolean).slice(-2)[0]);
+    if (route.startsWith("auth/invites/") && request.method === "GET") return inviteDetails(env, route.split("/").pop());
     if (route === "setup/status" && request.method === "GET") return setupStatus(env);
     if (route === "setup/first-admin" && request.method === "POST") return firstAdmin(request, env);
 
@@ -38,6 +41,7 @@ export async function onRequest(context) {
     if (route === "faqs" && request.method === "GET") return listFaqs(env);
     if (route === "opening-times" && request.method === "GET") return listOpeningTimes(env);
     if (route === "documents" && request.method === "GET") return listDocuments(env);
+    if (route === "pages" && request.method === "GET") return listPublicPages(env);
     if (route === "food/menu" && request.method === "GET") return foodMenu(env);
 
     if (route.startsWith("admin/")) return withRole(request, env, adminRoles, (user) => adminRoute(route, request, env, user));
@@ -45,6 +49,7 @@ export async function onRequest(context) {
     if ((route === "staff/rota" || route === "staff/rota/shifts" || route === "shifts") && request.method === "GET") return withRole(request, env, staffRoles, (user) => listShifts(request, env, user));
     if ((route === "staff/rota/shifts" || route === "shifts") && request.method === "POST") return withRole(request, env, shiftCreateRoles, (user) => createShift(request, env, user));
     if ((route.startsWith("staff/rota/shifts/") || route.startsWith("shifts/")) && request.method === "PUT" && !route.includes("/assignments")) return withRole(request, env, shiftCreateRoles, (user) => updateShift(request, env, user, Number(route.split("/").filter(Boolean).pop())));
+    if ((route.startsWith("staff/rota/shifts/") || route.startsWith("shifts/")) && request.method === "DELETE" && !route.includes("/assignments")) return withRole(request, env, shiftCreateRoles, (user) => deleteShift(env, user, Number(route.split("/").filter(Boolean).pop())));
     if ((route.startsWith("staff/rota/shifts/") || route.startsWith("shifts/")) && request.method === "POST" && route.endsWith("/assignments")) return withRole(request, env, shiftAssignRoles, (user) => assignShift(request, env, user, Number(route.split("/").filter(Boolean).slice(-2)[0])));
     if ((route.startsWith("staff/rota/shifts/") || route.startsWith("shifts/")) && request.method === "DELETE" && route.includes("/assignments/")) {
       const parts = route.split("/").filter(Boolean);
@@ -86,7 +91,7 @@ function fail(status, error) {
 
 function publicUser(user) {
   if (!user) return null;
-  return { id: user.id, name: user.name, email: user.email, role: user.role };
+  return { id: user.id, name: user.name, email: user.email, role: user.role, mustResetPassword: Boolean(user.must_reset_password) };
 }
 
 function parseCookies(request) {
@@ -134,6 +139,10 @@ function randomToken() {
   const bytes = new Uint8Array(32);
   crypto.getRandomValues(bytes);
   return [...bytes].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function publicBaseUrl(request, env) {
+  return env.PUBLIC_SITE_URL || new URL(request.url).origin;
 }
 
 function toBase64(bytes) {
@@ -198,7 +207,7 @@ async function getUserFromRequest(request, env) {
     await env.DB.prepare("DELETE FROM sessions WHERE id = ?").bind(row.session_id).run();
     return null;
   }
-  return { id: row.id, name: row.name, email: row.email, role: row.role, sessionId: row.session_id };
+  return { id: row.id, name: row.name, email: row.email, role: row.role, must_reset_password: row.must_reset_password, sessionId: row.session_id };
 }
 
 async function withUser(request, env, handler) {
@@ -231,6 +240,45 @@ async function audit(env, userId, action, entityType = null, entityId = null, me
     INSERT INTO audit_logs (user_id, action, entity_type, entity_id, metadata)
     VALUES (?, ?, ?, ?, ?)
   `).bind(userId || null, action, entityType, entityId ? String(entityId) : null, metadata ? JSON.stringify(metadata) : null).run();
+}
+
+async function queueInviteEmail(request, env, actor, userId, email, name, role, token) {
+  const inviteUrl = `${publicBaseUrl(request, env)}/staff/invite/${token}`;
+  const subject = "Your Woodlands staff portal invite";
+  const body = [
+    `Hello ${name},`,
+    "",
+    "Your Woodlands staff portal account has been created.",
+    `Role: ${role}`,
+    "",
+    "Open this secure invite link to set your password and sign in:",
+    inviteUrl,
+    "",
+    "This link is for the invited email address only.",
+  ].join("\n");
+  const result = await env.DB.prepare(`
+    INSERT INTO email_outbox (to_email, subject, body, status)
+    VALUES (?, ?, ?, 'queued')
+  `).bind(email, subject, body).run();
+  if (env.EMAIL_WEBHOOK_URL) {
+    try {
+      const response = await fetch(env.EMAIL_WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(env.EMAIL_WEBHOOK_TOKEN ? { Authorization: `Bearer ${env.EMAIL_WEBHOOK_TOKEN}` } : {}),
+        },
+        body: JSON.stringify({ to: email, subject, text: body, inviteUrl, name, role }),
+      });
+      await env.DB.prepare("UPDATE email_outbox SET status = ?, provider_response = ?, sent_at = ? WHERE id = ?")
+        .bind(response.ok ? "sent" : "failed", await response.text(), response.ok ? new Date().toISOString() : null, result.meta.last_row_id)
+        .run();
+    } catch (error) {
+      await env.DB.prepare("UPDATE email_outbox SET status = 'failed', provider_response = ? WHERE id = ?").bind(error.message, result.meta.last_row_id).run();
+    }
+  }
+  await audit(env, actor.id, "admin.users.invite_email.queued", "users", userId, { outboxId: result.meta.last_row_id });
+  return inviteUrl;
 }
 
 async function register(request, env) {
@@ -266,6 +314,49 @@ async function login(request, env) {
   await audit(env, user.id, "auth.login", "users", user.id);
   const cookie = await createSession(request, env, user);
   return ok({ user: publicUser(user) }, { "Set-Cookie": cookie });
+}
+
+async function changePassword(request, env, user) {
+  const body = await readJson(request);
+  const currentPassword = String(body.currentPassword || "");
+  const nextPassword = String(body.newPassword || "");
+  const existing = await env.DB.prepare("SELECT * FROM users WHERE id = ?").bind(user.id).first();
+  if (!existing || !(await verifyPassword(currentPassword, existing.password_hash))) return fail(401, "Current password is incorrect.");
+  const passwordError = passwordStrengthError(nextPassword, 14);
+  if (passwordError) return fail(400, passwordError);
+  await env.DB.prepare("UPDATE users SET password_hash = ?, must_reset_password = 0, invite_accepted_at = COALESCE(invite_accepted_at, CURRENT_TIMESTAMP), updated_at = CURRENT_TIMESTAMP WHERE id = ?")
+    .bind(await hashPassword(nextPassword), user.id)
+    .run();
+  await env.DB.prepare("DELETE FROM sessions WHERE user_id = ? AND id != ?").bind(user.id, user.sessionId || 0).run();
+  await audit(env, user.id, "auth.password.change", "users", user.id);
+  const updated = await env.DB.prepare("SELECT * FROM users WHERE id = ?").bind(user.id).first();
+  return ok({ user: publicUser(updated) });
+}
+
+async function inviteDetails(env, token) {
+  const tokenHash = await sha256Hex(String(token || ""));
+  const user = await env.DB.prepare("SELECT id, name, email, role, invite_accepted_at FROM users WHERE invite_token_hash = ? AND disabled_at IS NULL").bind(tokenHash).first();
+  if (!user || user.invite_accepted_at) return fail(404, "Invite is no longer available.");
+  return ok({ invite: { name: user.name, email: user.email, role: user.role } });
+}
+
+async function acceptInvite(request, env, token) {
+  const tokenHash = await sha256Hex(String(token || ""));
+  const user = await env.DB.prepare("SELECT * FROM users WHERE invite_token_hash = ? AND disabled_at IS NULL").bind(tokenHash).first();
+  if (!user || user.invite_accepted_at) return fail(404, "Invite is no longer available.");
+  const body = await readJson(request);
+  const password = String(body.password || "");
+  const passwordError = passwordStrengthError(password, 14);
+  if (passwordError) return fail(400, passwordError);
+  await env.DB.prepare(`
+    UPDATE users
+    SET password_hash = ?, must_reset_password = 0, invite_accepted_at = CURRENT_TIMESTAMP, invite_token_hash = NULL, updated_at = CURRENT_TIMESTAMP
+    WHERE id = ?
+  `).bind(await hashPassword(password), user.id).run();
+  const updated = await env.DB.prepare("SELECT * FROM users WHERE id = ?").bind(user.id).first();
+  await audit(env, updated.id, "auth.invite.accept", "users", updated.id);
+  const cookie = await createSession(request, env, updated);
+  return ok({ user: publicUser(updated) }, { "Set-Cookie": cookie });
 }
 
 async function logout(request, env) {
@@ -418,6 +509,27 @@ async function listDocuments(env) {
   return ok({ documents: results });
 }
 
+async function listPublicPages(env) {
+  const { results: pages } = await env.DB.prepare("SELECT * FROM pages WHERE status = 'published' ORDER BY path").all();
+  const { results: sections } = await env.DB.prepare("SELECT * FROM page_sections ORDER BY sort_order, id").all();
+  const sectionsByPage = new Map();
+  for (const section of sections) {
+    const list = sectionsByPage.get(section.page_id) || [];
+    list.push({ title: section.title, body: section.body, sort_order: section.sort_order });
+    sectionsByPage.set(section.page_id, list);
+  }
+  return ok({
+    pages: pages.map((page) => ({
+      path: page.path,
+      title: page.title,
+      summary: page.summary,
+      image: page.image,
+      sourceUrl: page.source_url,
+      sections: sectionsByPage.get(page.id) || [],
+    })),
+  });
+}
+
 async function foodMenu(env) {
   const { results: cafes } = await env.DB.prepare("SELECT slug, label, description FROM cafes WHERE active = 1 ORDER BY id").all();
   const { results: categories } = await env.DB.prepare(`
@@ -458,12 +570,14 @@ async function adminRoute(route, request, env, user) {
   if (route === "admin/dashboard" && request.method === "GET") {
     const tables = {
       pages: "pages",
+      sections: "page_sections",
       events: "events",
       faqs: "faqs",
       bookings: "ticket_bookings",
       subscribers: "newsletter_subscribers",
       menuItems: "menu_items",
       users: "users",
+      shifts: "shifts",
     };
     const counts = {};
     for (const [key, table] of Object.entries(tables)) {
@@ -471,25 +585,47 @@ async function adminRoute(route, request, env, user) {
     }
     return ok({ counts });
   }
-  if (route === "admin/pages" && request.method === "GET") return listRows(env, "pages", "path", "pages");
+  if (route === "admin/pages" && request.method === "GET") return listPagesForAdmin(env);
+  if (route === "admin/pages" && request.method === "POST") return createPage(request, env, user);
+  if (route.startsWith("admin/pages/") && route.endsWith("/sections") && request.method === "POST") return createPageSection(request, env, user, Number(route.split("/").filter(Boolean).slice(-2)[0]));
+  if (route.startsWith("admin/page-sections/") && request.method === "PUT") return updatePageSection(request, env, user, id);
+  if (route.startsWith("admin/page-sections/") && request.method === "DELETE") return deleteRow(env, user, "page_sections", id, "admin.page_sections.delete");
   if (route === "admin/users" && request.method === "GET") return listUsers(env);
   if (route === "admin/users" && request.method === "POST") return createUser(request, env, user);
+  if (route.startsWith("admin/users/") && route.endsWith("/invite") && request.method === "POST") return resendUserInvite(request, env, user, Number(route.split("/").filter(Boolean).slice(-2)[0]));
   if (route.startsWith("admin/users/") && route.endsWith("/reset-password") && request.method === "POST") return resetUserPassword(request, env, user, Number(route.split("/").filter(Boolean).slice(-2)[0]));
   if (route.startsWith("admin/users/") && request.method === "PUT") return updateUser(request, env, user, id);
   if (route === "admin/audit-logs" && request.method === "GET") return listAuditLogs(env);
   if (route.startsWith("admin/pages/") && request.method === "PUT") return updatePage(request, env, user, id);
+  if (route.startsWith("admin/pages/") && request.method === "DELETE") return deleteRow(env, user, "pages", id, "admin.pages.delete");
   if (route === "admin/events" && request.method === "GET") return listRows(env, "events", "event_date, title", "events");
+  if (route === "admin/events" && request.method === "POST") return createEvent(request, env, user);
   if (route.startsWith("admin/events/") && request.method === "PUT") return updateEvent(request, env, user, id);
+  if (route.startsWith("admin/events/") && request.method === "DELETE") return deleteRow(env, user, "events", id, "admin.events.delete");
   if (route === "admin/faqs" && request.method === "GET") return listRows(env, "faqs", "group_title, sort_order, id", "faqs");
+  if (route === "admin/faqs" && request.method === "POST") return createFaq(request, env, user);
   if (route.startsWith("admin/faqs/") && request.method === "PUT") return updateFaq(request, env, user, id);
+  if (route.startsWith("admin/faqs/") && request.method === "DELETE") return deleteRow(env, user, "faqs", id, "admin.faqs.delete");
   if (route === "admin/opening-times" && request.method === "GET") return listRows(env, "opening_times", "date", "openingTimes");
+  if (route === "admin/opening-times" && request.method === "POST") return createOpening(request, env, user);
   if (route.startsWith("admin/opening-times/") && request.method === "PUT") return updateOpening(request, env, user, id);
+  if (route.startsWith("admin/opening-times/") && request.method === "DELETE") return deleteRow(env, user, "opening_times", id, "admin.opening_times.delete");
   if (route === "admin/media" && request.method === "GET") return listRows(env, "media_assets", "created_at DESC", "media");
   if (route === "admin/media" && request.method === "POST") return uploadMedia(request, env, user);
+  if (route.startsWith("admin/media/") && request.method === "PUT") return updateMedia(request, env, user, id);
+  if (route.startsWith("admin/media/") && request.method === "DELETE") return deleteRow(env, user, "media_assets", id, "admin.media.delete");
   if (route === "admin/documents" && request.method === "GET") return listRows(env, "documents", "title", "documents");
+  if (route === "admin/documents" && request.method === "POST") return createDocument(request, env, user);
+  if (route.startsWith("admin/documents/") && request.method === "PUT") return updateDocument(request, env, user, id);
+  if (route.startsWith("admin/documents/") && request.method === "DELETE") return deleteRow(env, user, "documents", id, "admin.documents.delete");
   if (route === "admin/newsletter-subscribers" && request.method === "GET") return listRows(env, "newsletter_subscribers", "created_at DESC", "subscribers");
+  if (route === "admin/newsletter-subscribers" && request.method === "POST") return createSubscriber(request, env, user);
+  if (route.startsWith("admin/newsletter-subscribers/") && request.method === "PUT") return updateSubscriber(request, env, user, id);
+  if (route.startsWith("admin/newsletter-subscribers/") && request.method === "DELETE") return deleteRow(env, user, "newsletter_subscribers", id, "admin.newsletter.delete");
   if (route === "admin/ticket-types" && request.method === "GET") return listRows(env, "ticket_types", "sort_order, id", "ticketTypes");
+  if (route === "admin/ticket-types" && request.method === "POST") return createTicketType(request, env, user);
   if (route.startsWith("admin/ticket-types/") && request.method === "PUT") return updateTicketType(request, env, user, id);
+  if (route.startsWith("admin/ticket-types/") && request.method === "DELETE") return deleteRow(env, user, "ticket_types", id, "admin.ticket_types.delete");
   if (route === "admin/ticket-bookings" && request.method === "GET") {
     const { results } = await env.DB.prepare(`
       SELECT ticket_bookings.*, users.name AS user_name, users.email AS user_email
@@ -507,22 +643,103 @@ async function listRows(env, table, orderBy, key) {
   return ok({ [key]: results });
 }
 
+async function deleteRow(env, user, table, id, action) {
+  const existing = await env.DB.prepare(`SELECT id FROM ${table} WHERE id = ?`).bind(id).first();
+  if (!existing) return fail(404, "Record not found.");
+  await env.DB.prepare(`DELETE FROM ${table} WHERE id = ?`).bind(id).run();
+  await audit(env, user.id, action, table, id);
+  return ok({ deleted: true });
+}
+
+async function listPagesForAdmin(env) {
+  const { results: pages } = await env.DB.prepare("SELECT * FROM pages ORDER BY path LIMIT 500").all();
+  const { results: sections } = await env.DB.prepare("SELECT * FROM page_sections ORDER BY sort_order, id").all();
+  const sectionsByPage = new Map();
+  for (const section of sections) {
+    const list = sectionsByPage.get(section.page_id) || [];
+    list.push(section);
+    sectionsByPage.set(section.page_id, list);
+  }
+  return ok({ pages: pages.map((page) => ({ ...page, sections: sectionsByPage.get(page.id) || [] })) });
+}
+
+async function createPage(request, env, user) {
+  const body = await readJson(request);
+  const path = String(body.path || "").trim();
+  const title = String(body.title || "").trim();
+  if (!path || !title) return fail(400, "Path and title are required.");
+  const result = await env.DB.prepare(`
+    INSERT INTO pages (path, title, summary, image, source_url, status, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+  `).bind(path.startsWith("/") ? path : `/${path}`, title, body.summary || "", body.image || "", body.source_url || body.sourceUrl || "", body.status || "draft").run();
+  await audit(env, user.id, "admin.pages.create", "pages", result.meta.last_row_id);
+  const page = await env.DB.prepare("SELECT * FROM pages WHERE id = ?").bind(result.meta.last_row_id).first();
+  return ok({ page: { ...page, sections: [] } });
+}
+
 async function updatePage(request, env, user, id) {
   const body = await readJson(request);
-  await env.DB.prepare("UPDATE pages SET title = ?, summary = ?, status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
-    .bind(body.title, body.summary || "", body.status || "published", id)
+  await env.DB.prepare("UPDATE pages SET title = ?, summary = ?, image = ?, source_url = ?, status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
+    .bind(body.title, body.summary || "", body.image || "", body.source_url || body.sourceUrl || "", body.status || "published", id)
     .run();
   await audit(env, user.id, "admin.pages.update", "pages", id);
   return ok({ page: await env.DB.prepare("SELECT * FROM pages WHERE id = ?").bind(id).first() });
 }
 
+async function createPageSection(request, env, user, pageId) {
+  const body = await readJson(request);
+  const title = String(body.title || "").trim();
+  if (!title) return fail(400, "Section title is required.");
+  const result = await env.DB.prepare("INSERT INTO page_sections (page_id, title, body, sort_order) VALUES (?, ?, ?, ?)")
+    .bind(pageId, title, body.body || "", Number(body.sort_order || body.sortOrder || 0))
+    .run();
+  await audit(env, user.id, "admin.page_sections.create", "page_sections", result.meta.last_row_id);
+  return ok({ section: await env.DB.prepare("SELECT * FROM page_sections WHERE id = ?").bind(result.meta.last_row_id).first() });
+}
+
+async function updatePageSection(request, env, user, id) {
+  const body = await readJson(request);
+  await env.DB.prepare("UPDATE page_sections SET title = ?, body = ?, sort_order = ? WHERE id = ?")
+    .bind(body.title, body.body || "", Number(body.sort_order || body.sortOrder || 0), id)
+    .run();
+  await audit(env, user.id, "admin.page_sections.update", "page_sections", id);
+  return ok({ section: await env.DB.prepare("SELECT * FROM page_sections WHERE id = ?").bind(id).first() });
+}
+
+async function createEvent(request, env, user) {
+  const body = await readJson(request);
+  const title = String(body.title || "").trim();
+  if (!title) return fail(400, "Event title is required.");
+  const defaultPath = `/events/${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
+  const path = String(body.path || defaultPath).trim();
+  const result = await env.DB.prepare(`
+    INSERT INTO events (path, title, event_date, summary, image, source_url, status, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+  `).bind(path.startsWith("/") ? path : `/${path}`, title, body.event_date || body.eventDate || null, body.summary || "", body.image || "", body.source_url || body.sourceUrl || "", body.status || "draft").run();
+  await audit(env, user.id, "admin.events.create", "events", result.meta.last_row_id);
+  return ok({ event: await env.DB.prepare("SELECT * FROM events WHERE id = ?").bind(result.meta.last_row_id).first() });
+}
+
 async function updateEvent(request, env, user, id) {
   const body = await readJson(request);
-  await env.DB.prepare("UPDATE events SET title = ?, event_date = ?, summary = ?, status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
-    .bind(body.title, body.event_date || null, body.summary || "", body.status || "published", id)
+  await env.DB.prepare("UPDATE events SET path = ?, title = ?, event_date = ?, summary = ?, image = ?, source_url = ?, status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
+    .bind(body.path, body.title, body.event_date || body.eventDate || null, body.summary || "", body.image || "", body.source_url || body.sourceUrl || "", body.status || "published", id)
     .run();
   await audit(env, user.id, "admin.events.update", "events", id);
-  return ok();
+  return ok({ event: await env.DB.prepare("SELECT * FROM events WHERE id = ?").bind(id).first() });
+}
+
+async function createFaq(request, env, user) {
+  const body = await readJson(request);
+  const groupTitle = String(body.group_title || body.groupTitle || "General").trim();
+  const question = String(body.question || "").trim();
+  const answer = String(body.answer || "").trim();
+  if (!question || !answer) return fail(400, "Question and answer are required.");
+  const result = await env.DB.prepare("INSERT INTO faqs (group_title, question, answer, sort_order, active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)")
+    .bind(groupTitle, question, answer, Number(body.sort_order || body.sortOrder || 0), body.active === false ? 0 : 1)
+    .run();
+  await audit(env, user.id, "admin.faqs.create", "faqs", result.meta.last_row_id);
+  return ok({ faq: await env.DB.prepare("SELECT * FROM faqs WHERE id = ?").bind(result.meta.last_row_id).first() });
 }
 
 async function updateFaq(request, env, user, id) {
@@ -531,25 +748,36 @@ async function updateFaq(request, env, user, id) {
     .bind(body.group_title, body.question, body.answer, body.active ? 1 : 0, id)
     .run();
   await audit(env, user.id, "admin.faqs.update", "faqs", id);
-  return ok();
+  return ok({ faq: await env.DB.prepare("SELECT * FROM faqs WHERE id = ?").bind(id).first() });
+}
+
+async function createOpening(request, env, user) {
+  const body = await readJson(request);
+  const date = String(body.date || "").trim();
+  if (!date) return fail(400, "Date is required.");
+  const result = await env.DB.prepare("INSERT INTO opening_times (date, status, season_label, open_time, close_time, notes, updated_at) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)")
+    .bind(date, body.status || "closed", body.season_label || body.seasonLabel || "Park Closed", body.open_time || body.openTime || null, body.close_time || body.closeTime || null, body.notes || null)
+    .run();
+  await audit(env, user.id, "admin.opening_times.create", "opening_times", result.meta.last_row_id);
+  return ok({ openingTime: await env.DB.prepare("SELECT * FROM opening_times WHERE id = ?").bind(result.meta.last_row_id).first() });
 }
 
 async function updateOpening(request, env, user, id) {
   const body = await readJson(request);
   await env.DB.prepare("UPDATE opening_times SET status = ?, season_label = ?, open_time = ?, close_time = ?, notes = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
-    .bind(body.status, body.season_label, body.open_time || null, body.close_time || null, body.notes || null, id)
+    .bind(body.status, body.season_label || body.seasonLabel, body.open_time || body.openTime || null, body.close_time || body.closeTime || null, body.notes || null, id)
     .run();
   await audit(env, user.id, "admin.opening_times.update", "opening_times", id);
-  return ok();
+  return ok({ openingTime: await env.DB.prepare("SELECT * FROM opening_times WHERE id = ?").bind(id).first() });
 }
 
 async function updateTicketType(request, env, user, id) {
   const body = await readJson(request);
-  await env.DB.prepare("UPDATE ticket_types SET name = ?, description = ?, price_label = ?, active = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
-    .bind(body.name, body.description || "", body.price_label || body.priceLabel || "", body.active ? 1 : 0, id)
+  await env.DB.prepare("UPDATE ticket_types SET slug = ?, name = ?, description = ?, price_label = ?, active = ?, sort_order = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
+    .bind(body.slug, body.name, body.description || "", body.price_label || body.priceLabel || "", body.active ? 1 : 0, Number(body.sort_order || body.sortOrder || 0), id)
     .run();
   await audit(env, user.id, "admin.ticket_types.update", "ticket_types", id);
-  return ok();
+  return ok({ ticketType: await env.DB.prepare("SELECT * FROM ticket_types WHERE id = ?").bind(id).first() });
 }
 
 async function uploadMedia(request, env, user) {
@@ -573,9 +801,72 @@ async function uploadMedia(request, env, user) {
   return ok({ media: await env.DB.prepare("SELECT * FROM media_assets WHERE id = ?").bind(result.meta.last_row_id).first() });
 }
 
+async function updateMedia(request, env, user, id) {
+  const body = await readJson(request);
+  await env.DB.prepare("UPDATE media_assets SET title = ?, alt_text = ?, usage = ? WHERE id = ?")
+    .bind(body.title, body.alt_text || body.altText || "", body.usage || "", id)
+    .run();
+  await audit(env, user.id, "admin.media.update", "media_assets", id);
+  return ok({ media: await env.DB.prepare("SELECT * FROM media_assets WHERE id = ?").bind(id).first() });
+}
+
+async function createDocument(request, env, user) {
+  const body = await readJson(request);
+  const title = String(body.title || "").trim();
+  const localPath = String(body.local_path || body.localPath || "").trim();
+  if (!title || !localPath) return fail(400, "Title and local path are required.");
+  const result = await env.DB.prepare("INSERT INTO documents (title, description, local_path, source_url, page_paths, created_at) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)")
+    .bind(title, body.description || "", localPath, body.source_url || body.sourceUrl || "", body.page_paths || body.pagePaths || "")
+    .run();
+  await audit(env, user.id, "admin.documents.create", "documents", result.meta.last_row_id);
+  return ok({ document: await env.DB.prepare("SELECT * FROM documents WHERE id = ?").bind(result.meta.last_row_id).first() });
+}
+
+async function updateDocument(request, env, user, id) {
+  const body = await readJson(request);
+  await env.DB.prepare("UPDATE documents SET title = ?, description = ?, local_path = ?, source_url = ?, page_paths = ? WHERE id = ?")
+    .bind(body.title, body.description || "", body.local_path || body.localPath || "", body.source_url || body.sourceUrl || "", body.page_paths || body.pagePaths || "", id)
+    .run();
+  await audit(env, user.id, "admin.documents.update", "documents", id);
+  return ok({ document: await env.DB.prepare("SELECT * FROM documents WHERE id = ?").bind(id).first() });
+}
+
+async function createSubscriber(request, env, user) {
+  const body = await readJson(request);
+  const email = String(body.email || "").trim().toLowerCase();
+  if (!email) return fail(400, "Email is required.");
+  const result = await env.DB.prepare("INSERT INTO newsletter_subscribers (email, first_name, last_name, status, created_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)")
+    .bind(email, body.first_name || body.firstName || "", body.last_name || body.lastName || "", body.status || "subscribed")
+    .run();
+  await audit(env, user.id, "admin.newsletter.create", "newsletter_subscribers", result.meta.last_row_id);
+  return ok({ subscriber: await env.DB.prepare("SELECT * FROM newsletter_subscribers WHERE id = ?").bind(result.meta.last_row_id).first() });
+}
+
+async function updateSubscriber(request, env, user, id) {
+  const body = await readJson(request);
+  await env.DB.prepare("UPDATE newsletter_subscribers SET email = ?, first_name = ?, last_name = ?, status = ? WHERE id = ?")
+    .bind(body.email, body.first_name || body.firstName || "", body.last_name || body.lastName || "", body.status || "subscribed", id)
+    .run();
+  await audit(env, user.id, "admin.newsletter.update", "newsletter_subscribers", id);
+  return ok({ subscriber: await env.DB.prepare("SELECT * FROM newsletter_subscribers WHERE id = ?").bind(id).first() });
+}
+
+async function createTicketType(request, env, user) {
+  const body = await readJson(request);
+  const slug = String(body.slug || body.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  const name = String(body.name || "").trim();
+  if (!slug || !name) return fail(400, "Slug and name are required.");
+  const result = await env.DB.prepare(`
+    INSERT INTO ticket_types (slug, name, description, price_label, price_pence, active, sort_order, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+  `).bind(slug, name, body.description || "", body.price_label || body.priceLabel || "", body.price_pence || body.pricePence || null, body.active === false ? 0 : 1, Number(body.sort_order || body.sortOrder || 0)).run();
+  await audit(env, user.id, "admin.ticket_types.create", "ticket_types", result.meta.last_row_id);
+  return ok({ ticketType: await env.DB.prepare("SELECT * FROM ticket_types WHERE id = ?").bind(result.meta.last_row_id).first() });
+}
+
 async function listUsers(env) {
   const { results: users } = await env.DB.prepare(`
-    SELECT users.id, users.name, users.email, users.role, users.disabled_at, users.created_at, users.updated_at,
+    SELECT users.id, users.name, users.email, users.role, users.disabled_at, users.must_reset_password, users.invite_sent_at, users.invite_accepted_at, users.created_at, users.updated_at,
       employees.id AS employee_id, employees.department_id, employees.job_title, employees.employee_code, departments.name AS department_name
     FROM users
     LEFT JOIN employees ON employees.user_id = users.id
@@ -591,19 +882,23 @@ async function createUser(request, env, user) {
   const body = await readJson(request);
   const name = String(body.name || "").trim();
   const email = String(body.email || "").trim().toLowerCase();
-  const password = String(body.password || "");
+  const providedPassword = String(body.password || "");
   const role = String(body.role || "").trim();
-  if (!name || !email || !password || !canManageRole(user.role, role)) return fail(400, "Name, email, password and a valid role are required.");
-  const passwordError = passwordStrengthError(password, 14);
-  if (passwordError) return fail(400, passwordError);
+  if (!name || !email || !canManageRole(user.role, role)) return fail(400, "Name, email and a valid role are required.");
+  if (providedPassword) {
+    const passwordError = passwordStrengthError(providedPassword, 14);
+    if (passwordError) return fail(400, passwordError);
+  }
   const existing = await env.DB.prepare("SELECT id FROM users WHERE email = ?").bind(email).first();
   if (existing) return fail(409, "A user already exists for this email address.");
 
-  const passwordHash = await hashPassword(password);
+  const inviteToken = randomToken();
+  const inviteTokenHash = await sha256Hex(inviteToken);
+  const passwordHash = await hashPassword(providedPassword || randomToken());
   const result = await env.DB.prepare(`
-    INSERT INTO users (name, email, password_hash, role, created_at, updated_at)
-    VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-  `).bind(name, email, passwordHash, role).run();
+    INSERT INTO users (name, email, password_hash, role, must_reset_password, invite_token_hash, invite_sent_at, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+  `).bind(name, email, passwordHash, role, providedPassword ? 1 : 0, inviteTokenHash).run();
 
   if (employeeRoles.includes(role)) {
     const code = `${role.slice(0, 3).toUpperCase()}${String(result.meta.last_row_id).padStart(4, "0")}`;
@@ -614,7 +909,12 @@ async function createUser(request, env, user) {
   }
 
   await audit(env, user.id, "admin.users.create", "users", result.meta.last_row_id, { role });
-  return ok({ user: await env.DB.prepare("SELECT id, name, email, role, disabled_at, created_at, updated_at FROM users WHERE id = ?").bind(result.meta.last_row_id).first() });
+  const inviteUrl = await queueInviteEmail(request, env, user, result.meta.last_row_id, email, name, role, inviteToken);
+  return ok({
+    user: await env.DB.prepare("SELECT id, name, email, role, disabled_at, must_reset_password, invite_sent_at, invite_accepted_at, created_at, updated_at FROM users WHERE id = ?").bind(result.meta.last_row_id).first(),
+    inviteUrl,
+    emailStatus: env.EMAIL_WEBHOOK_URL ? "sent-or-queued" : "queued",
+  });
 }
 
 async function updateUser(request, env, user, id) {
@@ -656,7 +956,7 @@ async function updateUser(request, env, user, id) {
   }
 
   await audit(env, user.id, "admin.users.update", "users", id, { role, disabled });
-  return ok({ user: await env.DB.prepare("SELECT id, name, email, role, disabled_at, created_at, updated_at FROM users WHERE id = ?").bind(id).first() });
+  return ok({ user: await env.DB.prepare("SELECT id, name, email, role, disabled_at, must_reset_password, invite_sent_at, invite_accepted_at, created_at, updated_at FROM users WHERE id = ?").bind(id).first() });
 }
 
 async function resetUserPassword(request, env, user, id) {
@@ -669,10 +969,25 @@ async function resetUserPassword(request, env, user, id) {
   const password = String(body.password || "");
   const passwordError = passwordStrengthError(password, 14);
   if (passwordError) return fail(400, passwordError);
-  await env.DB.prepare("UPDATE users SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?").bind(await hashPassword(password), id).run();
+  await env.DB.prepare("UPDATE users SET password_hash = ?, must_reset_password = 1, updated_at = CURRENT_TIMESTAMP WHERE id = ?").bind(await hashPassword(password), id).run();
   await env.DB.prepare("DELETE FROM sessions WHERE user_id = ?").bind(id).run();
   await audit(env, user.id, "admin.users.reset_password", "users", id);
   return ok({ reset: true });
+}
+
+async function resendUserInvite(request, env, user, id) {
+  if (!userAdminRoles.includes(user.role)) return fail(403, "Only admins can manage users.");
+  const existing = await env.DB.prepare("SELECT * FROM users WHERE id = ?").bind(id).first();
+  if (!existing) return fail(404, "User not found.");
+  if (existing.role === "super_admin") return fail(403, "Super-admin accounts cannot be invited from user management.");
+  if (existing.role === "admin" && user.role !== "super_admin") return fail(403, "Only a super-admin can invite admin accounts.");
+  const inviteToken = randomToken();
+  await env.DB.prepare("UPDATE users SET invite_token_hash = ?, invite_sent_at = CURRENT_TIMESTAMP, invite_accepted_at = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = ?")
+    .bind(await sha256Hex(inviteToken), id)
+    .run();
+  const inviteUrl = await queueInviteEmail(request, env, user, id, existing.email, existing.name, existing.role, inviteToken);
+  await audit(env, user.id, "admin.users.invite.resend", "users", id);
+  return ok({ inviteUrl, emailStatus: env.EMAIL_WEBHOOK_URL ? "sent-or-queued" : "queued" });
 }
 
 async function listAuditLogs(env) {
@@ -794,9 +1109,19 @@ async function createShift(request, env, user) {
   const endTime = String(body.endTime || "").trim();
   if (!title || !date || !startTime || !endTime) return fail(400, "Title, date, start and end time are required.");
   const result = await env.DB.prepare(`
-    INSERT INTO shifts (department_id, title, date, start_time, end_time, location, status, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, 'scheduled', CURRENT_TIMESTAMP)
-  `).bind(body.departmentId || null, title, date, startTime, endTime, body.location || null).run();
+    INSERT INTO shifts (department_id, title, date, start_time, end_time, location, status, break_minutes, paid_break, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+  `).bind(
+    body.departmentId || null,
+    title,
+    date,
+    startTime,
+    endTime,
+    body.location || null,
+    body.status || "scheduled",
+    Number(body.breakMinutes ?? body.break_minutes ?? 0),
+    (body.paidBreak || body.paid_break) ? 1 : 0,
+  ).run();
   if (body.employeeId) {
     await env.DB.prepare("INSERT OR IGNORE INTO rota_assignments (shift_id, employee_id, role) VALUES (?, ?, ?)")
       .bind(result.meta.last_row_id, Number(body.employeeId), title)
@@ -817,7 +1142,7 @@ async function updateShift(request, env, user, shiftId) {
   if (!title || !date || !startTime || !endTime) return fail(400, "Title, date, start and end time are required.");
   await env.DB.prepare(`
     UPDATE shifts
-    SET department_id = ?, title = ?, date = ?, start_time = ?, end_time = ?, location = ?, status = ?, break_minutes = ?, updated_at = CURRENT_TIMESTAMP
+    SET department_id = ?, title = ?, date = ?, start_time = ?, end_time = ?, location = ?, status = ?, break_minutes = ?, paid_break = ?, updated_at = CURRENT_TIMESTAMP
     WHERE id = ?
   `).bind(
     body.departmentId || body.department_id || existing.department_id || null,
@@ -828,6 +1153,7 @@ async function updateShift(request, env, user, shiftId) {
     body.location ?? existing.location,
     body.status || existing.status,
     Number(body.breakMinutes ?? body.break_minutes ?? existing.break_minutes ?? 0),
+    (body.paidBreak ?? body.paid_break ?? existing.paid_break) ? 1 : 0,
     shiftId,
   ).run();
   await audit(env, user.id, "shifts.update", "shifts", shiftId);
@@ -841,10 +1167,6 @@ async function assignShift(request, env, user, shiftId) {
   const shift = await env.DB.prepare("SELECT * FROM shifts WHERE id = ?").bind(shiftId).first();
   const employee = await env.DB.prepare("SELECT employees.*, users.role FROM employees JOIN users ON users.id = employees.user_id WHERE employees.id = ?").bind(employeeId).first();
   if (!shift || !employee) return fail(404, "Shift or employee not found.");
-  const supervisor = await env.DB.prepare("SELECT department_id FROM employees WHERE user_id = ?").bind(user.id).first();
-  if (user.role === "supervisor" && (shift.department_id !== supervisor?.department_id || employee.department_id !== supervisor?.department_id)) {
-    return fail(403, "Supervisors can only assign shifts in their own department.");
-  }
   await env.DB.prepare("INSERT OR IGNORE INTO rota_assignments (shift_id, employee_id, role) VALUES (?, ?, ?)")
     .bind(shiftId, employeeId, body.role || shift.title)
     .run();
@@ -856,11 +1178,16 @@ async function removeAssignment(env, user, shiftId, employeeId) {
   const shift = await env.DB.prepare("SELECT * FROM shifts WHERE id = ?").bind(shiftId).first();
   const employee = await env.DB.prepare("SELECT * FROM employees WHERE id = ?").bind(employeeId).first();
   if (!shift || !employee) return fail(404, "Assignment not found.");
-  const supervisor = await env.DB.prepare("SELECT department_id FROM employees WHERE user_id = ?").bind(user.id).first();
-  if (user.role === "supervisor" && (shift.department_id !== supervisor?.department_id || employee.department_id !== supervisor?.department_id)) {
-    return fail(403, "Supervisors can only update shifts in their own department.");
-  }
   await env.DB.prepare("DELETE FROM rota_assignments WHERE shift_id = ? AND employee_id = ?").bind(shiftId, employeeId).run();
   await audit(env, user.id, "shifts.unassign", "rota_assignments", shiftId, { employeeId });
   return ok({ removed: true });
+}
+
+async function deleteShift(env, user, shiftId) {
+  const existing = await env.DB.prepare("SELECT * FROM shifts WHERE id = ?").bind(shiftId).first();
+  if (!existing) return fail(404, "Shift not found.");
+  await env.DB.prepare("DELETE FROM rota_assignments WHERE shift_id = ?").bind(shiftId).run();
+  await env.DB.prepare("DELETE FROM shifts WHERE id = ?").bind(shiftId).run();
+  await audit(env, user.id, "shifts.delete", "shifts", shiftId);
+  return ok({ deleted: true });
 }

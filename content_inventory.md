@@ -2269,3 +2269,55 @@ TODO: Production copy should still be reviewed by Woodlands before launch becaus
   - Local SQLite was reseeded after testing; no local test users or demo passwords remain in `server/db/woodlands.sqlite`.
   - Production D1 was also cleaned after ticket-flow testing; `users` count is `0` until the first real admin is created through `/admin/setup`.
   - `ADMIN_BOOTSTRAP_TOKEN` exists as an encrypted Cloudflare Pages secret; its value is not present in the repository.
+
+## Admin CMS / Staff Invite / Rota Update - 2026-05-31
+
+- Admin portal CMS controls expanded so editable tabs expose create, save and delete actions:
+  - Users
+  - Pages and nested page sections
+  - Events
+  - Opening times
+  - FAQs
+  - Media
+  - Documents
+  - Newsletter subscribers
+  - Ticket types
+  - Rota / Shifts
+- Public page content now has a database override path:
+  - `GET /api/pages`
+  - Published page rows can update page title, summary, hero/media path and content sections.
+- Staff account invite flow added:
+  - Admin-created staff, supervisor, manager, editor and payroll-admin users receive an invite token.
+  - Browser activation route: `/staff/invite/:token`
+  - API routes:
+    - `GET /api/auth/invites/:token`
+    - `POST /api/auth/invites/:token/accept`
+  - Invite messages are written to `email_outbox`.
+  - Optional provider integration uses `EMAIL_WEBHOOK_URL` and `EMAIL_WEBHOOK_TOKEN`; no live email provider credentials are stored in this repository.
+- Password reset enforcement added:
+  - `POST /api/auth/change-password`
+  - Admin password resets mark the account as requiring a password change on next login.
+- Rota role rules updated:
+  - `staff`: view own assigned shifts.
+  - `supervisor`: view team rota.
+  - `manager`: create, edit, delete and assign shifts.
+  - `admin` / `super_admin`: create, edit, delete and assign shifts from admin or staff rota views.
+- `/shifts` remains a redirect/notice route to `/staff/rota`; standalone shifts portal UI is not used.
+- Local SQL/D1 schema updated with:
+  - `users.must_reset_password`
+  - `users.invite_token_hash`
+  - `users.invite_sent_at`
+  - `users.invite_accepted_at`
+  - `shifts.paid_break`
+  - `email_outbox`
+- Added migrations:
+  - `server/migrations/004_invites_admin_crud_rota.sql`
+  - `migrations/0004_invites_admin_crud_rota.sql`
+- Local verification completed for:
+  - admin login
+  - admin user creation and invite generation
+  - staff invite lookup and manager password activation
+  - manager rota shift creation and staff assignment
+  - customer ticket registration and reservation creation
+  - customer denial from admin/staff APIs
+  - `npm run build`

@@ -45,7 +45,7 @@ The old `/shifts` route redirects users to `/staff/rota`.
 Role access:
 
 - `staff`: view own assigned rota.
-- `supervisor`: view team rota and assign shifts in their department.
+- `supervisor`: view team rota.
 - `manager`: create, edit and assign shifts.
 - `admin` / `super_admin`: full rota access.
 
@@ -70,7 +70,9 @@ Staff accounts:
 - Sign in at `/admin/login` as `admin` or `super_admin`.
 - Go to `/admin/users`.
 - Use the Users tab to create staff, supervisor, manager and payroll-admin accounts.
-- Use long temporary passwords and rotate/reset them through the admin password reset tool or a future invite flow.
+- The admin user form queues a staff invite link for `/staff/invite/:token`; staff set their password before using `/staff/login`.
+- If `EMAIL_WEBHOOK_URL` is configured, the invite payload is sent to that provider. Without a provider, the invite is stored in `email_outbox` and the admin screen shows the private invite link for manual sending.
+- Password reset actions force the user to choose a new 14+ character password on next login.
 
 ## Production Setup
 
@@ -151,6 +153,23 @@ Disable or rotate `ADMIN_BOOTSTRAP_TOKEN` after the first admin is created.
 - `.dev.vars.example` lists required local Pages Functions variables.
 - `functions/api/[[path]].js` implements the D1-backed API.
 - `functions/media/[[path]].js` serves R2 media objects.
+
+## Admin Editing
+
+The admin portal is at `/admin` after login. The navigation tabs expose create, save and delete actions for:
+
+- users and staff invites
+- pages, hero images and nested page sections
+- events
+- opening times
+- FAQs
+- media records and uploads
+- document links
+- newsletter subscribers
+- ticket types
+- rota/shifts
+
+Public pages fetch published CMS page records from `/api/pages`, so database edits to page titles, summaries, hero media paths and content sections can be reflected on the website without changing code.
 
 ## Important Boundaries
 

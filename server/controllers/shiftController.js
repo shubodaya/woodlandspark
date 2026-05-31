@@ -3,7 +3,7 @@ import { auditLog } from "../utils/audit.js";
 import { fail, ok } from "../utils/responses.js";
 
 const createRoles = ["manager", "admin", "super_admin"];
-const assignRoles = ["supervisor", "manager", "admin", "super_admin"];
+const assignRoles = ["manager", "admin", "super_admin"];
 
 export function listShifts(req, res) {
   const canCreate = createRoles.includes(req.user.role);
@@ -74,9 +74,20 @@ export function createShift(req, res) {
   if (!title || !date || !startTime || !endTime) return fail(res, 400, "Title, date, start and end time are required.");
   const insert = db.transaction(() => {
     const shiftId = db.prepare(`
-      INSERT INTO shifts (department_id, title, date, start_time, end_time, location, status, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, 'scheduled', ?)
-    `).run(departmentId || null, title, date, startTime, endTime, location || null, now()).lastInsertRowid;
+      INSERT INTO shifts (department_id, title, date, start_time, end_time, location, status, break_minutes, paid_break, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      departmentId || null,
+      title,
+      date,
+      startTime,
+      endTime,
+      location || null,
+      req.body.status || "scheduled",
+      Number(req.body.breakMinutes ?? req.body.break_minutes ?? 0),
+      (req.body.paidBreak || req.body.paid_break) ? 1 : 0,
+      now(),
+    ).lastInsertRowid;
     if (employeeId) {
       db.prepare("INSERT OR IGNORE INTO rota_assignments (shift_id, employee_id, role) VALUES (?, ?, ?)").run(shiftId, Number(employeeId), title);
     }
@@ -99,7 +110,7 @@ export function updateShift(req, res) {
 
   db.prepare(`
     UPDATE shifts
-    SET department_id = ?, title = ?, date = ?, start_time = ?, end_time = ?, location = ?, status = ?, break_minutes = ?, updated_at = ?
+    SET department_id = ?, title = ?, date = ?, start_time = ?, end_time = ?, location = ?, status = ?, break_minutes = ?, paid_break = ?, updated_at = ?
     WHERE id = ?
   `).run(
     req.body.departmentId || req.body.department_id || existing.department_id || null,
@@ -110,6 +121,7 @@ export function updateShift(req, res) {
     req.body.location ?? existing.location,
     req.body.status || existing.status,
     Number(req.body.breakMinutes ?? req.body.break_minutes ?? existing.break_minutes ?? 0),
+    (req.body.paidBreak ?? req.body.paid_break ?? existing.paid_break) ? 1 : 0,
     now(),
     shiftId,
   );
@@ -124,11 +136,6 @@ export function assignShift(req, res) {
   const shift = db.prepare("SELECT * FROM shifts WHERE id = ?").get(shiftId);
   const employee = db.prepare("SELECT employees.*, users.role FROM employees JOIN users ON users.id = employees.user_id WHERE employees.id = ?").get(employeeId);
   if (!shift || !employee) return fail(res, 404, "Shift or employee not found.");
-  const supervisor = db.prepare("SELECT department_id FROM employees WHERE user_id = ?").get(req.user.id);
-  if (req.user.role === "supervisor" && (shift.department_id !== supervisor?.department_id || employee.department_id !== supervisor?.department_id)) {
-    return fail(res, 403, "Supervisors can only assign shifts in their own department.");
-  }
-
   db.prepare("INSERT OR IGNORE INTO rota_assignments (shift_id, employee_id, role) VALUES (?, ?, ?)").run(shiftId, employeeId, req.body.role || shift.title);
   auditLog(req.user.id, "shifts.assign", "rota_assignments", shiftId, { employeeId });
   return ok(res, { assigned: true });
@@ -140,11 +147,19 @@ export function removeAssignment(req, res) {
   const shift = db.prepare("SELECT * FROM shifts WHERE id = ?").get(shiftId);
   const employee = db.prepare("SELECT * FROM employees WHERE id = ?").get(employeeId);
   if (!shift || !employee) return fail(res, 404, "Assignment not found.");
-  const supervisor = db.prepare("SELECT department_id FROM employees WHERE user_id = ?").get(req.user.id);
-  if (req.user.role === "supervisor" && (shift.department_id !== supervisor?.department_id || employee.department_id !== supervisor?.department_id)) {
-    return fail(res, 403, "Supervisors can only update shifts in their own department.");
-  }
   db.prepare("DELETE FROM rota_assignments WHERE shift_id = ? AND employee_id = ?").run(shiftId, employeeId);
   auditLog(req.user.id, "shifts.unassign", "rota_assignments", shiftId, { employeeId });
   return ok(res, { removed: true });
+}
+
+export function deleteShift(req, res) {
+  const shiftId = Number(req.params.id);
+  const existing = db.prepare("SELECT * FROM shifts WHERE id = ?").get(shiftId);
+  if (!existing) return fail(res, 404, "Shift not found.");
+  db.transaction(() => {
+    db.prepare("DELETE FROM rota_assignments WHERE shift_id = ?").run(shiftId);
+    db.prepare("DELETE FROM shifts WHERE id = ?").run(shiftId);
+  })();
+  auditLog(req.user.id, "shifts.delete", "shifts", shiftId);
+  return ok(res, { deleted: true });
 }
