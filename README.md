@@ -42,6 +42,8 @@ http://127.0.0.1:5173/staff/rota/assignments
 
 The old `/shifts` route redirects users to `/staff/rota`.
 
+The staff rota workspace uses the DutyOrbit-style full-page workflow inside the Woodlands staff portal: rota overview, monthly calendar, shift list, inline edit/delete, saved or custom work locations, break minutes, paid-break flag, staff assignment and department/team filtering. Admins can use the Admin dashboard rota tile to enter the same staff rota workspace while remaining signed in as an admin.
+
 Role access:
 
 - `staff`: view own assigned rota.
@@ -91,7 +93,7 @@ Future pushes to `main` should trigger Cloudflare Pages deployments automaticall
 Latest verified production deployment:
 
 - Source: current `main` deployment.
-- Deployment refresh requested: `2026-05-31 19:42:24 +01:00`.
+- Deployment refresh requested: `2026-06-01 20:25:59 +01:00`.
 - Pages URL: `https://woodlandspark.pages.dev`
 - Status: deployed successfully with SPA route fallback, D1 binding and R2 binding.
 
@@ -168,6 +170,8 @@ The admin portal is at `/admin` after login. The navigation tabs expose create, 
 - newsletter subscribers
 - ticket types
 - rota/shifts
+
+Content tabs now show edit controls and a live preview side by side where there is public-facing output, including users, pages, events, opening times, FAQs, media, documents, newsletter subscribers and ticket types.
 
 Public pages fetch published CMS page records from `/api/pages`, so database edits to page titles, summaries, hero media paths and content sections can be reflected on the website without changing code.
 

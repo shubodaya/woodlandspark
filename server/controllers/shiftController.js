@@ -70,7 +70,13 @@ export function listShifts(req, res) {
 }
 
 export function createShift(req, res) {
-  const { title, date, startTime, endTime, location, departmentId, employeeId } = req.body;
+  const title = String(req.body.title || "").trim();
+  const date = String(req.body.date || "").trim();
+  const startTime = String(req.body.startTime || req.body.start_time || "").trim();
+  const endTime = String(req.body.endTime || req.body.end_time || "").trim();
+  const location = req.body.location || req.body.custom_location || "";
+  const departmentId = req.body.departmentId || req.body.department_id || "";
+  const employeeId = req.body.employeeId || req.body.employee_id || "";
   if (!title || !date || !startTime || !endTime) return fail(res, 400, "Title, date, start and end time are required.");
   const insert = db.transaction(() => {
     const shiftId = db.prepare(`
@@ -108,23 +114,33 @@ export function updateShift(req, res) {
   const endTime = String(req.body.endTime || req.body.end_time || existing.end_time).trim();
   if (!title || !date || !startTime || !endTime) return fail(res, 400, "Title, date, start and end time are required.");
 
-  db.prepare(`
-    UPDATE shifts
-    SET department_id = ?, title = ?, date = ?, start_time = ?, end_time = ?, location = ?, status = ?, break_minutes = ?, paid_break = ?, updated_at = ?
-    WHERE id = ?
-  `).run(
-    req.body.departmentId || req.body.department_id || existing.department_id || null,
-    title,
-    date,
-    startTime,
-    endTime,
-    req.body.location ?? existing.location,
-    req.body.status || existing.status,
-    Number(req.body.breakMinutes ?? req.body.break_minutes ?? existing.break_minutes ?? 0),
-    (req.body.paidBreak ?? req.body.paid_break ?? existing.paid_break) ? 1 : 0,
-    now(),
-    shiftId,
-  );
+  const employeeProvided = Object.prototype.hasOwnProperty.call(req.body, "employeeId") || Object.prototype.hasOwnProperty.call(req.body, "employee_id");
+  const employeeId = req.body.employeeId || req.body.employee_id || "";
+  db.transaction(() => {
+    db.prepare(`
+      UPDATE shifts
+      SET department_id = ?, title = ?, date = ?, start_time = ?, end_time = ?, location = ?, status = ?, break_minutes = ?, paid_break = ?, updated_at = ?
+      WHERE id = ?
+    `).run(
+      req.body.departmentId || req.body.department_id || existing.department_id || null,
+      title,
+      date,
+      startTime,
+      endTime,
+      req.body.location ?? req.body.custom_location ?? existing.location,
+      req.body.status || existing.status,
+      Number(req.body.breakMinutes ?? req.body.break_minutes ?? existing.break_minutes ?? 0),
+      (req.body.paidBreak ?? req.body.paid_break ?? existing.paid_break) ? 1 : 0,
+      now(),
+      shiftId,
+    );
+    if (employeeProvided) {
+      db.prepare("DELETE FROM rota_assignments WHERE shift_id = ?").run(shiftId);
+      if (employeeId) {
+        db.prepare("INSERT OR IGNORE INTO rota_assignments (shift_id, employee_id, role) VALUES (?, ?, ?)").run(shiftId, Number(employeeId), title);
+      }
+    }
+  })();
   auditLog(req.user.id, "shifts.update", "shifts", shiftId);
   return ok(res, { shift: db.prepare("SELECT * FROM shifts WHERE id = ?").get(shiftId) });
 }

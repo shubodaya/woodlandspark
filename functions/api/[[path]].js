@@ -1105,26 +1105,27 @@ async function createShift(request, env, user) {
   const body = await readJson(request);
   const title = String(body.title || "").trim();
   const date = String(body.date || "").trim();
-  const startTime = String(body.startTime || "").trim();
-  const endTime = String(body.endTime || "").trim();
+  const startTime = String(body.startTime || body.start_time || "").trim();
+  const endTime = String(body.endTime || body.end_time || "").trim();
   if (!title || !date || !startTime || !endTime) return fail(400, "Title, date, start and end time are required.");
   const result = await env.DB.prepare(`
     INSERT INTO shifts (department_id, title, date, start_time, end_time, location, status, break_minutes, paid_break, updated_at)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
   `).bind(
-    body.departmentId || null,
+    body.departmentId || body.department_id || null,
     title,
     date,
     startTime,
     endTime,
-    body.location || null,
+    body.location || body.custom_location || null,
     body.status || "scheduled",
     Number(body.breakMinutes ?? body.break_minutes ?? 0),
     (body.paidBreak || body.paid_break) ? 1 : 0,
   ).run();
-  if (body.employeeId) {
+  const employeeId = body.employeeId || body.employee_id || "";
+  if (employeeId) {
     await env.DB.prepare("INSERT OR IGNORE INTO rota_assignments (shift_id, employee_id, role) VALUES (?, ?, ?)")
-      .bind(result.meta.last_row_id, Number(body.employeeId), title)
+      .bind(result.meta.last_row_id, Number(employeeId), title)
       .run();
   }
   await audit(env, user.id, "shifts.create", "shifts", result.meta.last_row_id);
@@ -1140,6 +1141,8 @@ async function updateShift(request, env, user, shiftId) {
   const startTime = String(body.startTime || body.start_time || existing.start_time).trim();
   const endTime = String(body.endTime || body.end_time || existing.end_time).trim();
   if (!title || !date || !startTime || !endTime) return fail(400, "Title, date, start and end time are required.");
+  const employeeProvided = Object.prototype.hasOwnProperty.call(body, "employeeId") || Object.prototype.hasOwnProperty.call(body, "employee_id");
+  const employeeId = body.employeeId || body.employee_id || "";
   await env.DB.prepare(`
     UPDATE shifts
     SET department_id = ?, title = ?, date = ?, start_time = ?, end_time = ?, location = ?, status = ?, break_minutes = ?, paid_break = ?, updated_at = CURRENT_TIMESTAMP
@@ -1150,12 +1153,20 @@ async function updateShift(request, env, user, shiftId) {
     date,
     startTime,
     endTime,
-    body.location ?? existing.location,
+    body.location ?? body.custom_location ?? existing.location,
     body.status || existing.status,
     Number(body.breakMinutes ?? body.break_minutes ?? existing.break_minutes ?? 0),
     (body.paidBreak ?? body.paid_break ?? existing.paid_break) ? 1 : 0,
     shiftId,
   ).run();
+  if (employeeProvided) {
+    await env.DB.prepare("DELETE FROM rota_assignments WHERE shift_id = ?").bind(shiftId).run();
+    if (employeeId) {
+      await env.DB.prepare("INSERT OR IGNORE INTO rota_assignments (shift_id, employee_id, role) VALUES (?, ?, ?)")
+        .bind(shiftId, Number(employeeId), title)
+        .run();
+    }
+  }
   await audit(env, user.id, "shifts.update", "shifts", shiftId);
   return ok({ shift: await env.DB.prepare("SELECT * FROM shifts WHERE id = ?").bind(shiftId).first() });
 }
