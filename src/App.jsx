@@ -408,9 +408,15 @@ export default function App() {
     "/staff": "staff",
     "/staff/login": "staffLogin",
     "/staff/rota": "staff",
+    "/staff/rota/schedule": "staff",
     "/staff/rota/calendar": "staff",
     "/staff/rota/shifts": "staff",
     "/staff/rota/assignments": "staff",
+    "/staff/rota/timesheets": "staff",
+    "/staff/rota/team": "staff",
+    "/staff/rota/employees": "staff",
+    "/staff/rota/reports": "staff",
+    "/staff/rota/settings": "staff",
   };
   const staffInviteToken = path.startsWith("/staff/invite/") ? path.split("/").filter(Boolean).pop() : "";
   const page = path === "/" || ticketModes[path] || portalRoutes[path] || staffInviteToken || path === "/newsletter" ? null : dynamicPageMap[path];

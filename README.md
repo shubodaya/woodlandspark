@@ -35,14 +35,20 @@ Rota/shifts now live inside the Staff Portal:
 
 ```text
 http://127.0.0.1:5173/staff/rota
+http://127.0.0.1:5173/staff/rota/schedule
 http://127.0.0.1:5173/staff/rota/calendar
 http://127.0.0.1:5173/staff/rota/shifts
 http://127.0.0.1:5173/staff/rota/assignments
+http://127.0.0.1:5173/staff/rota/timesheets
+http://127.0.0.1:5173/staff/rota/team
+http://127.0.0.1:5173/staff/rota/employees
+http://127.0.0.1:5173/staff/rota/reports
+http://127.0.0.1:5173/staff/rota/settings
 ```
 
 The old `/shifts` route redirects users to `/staff/rota`.
 
-The staff rota workspace uses the DutyOrbit-style full-page workflow inside the Woodlands staff portal: rota overview, monthly calendar, shift list, inline edit/delete, saved or custom work locations, break minutes, paid-break flag, staff assignment and department/team filtering. Admins can use the Admin dashboard rota tile to enter the same staff rota workspace while remaining signed in as an admin.
+The staff rota workspace uses the DutyOrbit-style full-page workflow inside the Woodlands staff portal: rota overview, schedule planner, monthly calendar, shift list, inline edit/delete, saved or custom work locations, break minutes, paid-break flag, staff assignment, timesheets, team board, employee rota directory, reports, settings and department/team filtering. Admins can use the Admin dashboard rota tile to enter the same staff rota workspace while remaining signed in as an admin.
 
 Role access:
 

@@ -347,2202 +347,250 @@ INSERT OR IGNORE INTO faqs (group_title, question, answer, sort_order, active) V
 INSERT OR IGNORE INTO faqs (group_title, question, answer, sort_order, active) VALUES ('Group Visits', 'What should I do if I lose a child?', 'The park has a comprehensive and well proven lost child procedure of which all our staff are trained to follow. It is a good idea to make a pre-arranged meeting place.
 In the event of a lost child please notify a staff member in the area the child went missing. You can also report lost children to Reception who will have contact with other members of staff around the park. Reception is the point of contact where lost children will stay. We advice that you set up a place in the park where a member of staff will be.', 85, 1);
 
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-01', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-02', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-03', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-04', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-05', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-06', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-07', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-08', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-09', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-10', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-11', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-12', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-13', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-14', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-15', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-16', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-17', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-18', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-19', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-20', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-21', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-22', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-23', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-24', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-25', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-26', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-27', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-28', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-29', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-30', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-01', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-02', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-03', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-04', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-05', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-06', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-07', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-08', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-09', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-10', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-11', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-12', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-13', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-14', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-15', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-16', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-17', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-18', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-19', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-20', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-21', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-22', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-23', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-24', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-25', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-26', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-27', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-28', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-29', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-30', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-31', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-01', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-02', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-03', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-04', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-05', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-06', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-07', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-08', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-09', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-10', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-11', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-12', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-13', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-14', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-15', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-16', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-17', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-18', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-19', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-20', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-21', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-22', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-23', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-24', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-25', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-26', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-27', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-28', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-29', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-30', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-01', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-02', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-03', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-04', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-05', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-06', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-07', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-08', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-09', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-10', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-11', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-12', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-13', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-14', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-15', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-16', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-17', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-18', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-19', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-20', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-21', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-22', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-23', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-24', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-25', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-26', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-27', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-28', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-29', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-30', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-31', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-01', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-02', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-03', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-04', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-05', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-06', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-07', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-08', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-09', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-10', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-11', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-12', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-13', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-14', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-15', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-16', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-17', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-18', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-19', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-20', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-21', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-22', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-23', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-24', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-25', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-26', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-27', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-28', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-29', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-30', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-31', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-01', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-02', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-03', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-04', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-05', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-06', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-07', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-08', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-09', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-10', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-11', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-12', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-13', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-14', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-15', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-16', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-17', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-18', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-19', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-20', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-21', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-22', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-23', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-24', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-25', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-26', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-27', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-28', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-29', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-30', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-01', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-02', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-03', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-04', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-05', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-06', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-07', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-08', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-09', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-10', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-11', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-12', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-13', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-14', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-15', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-16', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-17', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-18', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-19', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-20', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-21', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-22', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-23', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-24', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-25', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-26', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-27', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-28', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-29', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-30', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-31', 'main', 'Main Season', '09:30', '17:00', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-01', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-02', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-03', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-04', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-05', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-06', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-07', 'winter', 'Winter Fun', '10:30', '16:30', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-08', 'winter', 'Winter Fun', '10:30', '16:30', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-09', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-10', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-11', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-12', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-13', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-14', 'winter', 'Winter Fun', '10:30', '16:30', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-15', 'winter', 'Winter Fun', '10:30', '16:30', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-16', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-17', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-18', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-19', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-20', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-21', 'winter', 'Winter Fun', '10:30', '16:30', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-22', 'winter', 'Winter Fun', '10:30', '16:30', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-23', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-24', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-25', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-26', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-27', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-28', 'winter', 'Winter Fun', '10:30', '16:30', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-29', 'winter', 'Winter Fun', '10:30', '16:30', 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
-INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-30', 'closed', 'Park Closed', NULL, NULL, 'For our full 2026 calendar please click here
-
-Rides closed during ''Off Peak'':
-
-Watercoasters, Pedal Boat, Toboggan run, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Jumping Pillow, Nuttys Treehouse.
-
-Please note, some rides are closed during off-peak weekdays: Mon 20th, Fri 24th, Mon 27th April, Fri 1st May, Tues 5th to Fri 8th May, Mon 11th to Fri 15th May, Mon 18th to Fri 22nd May, Mon 7th, Fri 11th, Mon 14th, Fri 18th, Mon 21st, Fri 25th, Mon 28th Sept, Fri 2nd, Mon 5th, Fri 9th, Mon 12th, Fri 16th, Mon 19th & Fri 23rd Oct 2026. The rides not open during these off peak dates are: Watercoasters, Toboggan Run, Pedal Boats, Arctic Gliders, Dune Buggies, Avalanche, Bumper Boats, Nutty’s Treehouse, Jumping Pillow, Safari Adventure Golf.
-
-The Family Theme Park is not open: Tues, Wednes & Thurs: 21st, 22nd, 23rd, 28th, 29th & 30th April, 8th, 9th, 10th, 15th, 16th, 17th, 22nd, 23rd, 24th, 29th & 30th Sept, 1st, 6th, 7th, 8th, 13th, 14th, 15th, 20th, 21st & 22nd Oct 2026.');
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-01', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-02', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-03', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-04', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-05', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-06', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-07', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-08', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-09', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-10', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-11', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-12', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-13', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-14', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-15', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-16', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-17', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-18', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-19', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-20', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-21', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-22', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-23', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-24', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-25', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-26', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-27', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-28', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-29', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-04-30', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-01', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-02', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-03', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-04', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-05', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-06', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-07', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-08', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-09', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-10', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-11', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-12', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-13', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-14', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-15', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-16', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-17', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-18', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-19', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-20', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-21', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-22', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-23', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-24', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-25', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-26', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-27', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-28', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-29', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-30', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-05-31', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-01', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-02', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-03', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-04', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-05', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-06', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-07', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-08', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-09', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-10', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-11', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-12', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-13', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-14', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-15', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-16', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-17', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-18', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-19', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-20', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-21', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-22', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-23', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-24', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-25', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-26', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-27', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-28', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-29', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-06-30', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-01', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-02', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-03', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-04', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-05', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-06', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-07', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-08', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-09', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-10', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-11', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-12', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-13', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-14', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-15', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-16', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-17', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-18', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-19', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-20', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-21', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-22', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-23', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-24', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-25', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-26', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-27', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-28', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-29', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-30', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-07-31', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-01', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-02', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-03', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-04', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-05', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-06', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-07', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-08', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-09', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-10', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-11', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-12', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-13', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-14', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-15', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-16', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-17', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-18', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-19', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-20', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-21', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-22', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-23', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-24', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-25', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-26', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-27', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-28', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-29', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-30', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-08-31', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-01', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-02', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-03', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-04', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-05', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-06', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-07', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-08', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-09', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-10', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-11', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-12', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-13', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-14', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-15', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-16', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-17', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-18', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-19', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-20', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-21', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-22', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-23', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-24', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-25', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-26', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-27', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-28', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-29', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-09-30', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-01', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-02', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-03', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-04', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-05', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-06', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-07', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-08', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-09', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-10', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-11', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-12', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-13', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-14', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-15', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-16', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-17', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-18', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-19', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-20', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-21', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-22', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-23', 'off-peak', 'Off Peak Weekdays', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-24', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-25', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-26', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-27', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-28', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-29', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-30', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-10-31', 'main', 'Main Season', '09:30', '17:00', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-01', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-02', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-03', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-04', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-05', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-06', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-07', 'winter', 'Winter Fun', '10:30', '16:30', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-08', 'winter', 'Winter Fun', '10:30', '16:30', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-09', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-10', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-11', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-12', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-13', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-14', 'winter', 'Winter Fun', '10:30', '16:30', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-15', 'winter', 'Winter Fun', '10:30', '16:30', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-16', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-17', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-18', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-19', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-20', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-21', 'winter', 'Winter Fun', '10:30', '16:30', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-22', 'winter', 'Winter Fun', '10:30', '16:30', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-23', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-24', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-25', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-26', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-27', 'closed', 'Park Closed', NULL, NULL, NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-28', 'winter', 'Winter Fun', '10:30', '16:30', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-29', 'winter', 'Winter Fun', '10:30', '16:30', NULL);
+INSERT OR IGNORE INTO opening_times (date, status, season_label, open_time, close_time, notes) VALUES ('2026-11-30', 'closed', 'Park Closed', NULL, NULL, NULL);
 
 INSERT OR IGNORE INTO documents (title, description, local_path, source_url, page_paths) VALUES ('Woodlands Family Theme Park Access Statement 2024', 'Woodlands accessibility access statement PDF.', 'accessibility/woodlands-family-theme-park-access-statement-2024.pdf', 'https://www.woodlandspark.com/wp-content/uploads/2024/12/Woodlands-Family-Theme-Park-Access-Statement-2024.pdf', '["/visiting/accessibility","/visiting/height-restrictions"]');
 INSERT OR IGNORE INTO documents (title, description, local_path, source_url, page_paths) VALUES ('Childminder Annual Membership Form 2026', 'Childminder annual pass application form PDF.', 'forms/childminder-annual-membership-form-2026.pdf', 'https://www.woodlandspark.com/wp-content/uploads/2026/01/Childminder-Annual-Membership-Form-2026.pdf', '["/visiting/childminders-annual-pass"]');

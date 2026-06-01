@@ -172,7 +172,7 @@ SELECT id, ${q(section.title)}, ${q(section.body)}, ${n(section.sort_order)} FRO
         season_label,
         open_time,
         close_time,
-        notes: openingTimesSource.oldPageText.join("\n\n"),
+        notes: "",
       });
     }
   }

@@ -191,7 +191,7 @@ function seedCms() {
   for (const month of openingMonths) {
     for (const day of buildMonthDays(month).filter((cell) => !cell.blank)) {
       const [label, openTime, closeTime] = labels[day.status];
-      openingStmt.run(day.id, day.status, label, openTime, closeTime, openingTimesSource.oldPageText.join("\n\n"));
+      openingStmt.run(day.id, day.status, label, openTime, closeTime, null);
     }
   }
 

@@ -2,19 +2,23 @@ import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   Ban,
+  BarChart3,
   CalendarClock,
   CalendarDays,
   ChevronLeft,
   ChevronRight,
+  ClipboardList,
   FileImage,
   LayoutDashboard,
   ListChecks,
   LockKeyhole,
   LogOut,
+  MapPin,
   Pencil,
   Plus,
   Save,
   Send,
+  Settings,
   ShieldCheck,
   Ticket,
   Trash2,
@@ -27,6 +31,7 @@ import {
 import { apiRequest } from "../lib/api.js";
 import { AppLink } from "./Link.jsx";
 import { FoodMenuBrowser } from "./FoodMenuBrowser.jsx";
+import { mediaSource } from "../data/assets.js";
 
 const adminRoles = ["admin", "editor", "super_admin"];
 const userAdminRoles = ["admin", "super_admin"];
@@ -64,7 +69,7 @@ function ShiftRedirect({ onNavigate }) {
         description="Rota is now inside the Staff Portal."
         roles={["staff", "supervisor", "manager"]}
       />
-      <PortalShell>
+      <PortalShell wide>
         <div className="rounded-lg border-2 border-sunshine bg-white p-6 shadow-lift">
           <CalendarClock aria-hidden="true" className="text-berry" />
           <h2 className="mt-3 font-display text-3xl font-black text-ink">Rota is now inside the Staff Portal.</h2>
@@ -210,7 +215,7 @@ function AdminLoginPortal({ onNavigate }) {
   return (
     <>
       <PortalHero eyebrow="admin.woodlandspark.com" title="Admin Login" description="Sign in with an authorised Woodlands admin, editor or super-admin account." roles={["admin", "editor", "super-admin"]} />
-      <PortalShell>
+      <PortalShell wide>
         {loading ? (
           <LoadingCard label="Checking session..." />
         ) : (
@@ -576,7 +581,7 @@ function AdminPortal({ path, onNavigate }) {
         description="Content and operations management for authorised Woodlands staff."
         roles={["admin", "editor", "super-admin"]}
       />
-      <PortalShell>
+      <PortalShell wide>
         {loading ? (
           <LoadingCard label="Loading admin portal..." />
         ) : !isAllowed(user, adminRoles) ? (
@@ -1013,7 +1018,7 @@ function PagesManager({ pages, setData, setSaveMessage }) {
         <CreateButton label="Create Page" />
       </form>
 
-      <div className="grid gap-5 lg:grid-cols-[0.38fr_0.62fr]">
+      <div className="grid gap-5 xl:grid-cols-[300px_minmax(0,1fr)]">
         <aside className="max-h-[760px] overflow-auto rounded-lg border border-slate-200 bg-mist p-3">
           {pages.map((page) => (
             <button key={page.id} type="button" className={`focus-ring mb-2 block w-full rounded-lg p-3 text-left text-sm font-black ${String(selectedPage?.id) === String(page.id) ? "bg-woodpink text-white" : "bg-white text-ink hover:bg-sunshine"}`} onClick={() => setSelectedId(page.id)}>
@@ -1043,10 +1048,12 @@ function PagesManager({ pages, setData, setSaveMessage }) {
 
                 <form className="rounded-lg border border-slate-200 bg-white p-4" onSubmit={createSection}>
                   <h3 className="font-display text-2xl font-black text-ink">Add Content Section</h3>
-                  <div className="mt-4 grid gap-4 md:grid-cols-[1fr_2fr_0.4fr]">
+                  <div className="mt-4 grid gap-4 lg:grid-cols-[1fr_0.35fr]">
                     <AdminInput label="Section Title" value={newSection.title} onChange={(value) => setNewSection((current) => ({ ...current, title: value }))} required />
-                    <AdminTextarea label="Section Body" value={newSection.body} onChange={(value) => setNewSection((current) => ({ ...current, body: value }))} />
                     <AdminInput label="Order" type="number" value={newSection.sort_order} onChange={(value) => setNewSection((current) => ({ ...current, sort_order: value }))} />
+                    <div className="lg:col-span-2">
+                      <AdminTextarea label="Section Body" value={newSection.body} onChange={(value) => setNewSection((current) => ({ ...current, body: value }))} />
+                    </div>
                   </div>
                   <CreateButton label="Add Section" />
                 </form>
@@ -1740,7 +1747,8 @@ function StaffRotaManager({ path, user, onNavigate }) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const view = path.endsWith("/calendar") ? "calendar" : path.endsWith("/assignments") ? "assignments" : path.endsWith("/shifts") ? "shifts" : "overview";
+  const routeView = String(path || "").split("/").filter(Boolean).pop();
+  const view = ["schedule", "calendar", "shifts", "assignments", "timesheets", "team", "employees", "reports", "settings"].includes(routeView) ? routeView : "overview";
 
   const loadShifts = async () => {
     const next = await apiRequest("/staff/rota");
@@ -1885,9 +1893,15 @@ function StaffRotaManager({ path, user, onNavigate }) {
         <div className="mt-5 flex flex-wrap gap-2">
           {[
             ["/staff/rota", "Overview", LayoutDashboard],
+            ["/staff/rota/schedule", "Schedule", CalendarClock],
             ["/staff/rota/calendar", "Calendar", CalendarDays],
             ["/staff/rota/shifts", "Shifts", ListChecks],
             ["/staff/rota/assignments", "Assignments", UserCog],
+            ["/staff/rota/timesheets", "Timesheets", ClipboardList],
+            ["/staff/rota/team", "Team", Users],
+            ["/staff/rota/employees", "Employees", Users],
+            ["/staff/rota/reports", "Reports", BarChart3],
+            ["/staff/rota/settings", "Settings", Settings],
           ].map(([href, label, Icon]) => (
             <AppLink key={href} href={href} onNavigate={onNavigate} className={`focus-ring inline-flex min-h-11 items-center gap-2 rounded-xl px-4 py-2 text-sm font-black uppercase tracking-wide ${path === href || (view === "overview" && href === "/staff/rota") ? "bg-woodpink text-white shadow-button" : "bg-white text-ink ring-1 ring-slate-200 hover:bg-sunshine"}`}>
               <Icon aria-hidden="true" size={17} />
@@ -1916,8 +1930,20 @@ function StaffRotaManager({ path, user, onNavigate }) {
 
           {view === "calendar" ? (
             <DutyOrbitCalendar shifts={filteredShifts} employees={data.employees} currentMonth={currentMonth} setCurrentMonth={setCurrentMonth} canAssign={data.canAssign} filters={filters} setFilters={setFilters} />
+          ) : view === "schedule" ? (
+            <DutyOrbitSchedulePlanner shifts={filteredShifts} employees={data.employees} departments={data.departments} assignmentsByShift={assignmentsByShift} currentMonth={currentMonth} setCurrentMonth={setCurrentMonth} canEdit={data.canEdit} onNavigate={onNavigate} />
           ) : view === "assignments" ? (
             <DutyOrbitAssignments data={{ ...data, shifts: filteredShifts }} assignmentsByShift={assignmentsByShift} onAssign={assignEmployee} onUnassign={unassignEmployee} />
+          ) : view === "timesheets" ? (
+            <DutyOrbitTimesheets shifts={filteredShifts} employees={data.employees} assignmentsByShift={assignmentsByShift} />
+          ) : view === "team" ? (
+            <DutyOrbitTeamPanel shifts={filteredShifts} employees={data.employees} departments={data.departments} workLocations={workLocations} onNavigate={onNavigate} />
+          ) : view === "employees" ? (
+            <DutyOrbitEmployeesPanel employees={data.employees} departments={data.departments} assignmentsByShift={assignmentsByShift} shifts={filteredShifts} />
+          ) : view === "reports" ? (
+            <DutyOrbitReports shifts={filteredShifts} employees={data.employees} departments={data.departments} assignmentsByShift={assignmentsByShift} />
+          ) : view === "settings" ? (
+            <DutyOrbitSettingsPanel canEdit={data.canEdit} departments={data.departments} workLocations={workLocations} />
           ) : (
             <div className="grid gap-5">
               {(view === "overview" || view === "shifts") && data.canCreate && (
@@ -2074,6 +2100,358 @@ function DutyOrbitOverview({ shifts, assignmentsByShift, onNavigate }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function DutyOrbitSchedulePlanner({ shifts, employees, departments, assignmentsByShift, currentMonth, setCurrentMonth, canEdit, onNavigate }) {
+  const [viewMode, setViewMode] = useState("week");
+  const [selectedDate, setSelectedDate] = useState(toIsoDate(new Date()));
+  const selected = new Date(`${selectedDate}T12:00:00`);
+  const days = useMemo(() => {
+    if (viewMode === "day") return [selected];
+    if (viewMode === "month") return buildMonthDays(currentMonth).filter((day) => day.getMonth() === currentMonth.getMonth());
+    const start = startOfWeek(selected);
+    return Array.from({ length: 7 }, (_, index) => addDays(start, index));
+  }, [currentMonth, selectedDate, viewMode]);
+  const shiftsByDate = useMemo(() => groupShiftsByDate(shifts), [shifts]);
+  const assignmentCount = shifts.reduce((sum, shift) => sum + (assignmentsByShift.get(shift.id) || []).length, 0);
+
+  return (
+    <section className="grid gap-5 2xl:grid-cols-[minmax(0,1.35fr)_minmax(360px,0.65fr)]">
+      <div className="woodlands-glass-card rounded-2xl p-4 sm:p-5">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-berry">DutyOrbit Schedule</p>
+            <h3 className="mt-1 font-display text-3xl font-black text-ink">Schedule Planner</h3>
+            <p className="mt-1 max-w-3xl text-sm font-semibold leading-6 text-slate-700">Day, week and month planning with staff assignments, department filters and operational shift details.</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {["day", "week", "month"].map((mode) => (
+              <button key={mode} type="button" onClick={() => setViewMode(mode)} className={`focus-ring rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wide ${viewMode === mode ? "bg-woodpink text-white shadow-button" : "bg-white text-ink ring-1 ring-slate-200 hover:bg-sunshine"}`}>
+                {mode}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-3 md:grid-cols-[220px_1fr_auto] md:items-end">
+          <RotaInput label="Planner Date" type="date" value={selectedDate} onChange={setSelectedDate} />
+          <div className="grid gap-2">
+            <span className="text-xs font-black uppercase tracking-wide text-slate-600">Month Navigation</span>
+            <div className="flex items-center gap-2">
+              <button type="button" onClick={() => setCurrentMonth(addMonths(currentMonth, -1))} className="focus-ring inline-flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white text-ink hover:bg-sunshine" aria-label="Previous month">
+                <ChevronLeft aria-hidden="true" size={19} />
+              </button>
+              <span className="min-h-12 rounded-xl bg-white px-4 py-3 text-sm font-black text-ink ring-1 ring-slate-200">{monthTitle(currentMonth)}</span>
+              <button type="button" onClick={() => setCurrentMonth(addMonths(currentMonth, 1))} className="focus-ring inline-flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-white text-ink hover:bg-sunshine" aria-label="Next month">
+                <ChevronRight aria-hidden="true" size={19} />
+              </button>
+            </div>
+          </div>
+          {canEdit ? (
+            <AppLink href="/staff/rota/shifts" onNavigate={onNavigate} className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-woodpink px-5 py-3 text-sm font-black uppercase tracking-wide text-white shadow-button">
+              <Plus aria-hidden="true" size={18} />
+              Create Shift
+            </AppLink>
+          ) : null}
+        </div>
+
+        <div className="mt-5 overflow-x-auto">
+          <div className={`grid min-w-[900px] gap-3 ${viewMode === "day" ? "grid-cols-1" : viewMode === "week" ? "grid-cols-7" : "grid-cols-7"}`}>
+            {days.map((day) => {
+              const key = toIsoDate(day);
+              const dayShifts = shiftsByDate.get(key) || [];
+              return (
+                <article key={key} className="min-h-56 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-xs font-black uppercase tracking-wide text-berry">{weekdayShort(day)}</p>
+                      <h4 className="font-display text-2xl font-black text-ink">{day.getDate()}</h4>
+                    </div>
+                    <span className="rounded-lg bg-sunshine px-2 py-1 text-[11px] font-black uppercase text-ink">{monthShort(day)}</span>
+                  </div>
+                  <div className="mt-3 grid gap-2">
+                    {dayShifts.map((shift) => (
+                      <section key={shift.id} className="rounded-xl border border-slate-100 bg-mist p-3">
+                        <p className="truncate font-black text-ink">{shift.title}</p>
+                        <p className="mt-1 text-xs font-bold text-slate-700">{formatTimeLabel(shift.start_time)} - {formatTimeLabel(shift.end_time)}</p>
+                        <p className="truncate text-xs text-slate-600">{getShiftLocationLabel(shift)}</p>
+                        <p className="mt-1 truncate text-xs font-black text-berry">{assignmentNames(assignmentsByShift.get(shift.id) || [])}</p>
+                      </section>
+                    ))}
+                    {!dayShifts.length && <p className="rounded-xl bg-white p-3 text-xs font-bold text-slate-500 ring-1 ring-slate-100">No shifts scheduled.</p>}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <aside className="grid gap-4">
+        <div className="woodlands-glass-card rounded-2xl p-4">
+          <h3 className="font-display text-2xl font-black text-ink">Planner Parameters</h3>
+          <div className="mt-4 grid gap-3">
+            <PreviewLine label="Visible staff" value={employees.length || "Personal rota"} />
+            <PreviewLine label="Departments" value={departments.length} />
+            <PreviewLine label="Assignments" value={assignmentCount} />
+            <PreviewLine label="View mode" value={viewMode} />
+          </div>
+        </div>
+        <div className="woodlands-glass-card rounded-2xl p-4">
+          <h3 className="font-display text-2xl font-black text-ink">Department Load</h3>
+          <div className="mt-4 grid gap-2">
+            {departmentLoad(departments, shifts).map((row) => (
+              <div key={row.id || row.name} className="rounded-xl bg-white p-3 ring-1 ring-slate-200">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="font-black text-ink">{row.name}</span>
+                  <span className="rounded-lg bg-woodpink px-2 py-1 text-xs font-black text-white">{row.count}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </section>
+  );
+}
+
+function DutyOrbitTimesheets({ shifts, employees, assignmentsByShift }) {
+  const rows = buildTimesheetRows(shifts, employees, assignmentsByShift);
+  const totalHours = rows.reduce((sum, row) => sum + row.hours, 0);
+  return (
+    <section className="woodlands-glass-card rounded-2xl p-4 sm:p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-berry">DutyOrbit Timesheets</p>
+          <h3 className="mt-1 font-display text-3xl font-black text-ink">Timesheet Summary</h3>
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">Planned rota hours grouped by employee, including unpaid break deductions.</p>
+        </div>
+        <div className="rounded-2xl bg-sunshine px-5 py-3 text-right text-ink">
+          <p className="text-xs font-black uppercase tracking-wide">Planned Hours</p>
+          <p className="font-display text-4xl font-black">{totalHours.toFixed(1)}</p>
+        </div>
+      </div>
+      <div className="mt-5 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+        <table className="w-full min-w-[860px] text-left text-sm">
+          <thead className="bg-mist text-xs font-black uppercase tracking-wide text-slate-600">
+            <tr>
+              <th className="p-3">Employee</th>
+              <th className="p-3">Department</th>
+              <th className="p-3">Shifts</th>
+              <th className="p-3">Planned Hours</th>
+              <th className="p-3">Next Shift</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.id || row.name} className="border-t border-slate-100">
+                <td className="p-3 font-black text-ink">{row.name}</td>
+                <td className="p-3 text-slate-700">{row.department || "Not assigned"}</td>
+                <td className="p-3 text-slate-700">{row.shiftCount}</td>
+                <td className="p-3 font-black text-berry">{row.hours.toFixed(1)}</td>
+                <td className="p-3 text-slate-700">{row.nextShift ? `${formatDateLabel(row.nextShift.date)} - ${row.nextShift.title}` : "No upcoming shift"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {!rows.length && <p className="p-4 text-sm font-bold text-slate-600">No rota hours match the current filters.</p>}
+      </div>
+    </section>
+  );
+}
+
+function DutyOrbitTeamPanel({ shifts, employees, departments, workLocations, onNavigate }) {
+  const load = departmentLoad(departments, shifts);
+  return (
+    <section className="grid gap-5 xl:grid-cols-[1fr_0.8fr]">
+      <div className="woodlands-glass-card rounded-2xl p-4 sm:p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-berry">DutyOrbit Team</p>
+            <h3 className="mt-1 font-display text-3xl font-black text-ink">Team Rota Board</h3>
+          </div>
+          <AppLink href="/staff/rota/assignments" onNavigate={onNavigate} className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-xl bg-woodpink px-4 py-2 text-xs font-black uppercase tracking-wide text-white shadow-button">
+            Assign Staff
+            <ArrowRight aria-hidden="true" size={17} />
+          </AppLink>
+        </div>
+        <div className="mt-5 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
+          {load.map((department) => {
+            const team = employees.filter((employee) => String(employee.departmentId || "") === String(department.id || ""));
+            return (
+              <article key={department.id || department.name} className="rounded-2xl border border-slate-200 bg-white p-4">
+                <h4 className="font-display text-2xl font-black text-ink">{department.name}</h4>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <PreviewBadge label={`${department.count} shifts`} />
+                  <PreviewBadge label={`${team.length} staff`} variant="blue" />
+                </div>
+                <div className="mt-3 grid gap-2">
+                  {team.slice(0, 5).map((employee) => (
+                    <p key={employee.id} className="rounded-lg bg-mist px-3 py-2 text-sm font-bold text-slate-700">{employee.name} <span className="text-xs uppercase text-slate-500">({employee.role})</span></p>
+                  ))}
+                  {!team.length && <p className="rounded-lg bg-mist px-3 py-2 text-sm font-bold text-slate-600">No staff visible in this department.</p>}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+      <aside className="woodlands-glass-card rounded-2xl p-4 sm:p-5">
+        <h3 className="font-display text-2xl font-black text-ink">Work Locations</h3>
+        <div className="mt-4 grid gap-3">
+          {workLocations.map((location) => (
+            <div key={location.id} className="flex items-center gap-3 rounded-xl bg-white p-3 ring-1 ring-slate-200">
+              <MapPin aria-hidden="true" className="text-berry" size={18} />
+              <span className="font-bold text-slate-700">{location.name}</span>
+            </div>
+          ))}
+        </div>
+      </aside>
+    </section>
+  );
+}
+
+function DutyOrbitEmployeesPanel({ employees, assignmentsByShift, shifts }) {
+  const rows = employees.map((employee) => {
+    const employeeShifts = shifts.filter((shift) => (assignmentsByShift.get(shift.id) || []).some((assignment) => String(assignment.employeeId) === String(employee.id)));
+    return {
+      ...employee,
+      shiftCount: employeeShifts.length,
+      nextShift: employeeShifts[0],
+      hours: employeeShifts.reduce((sum, shift) => sum + shiftHours(shift), 0),
+    };
+  });
+  return (
+    <section className="woodlands-glass-card rounded-2xl p-4 sm:p-5">
+      <div>
+        <p className="text-xs font-black uppercase tracking-[0.18em] text-berry">DutyOrbit Employees</p>
+        <h3 className="mt-1 font-display text-3xl font-black text-ink">Employee Rota Directory</h3>
+      </div>
+      <div className="mt-5 overflow-x-auto rounded-xl border border-slate-200 bg-white">
+        <table className="w-full min-w-[900px] text-left text-sm">
+          <thead className="bg-mist text-xs font-black uppercase tracking-wide text-slate-600">
+            <tr>
+              <th className="p-3">Employee</th>
+              <th className="p-3">Role</th>
+              <th className="p-3">Department</th>
+              <th className="p-3">Assigned Shifts</th>
+              <th className="p-3">Planned Hours</th>
+              <th className="p-3">Next Shift</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((employee) => (
+              <tr key={employee.id} className="border-t border-slate-100">
+                <td className="p-3 font-black text-ink">{employee.name}</td>
+                <td className="p-3 text-slate-700">{employee.role}</td>
+                <td className="p-3 text-slate-700">{employee.department || "Not assigned"}</td>
+                <td className="p-3 text-slate-700">{employee.shiftCount}</td>
+                <td className="p-3 font-black text-berry">{employee.hours.toFixed(1)}</td>
+                <td className="p-3 text-slate-700">{employee.nextShift ? `${formatDateLabel(employee.nextShift.date)} - ${employee.nextShift.title}` : "No upcoming shift"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {!rows.length && <p className="p-4 text-sm font-bold text-slate-600">Employee directory is available to users with rota assignment access.</p>}
+      </div>
+    </section>
+  );
+}
+
+function DutyOrbitReports({ shifts, employees, departments, assignmentsByShift }) {
+  const assignedShiftCount = shifts.filter((shift) => (assignmentsByShift.get(shift.id) || []).length > 0).length;
+  const hours = shifts.reduce((sum, shift) => sum + shiftHours(shift), 0);
+  const byStatus = rotaStatuses.map((status) => ({ status, count: shifts.filter((shift) => shift.status === status).length }));
+  const byDepartment = departmentLoad(departments, shifts);
+  return (
+    <section className="grid gap-5">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {[
+          ["Total shifts", shifts.length, CalendarClock],
+          ["Assigned shifts", assignedShiftCount, UserCog],
+          ["Visible staff", employees.length || "Personal", Users],
+          ["Planned hours", hours.toFixed(1), BarChart3],
+        ].map(([label, value, Icon]) => (
+          <article key={label} className="woodlands-glass-card rounded-2xl p-4">
+            <Icon aria-hidden="true" className="text-berry" />
+            <p className="mt-2 text-xs font-black uppercase tracking-wide text-slate-600">{label}</p>
+            <p className="font-display text-4xl font-black text-ink">{value}</p>
+          </article>
+        ))}
+      </div>
+      <div className="grid gap-5 xl:grid-cols-2">
+        <div className="woodlands-glass-card rounded-2xl p-4 sm:p-5">
+          <h3 className="font-display text-2xl font-black text-ink">Status Breakdown</h3>
+          <div className="mt-4 grid gap-3">
+            {byStatus.map((row) => <RotaProgress key={row.status} label={row.status} value={row.count} max={shifts.length} />)}
+          </div>
+        </div>
+        <div className="woodlands-glass-card rounded-2xl p-4 sm:p-5">
+          <h3 className="font-display text-2xl font-black text-ink">Department Breakdown</h3>
+          <div className="mt-4 grid gap-3">
+            {byDepartment.map((row) => <RotaProgress key={row.id || row.name} label={row.name} value={row.count} max={Math.max(1, shifts.length)} />)}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DutyOrbitSettingsPanel({ canEdit, departments, workLocations }) {
+  const [settings, setSettings] = useState({
+    weekStartsOn: "Monday",
+    weekEndsOn: "Sunday",
+    normalHours: "09:00 - 17:30",
+    payRunDay: "Friday",
+    shiftReminder: "24 hours before shift",
+    tabletMode: "Staff PIN check-in",
+  });
+  return (
+    <section className="woodlands-glass-card rounded-2xl p-4 sm:p-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-berry">DutyOrbit Settings</p>
+          <h3 className="mt-1 font-display text-3xl font-black text-ink">Rota Workspace Settings</h3>
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">Operational parameters used by the rota screens.</p>
+        </div>
+        <Settings aria-hidden="true" className="text-berry" size={36} />
+      </div>
+      <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {Object.entries(settings).map(([key, value]) => (
+          <RotaInput
+            key={key}
+            label={settingLabel(key)}
+            value={value}
+            onChange={(next) => setSettings((current) => ({ ...current, [key]: next }))}
+          />
+        ))}
+        <PreviewLine label="Departments" value={departments.length} />
+        <PreviewLine label="Work locations" value={workLocations.length} />
+      </div>
+      {canEdit ? (
+        <p className="mt-4 rounded-xl bg-sunshine/25 p-3 text-sm font-bold text-ink">
+          Changes here shape the local rota workspace. Production persistence can be connected to the rota settings table when the policy values are final.
+        </p>
+      ) : (
+        <p className="mt-4 rounded-xl bg-mist p-3 text-sm font-bold text-slate-700">These settings are visible to staff with rota access.</p>
+      )}
+    </section>
+  );
+}
+
+function RotaProgress({ label, value, max }) {
+  const width = Math.max(4, Math.round((Number(value || 0) / Math.max(1, Number(max || 1))) * 100));
+  return (
+    <div className="rounded-xl bg-white p-3 ring-1 ring-slate-200">
+      <div className="flex items-center justify-between gap-3 text-sm font-black text-ink">
+        <span className="capitalize">{label}</span>
+        <span>{value}</span>
+      </div>
+      <div className="mt-2 h-3 overflow-hidden rounded-full bg-mist">
+        <div className="h-full rounded-full bg-woodpink" style={{ width: `${width}%` }} />
+      </div>
+    </div>
   );
 }
 
@@ -2447,9 +2825,107 @@ function assignmentNames(assignments) {
   return assignments.length ? assignments.map((assignment) => assignment.name).join(", ") : "Unassigned";
 }
 
+function groupShiftsByDate(shifts) {
+  const map = new Map();
+  for (const shift of shifts || []) {
+    const key = String(shift.date || "").slice(0, 10);
+    if (!key) continue;
+    const list = map.get(key) || [];
+    list.push(shift);
+    map.set(key, list);
+  }
+  return map;
+}
+
+function departmentLoad(departments, shifts) {
+  const known = new Map((departments || []).map((department) => [String(department.id), { id: department.id, name: department.name, count: 0 }]));
+  const unassigned = { id: "", name: "Unassigned Department", count: 0 };
+  for (const shift of shifts || []) {
+    const key = String(shift.department_id || "");
+    if (key && known.has(key)) {
+      known.get(key).count += 1;
+    } else if (shift.department_name) {
+      const generatedKey = `name-${shift.department_name}`;
+      if (!known.has(generatedKey)) known.set(generatedKey, { id: generatedKey, name: shift.department_name, count: 0 });
+      known.get(generatedKey).count += 1;
+    } else {
+      unassigned.count += 1;
+    }
+  }
+  const rows = [...known.values()];
+  if (unassigned.count) rows.push(unassigned);
+  return rows.sort((a, b) => b.count - a.count || String(a.name).localeCompare(String(b.name)));
+}
+
+function buildTimesheetRows(shifts, employees, assignmentsByShift) {
+  const rows = new Map();
+  for (const employee of employees || []) {
+    rows.set(String(employee.id), {
+      id: employee.id,
+      name: employee.name,
+      department: employee.department,
+      shiftCount: 0,
+      hours: 0,
+      nextShift: null,
+    });
+  }
+  for (const shift of shifts || []) {
+    const assignments = assignmentsByShift.get(shift.id) || [];
+    for (const assignment of assignments) {
+      const key = String(assignment.employeeId || assignment.name || "unassigned");
+      const row = rows.get(key) || {
+        id: assignment.employeeId || key,
+        name: assignment.name || "Unassigned",
+        department: assignment.department,
+        shiftCount: 0,
+        hours: 0,
+        nextShift: null,
+      };
+      row.shiftCount += 1;
+      row.hours += shiftHours(shift);
+      if (!row.nextShift || String(shift.date || "") < String(row.nextShift.date || "")) row.nextShift = shift;
+      rows.set(key, row);
+    }
+  }
+  return [...rows.values()].filter((row) => row.shiftCount > 0 || employees?.length).sort((a, b) => String(a.name).localeCompare(String(b.name)));
+}
+
+function shiftHours(shift) {
+  const start = minutesFromTime(shift?.start_time);
+  const end = minutesFromTime(shift?.end_time);
+  if (start === null || end === null) return 0;
+  let total = end - start;
+  if (total < 0) total += 24 * 60;
+  if (!shift?.paid_break) total -= numberOrZero(shift?.break_minutes);
+  return Math.max(0, total) / 60;
+}
+
+function minutesFromTime(value) {
+  const match = String(value || "").match(/^(\d{1,2}):(\d{2})/);
+  if (!match) return null;
+  const hours = Number(match[1]);
+  const minutes = Number(match[2]);
+  if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return null;
+  return (hours * 60) + minutes;
+}
+
 function numberOrZero(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function addDays(date, count) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + count);
+  return next;
+}
+
+function startOfWeek(date) {
+  const start = new Date(date);
+  const day = start.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  start.setDate(start.getDate() + diff);
+  return start;
 }
 
 function addMonths(date, count) {
@@ -2493,6 +2969,10 @@ function monthShort(date) {
   return new Intl.DateTimeFormat("en-GB", { month: "short" }).format(date);
 }
 
+function settingLabel(key) {
+  return String(key).replace(/([A-Z])/g, " $1").replace(/^./, (character) => character.toUpperCase());
+}
+
 function FoodorderPortal() {
   return (
     <>
@@ -2518,16 +2998,16 @@ function FoodorderPortal() {
 
 function EditorPreviewGrid({ editor, preview }) {
   return (
-    <div className="grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]">
-      <div className="min-w-0">{editor}</div>
-      <div className="min-w-0">{preview}</div>
+    <div className="admin-editor-grid">
+      <div className="admin-editor-pane">{editor}</div>
+      <div className="admin-preview-window">{preview}</div>
     </div>
   );
 }
 
 function PreviewCard({ eyebrow = "Live Preview", title, children }) {
   return (
-    <aside className="sticky top-4 rounded-lg border-2 border-sunshine bg-white p-4 shadow-sm">
+    <aside className="rounded-lg border-2 border-sunshine bg-white p-4 shadow-sm">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-berry">{eyebrow}</p>
       {title && <h3 className="mt-2 font-display text-2xl font-black text-ink">{title}</h3>}
       <div className="mt-4 grid gap-3">{children}</div>
@@ -2584,6 +3064,7 @@ function AdminEventPreview({ event }) {
 }
 
 function AdminOpeningPreview({ row }) {
+  const notes = cleanOpeningAdminNote(row.notes);
   return (
     <PreviewCard title={formatDateLabel(row.date) || row.date || "Opening Date"}>
       <div className="flex items-center gap-4 rounded-lg bg-mist p-4">
@@ -2597,7 +3078,11 @@ function AdminOpeningPreview({ row }) {
           </p>
         </div>
       </div>
-      {row.notes ? <p className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700 ring-1 ring-slate-200">{row.notes}</p> : null}
+      {notes ? <p className="rounded-lg bg-white p-3 text-sm leading-6 text-slate-700 ring-1 ring-slate-200">{notes}</p> : (
+        <p className="rounded-lg bg-white p-3 text-sm font-bold leading-6 text-slate-600 ring-1 ring-slate-200">
+          General off-peak and closed-date notes are shown once on the public Opening Times page, not repeated for every date.
+        </p>
+      )}
     </PreviewCard>
   );
 }
@@ -2668,7 +3153,15 @@ function AdminTicketPreview({ ticketType }) {
 }
 
 function PreviewImage({ src, alt }) {
-  return <img className="h-48 w-full rounded-lg object-cover ring-1 ring-slate-200" src={src} alt={alt} loading="lazy" />;
+  const resolved = adminMediaSource(src);
+  if (!resolved) {
+    return (
+      <div className="flex h-48 w-full items-center justify-center rounded-lg bg-mist p-4 text-center text-sm font-bold text-slate-600 ring-1 ring-slate-200">
+        No local image selected.
+      </div>
+    );
+  }
+  return <img className="h-48 w-full rounded-lg object-cover ring-1 ring-slate-200" src={resolved} alt={alt} loading="lazy" />;
 }
 
 function PreviewLine({ label, value }) {
@@ -2709,6 +3202,31 @@ function formatDateLabel(value) {
 function formatTimeLabel(value) {
   if (!value) return "";
   return String(value).slice(0, 5);
+}
+
+function adminMediaSource(value) {
+  if (!value) return "";
+  const raw = String(value).trim();
+  if (!raw) return "";
+  if (raw.startsWith("data:") || raw.startsWith("/") || raw.startsWith("http://") || raw.startsWith("https://")) return raw;
+  const normalized = raw
+    .replace(/^src[\\/]+assets[\\/]+images[\\/]+/i, "")
+    .replace(/^\.{0,2}[\\/]+assets[\\/]+images[\\/]+/i, "")
+    .replaceAll("\\", "/");
+  return mediaSource(normalized) || mediaSource(raw) || "";
+}
+
+function cleanOpeningAdminNote(value) {
+  const note = String(value || "").trim();
+  if (!note) return "";
+  const genericFragments = [
+    "For our full 2026 calendar",
+    "Rides closed during",
+    "Watercoasters, Pedal Boat",
+    "Please note, some rides are closed during off-peak",
+    "The Family Theme Park is not open",
+  ];
+  return genericFragments.some((fragment) => note.includes(fragment)) ? "" : note;
 }
 
 function ManagerPanel({ title, children }) {
