@@ -2,9 +2,9 @@
 
 Modern React + Vite + Tailwind redesign for Woodlands Family Theme Park with route-based public pages, ticket reservations, admin and staff operations, cafe menu browsing, newsletter capture and local assets.
 
-Production target: `https://woodlandspark.shubodaya.dev`
+Production target: `https://webdesignproject12.pages.com`
 
-Current Cloudflare Pages URL: `https://woodlandspark.pages.dev`
+Cloudflare Pages project: `webdesignproject12`
 
 ## Stack
 
@@ -84,9 +84,9 @@ Staff accounts:
 
 ## Production Setup
 
-Cloudflare production is configured as a GitHub-linked Pages project:
+Cloudflare production is currently deployed through Wrangler:
 
-- Project: `woodlandspark`
+- Project: `webdesignproject12`
 - Repository: `shubodaya/woodlandspark`
 - Production branch: `main`
 - Build command: `npm run build`
@@ -94,28 +94,29 @@ Cloudflare production is configured as a GitHub-linked Pages project:
 - D1 binding: `DB` -> `woodlandspark-db`
 - R2 binding: `MEDIA_BUCKET` -> `woodlandspark-media`
 
-Future pushes to `main` should trigger Cloudflare Pages deployments automatically.
+The new `webdesignproject12` Pages project is not GitHub-linked yet. Deploy manually with `npm run cf:deploy`, or connect the project to the GitHub repository in the Cloudflare Pages dashboard if automatic deployments from `main` are required.
 
 Latest verified production deployment:
 
 - Source: current `main` deployment.
-- Deployment refresh requested: `2026-06-01 20:25:59 +01:00`.
-- Pages URL: `https://woodlandspark.pages.dev`
+- Deployment refresh requested: `2026-06-02 21:30:38 +01:00`.
+- Public URL: `https://webdesignproject12.pages.com`
+- Cloudflare Pages fallback URL: `https://webdesignproject12.pages.dev`
 - Status: deployed successfully with SPA route fallback, D1 binding and R2 binding.
 
 Custom domain status:
 
-- `woodlandspark.shubodaya.dev` has been added to the Pages project.
-- Cloudflare currently reports the domain as pending because the CNAME record is not set.
-- Required DNS record in the `shubodaya.dev` zone:
+- `webdesignproject12.pages.com` must be added to the Pages project as a custom domain before it can serve traffic.
+- Cloudflare Pages default project hostnames use the `pages.dev` domain. The requested `pages.com` hostname requires domain ownership/DNS access.
+- Required DNS record in the authoritative DNS zone for `pages.com` or the delegated subdomain:
 
 ```text
 type: CNAME
-name: woodlandspark
-target: woodlandspark.pages.dev
+name: webdesignproject12
+target: webdesignproject12.pages.dev
 ```
 
-The local Wrangler OAuth credentials used for this setup can manage Pages, D1 and R2, but were not accepted by the Cloudflare DNS API for zone record creation. Add the CNAME in the Cloudflare dashboard or with a DNS-scoped Cloudflare API token, then Cloudflare Pages should validate the custom domain.
+Add the CNAME in the Cloudflare dashboard or with a DNS-scoped Cloudflare API token, then Cloudflare Pages should validate the custom domain.
 
 1. Cloudflare resources already created:
 
@@ -129,7 +130,7 @@ woodlandspark-media
 3. Set secrets in Cloudflare Pages:
 
 ```powershell
-npx wrangler pages secret put ADMIN_BOOTSTRAP_TOKEN --project-name woodlandspark
+npx wrangler pages secret put ADMIN_BOOTSTRAP_TOKEN --project-name webdesignproject12
 ```
 
 4. Apply schema and seed public content:
@@ -147,7 +148,7 @@ npm run build
 
 Deployment should run through the Cloudflare GitHub integration after pushing to `main`.
 
-6. Create the first production admin through `https://woodlandspark.shubodaya.dev/admin/setup` using the private `ADMIN_BOOTSTRAP_TOKEN`. Do not publish the token, email or password.
+6. Create the first production admin through `https://webdesignproject12.pages.com/admin/setup` using the private `ADMIN_BOOTSTRAP_TOKEN`. Do not publish the token, email or password.
 
 Disable or rotate `ADMIN_BOOTSTRAP_TOKEN` after the first admin is created.
 

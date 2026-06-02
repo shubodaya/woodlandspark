@@ -8,4 +8,4 @@ Disallow: /tickets/login
 Disallow: /tickets/register
 Disallow: /tickets/checkout
 
-Sitemap: https://woodlandspark.shubodaya.dev/sitemap.xml
+Sitemap: https://webdesignproject12.pages.com/sitemap.xml

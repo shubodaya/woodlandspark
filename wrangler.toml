@@ -1,10 +1,10 @@
-name = "woodlandspark"
+name = "webdesignproject12"
 compatibility_date = "2026-05-30"
 pages_build_output_dir = "dist"
 
 [vars]
 APP_ENV = "production"
-PRODUCTION_URL = "https://woodlandspark.shubodaya.dev"
+PRODUCTION_URL = "https://webdesignproject12.pages.com"
 SESSION_COOKIE = "woodlands_session"
 SESSION_DAYS = "7"
 MEDIA_PUBLIC_BASE = "/media"

@@ -15,7 +15,7 @@
     "cf:pages:dev": "npm run build && npx wrangler pages dev dist --compatibility-date=2026-05-30",
     "cf:d1:migrate": "npx wrangler d1 migrations apply woodlandspark-db --remote",
     "cf:d1:seed": "npx wrangler d1 execute woodlandspark-db --remote --file=seed-production-safe.sql",
-    "cf:deploy": "npm run build && npx wrangler pages deploy dist --project-name woodlandspark",
+    "cf:deploy": "npm run build && npx wrangler pages deploy dist --project-name webdesignproject12",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1"
   },

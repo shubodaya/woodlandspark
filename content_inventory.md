@@ -2193,11 +2193,11 @@ TODO: Production copy should still be reviewed by Woodlands before launch becaus
     - R2 `MEDIA_BUCKET` -> `woodlandspark-media`
   - Set generated Cloudflare Pages secret `ADMIN_BOOTSTRAP_TOKEN`.
 - Items still requiring live Cloudflare account action:
-  - Production deployment from current `main` succeeded at `https://woodlandspark.pages.dev`.
-  - GitHub-linked Pages deployment was confirmed with `Git Provider: Yes`; setup deployments were triggered through the Cloudflare Pages API using Git commit metadata because no automatic webhook run appeared after push during testing.
-  - The custom domain `https://woodlandspark.shubodaya.dev` has been added to the Pages project, but Cloudflare reports it as `pending` with `CNAME record not set`.
-  - Required DNS record: `CNAME woodlandspark -> woodlandspark.pages.dev` in the `shubodaya.dev` zone. The current local Wrangler OAuth token can manage Pages/D1/R2 but was rejected by the Cloudflare DNS API for zone record creation.
-  - After the CNAME is added, recheck Pages custom domain validation and test `https://woodlandspark.shubodaya.dev`.
+  - Production deployment target has been renamed to `https://webdesignproject12.pages.com`.
+  - The new `webdesignproject12` Cloudflare Pages project has been created and deployed through Wrangler. Cloudflare reports `Git Provider: No`, so future automatic GitHub deployments require connecting the project to `shubodaya/woodlandspark` in the Cloudflare Pages dashboard.
+  - The requested `https://webdesignproject12.pages.com` hostname must be added as a Cloudflare Pages custom domain and pointed at `webdesignproject12.pages.dev`.
+  - Required DNS record: `CNAME webdesignproject12 -> webdesignproject12.pages.dev` in the authoritative DNS zone for `pages.com` or a delegated subdomain.
+  - After the CNAME is added, recheck Pages custom domain validation and test `https://webdesignproject12.pages.com`.
 
 ## Staff Rota Integration Update - 2026-05-30
 
