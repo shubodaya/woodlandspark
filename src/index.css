@@ -234,6 +234,44 @@ input {
   backdrop-filter: blur(14px);
 }
 
+.staff-mobile-shell {
+  position: relative;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(198, 2, 90, 0.08), transparent 28%),
+    #f3f1f6;
+}
+
+.staff-dashboard-card {
+  border-radius: 1.35rem;
+  border: 1px solid rgba(214, 219, 228, 0.85);
+  background: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 16px 36px rgba(24, 33, 43, 0.08);
+}
+
+@media (min-width: 640px) {
+  .staff-dashboard-card {
+    padding: 1.25rem;
+  }
+}
+
+.staff-more-link {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 1rem;
+  background: #f3f1f6;
+  padding: 0.85rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 900;
+  color: #18212b;
+}
+
+.staff-more-link:hover {
+  background: #ffd73a;
+}
+
 .admin-editor-grid {
   display: grid;
   gap: 1.25rem;

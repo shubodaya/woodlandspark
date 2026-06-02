@@ -46,6 +46,9 @@ export async function onRequest(context) {
 
     if (route.startsWith("admin/")) return withRole(request, env, adminRoles, (user) => adminRoute(route, request, env, user));
     if (route === "staff/dashboard" && request.method === "GET") return withRole(request, env, staffRoles, (user) => staffDashboard(env, user));
+    if (route === "staff/time-clock" && request.method === "GET") return withRole(request, env, staffRoles, (user) => staffDashboard(env, user));
+    if (route === "staff/time-clock/start" && request.method === "POST") return withRole(request, env, staffRoles, (user) => startTimeClock(request, env, user));
+    if (route === "staff/time-clock/end" && request.method === "POST") return withRole(request, env, staffRoles, (user) => endTimeClock(request, env, user));
     if ((route === "staff/rota" || route === "staff/rota/shifts" || route === "shifts") && request.method === "GET") return withRole(request, env, staffRoles, (user) => listShifts(request, env, user));
     if ((route === "staff/rota/shifts" || route === "shifts") && request.method === "POST") return withRole(request, env, shiftCreateRoles, (user) => createShift(request, env, user));
     if ((route.startsWith("staff/rota/shifts/") || route.startsWith("shifts/")) && request.method === "PUT" && !route.includes("/assignments")) return withRole(request, env, shiftCreateRoles, (user) => updateShift(request, env, user, Number(route.split("/").filter(Boolean).pop())));
@@ -1008,6 +1011,7 @@ async function staffDashboard(env, user) {
     LEFT JOIN departments ON departments.id = employees.department_id
     WHERE employees.user_id = ?
   `).bind(user.id).first();
+  const base = await buildStaffDashboard(env, user, employee);
   const { results: announcements } = await env.DB.prepare(`
     SELECT title, body, audience, published_at AS publishedAt
     FROM announcements
@@ -1029,7 +1033,331 @@ async function staffDashboard(env, user) {
         ORDER BY users.name
       `).all()
     : { results: [] };
-  return ok({ employee, announcements, documents, shifts: [], managerView });
+  return ok({ ...base, announcements, documents, managerView });
+}
+
+async function buildStaffDashboard(env, user, employee = null) {
+  const currentEmployee = employee || await employeeForUser(env, user.id);
+  const shifts = currentEmployee ? await assignedShiftsForEmployee(env, currentEmployee.id) : [];
+  const range = weekRange();
+  const today = isoDate(new Date());
+  const weekShifts = shifts.filter((shift) => shift.date >= range.startDate && shift.date <= range.endDate);
+  const upcomingShifts = shifts.filter((shift) => shift.date >= today);
+  const currentShift = findCurrentShift(shifts);
+  const currentSession = currentEmployee ? await getActiveSession(env, currentEmployee.id) : null;
+  const previousSession = currentEmployee ? await getLastSession(env, currentEmployee.id) : null;
+  const workedHours = currentEmployee ? await workedHoursForRange(env, currentEmployee.id, range.start.toISOString(), range.end.toISOString()) : 0;
+  const openShifts = currentEmployee?.department_id ? await openDepartmentShifts(env, currentEmployee.department_id, today) : [];
+  const upcomingLeave = currentEmployee ? await leaveForEmployee(env, currentEmployee.id, today) : [];
+  const timeOffSummary = currentEmployee ? await timeOffCounts(env, currentEmployee.id, range.startDate, range.endDate) : { unavailability: 0, leave: 0, absences: 0 };
+  return {
+    employee: currentEmployee,
+    shifts,
+    activeSession: currentSession,
+    lastSession: previousSession,
+    currentShift,
+    workLocation: currentSession ? null : await defaultWorkLocation(env),
+    weekSummary: {
+      dateRange: `${formatShortDate(range.start)} - ${formatShortDate(addDays(range.end, -1))}`,
+      scheduledHours: roundHours(weekShifts.reduce((total, shift) => total + shiftHours(shift), 0)),
+      workedHours: roundHours(workedHours),
+      shiftCount: weekShifts.length,
+    },
+    scheduleOverview: {
+      dateRange: `${formatShortDate(range.start)} - ${formatShortDate(addDays(range.end, -1))}`,
+      upcomingShiftsCount: upcomingShifts.length,
+      unconfirmedShiftsCount: 0,
+      shiftConflictsCount: countConflicts(weekShifts),
+    },
+    availableShifts: {
+      shiftOffersCount: openShifts.length,
+      openShiftsCount: openShifts.length,
+    },
+    upcomingLeave,
+    timeOffSummary,
+  };
+}
+
+async function startTimeClock(request, env, user) {
+  const body = await readJson(request);
+  const employee = await employeeForUser(env, user.id);
+  if (!employee) return fail(403, "This account is not linked to a staff employee record.");
+  const active = await getActiveSession(env, employee.id);
+  if (active) return fail(409, "A shift is already in progress.");
+  const shifts = await assignedShiftsForEmployee(env, employee.id);
+  const shift = body.shiftId
+    ? shifts.find((item) => String(item.id) === String(body.shiftId))
+    : findCurrentShift(shifts) || shifts.find((item) => item.date >= isoDate(new Date()));
+  const workLocation = await resolveWorkLocation(env, body.workLocationId, shift);
+  const locationCheck = validateClockLocation(body, workLocation);
+  if (locationCheck.error) return fail(400, locationCheck.error);
+  const timestamp = new Date().toISOString();
+  const result = await env.DB.prepare(`
+    INSERT INTO time_clock_sessions (
+      employee_id, user_id, shift_id, work_location_id, status, clock_in_at,
+      clock_in_latitude, clock_in_longitude, clock_in_accuracy_meters, clock_in_distance_meters,
+      notes, updated_at
+    )
+    VALUES (?, ?, ?, ?, 'in_progress', ?, ?, ?, ?, ?, ?, ?)
+  `).bind(
+    employee.id,
+    user.id,
+    shift?.id || null,
+    workLocation?.id || null,
+    timestamp,
+    locationCheck.latitude,
+    locationCheck.longitude,
+    locationCheck.accuracy,
+    locationCheck.distance,
+    body.notes || null,
+    timestamp,
+  ).run();
+  await audit(env, user.id, "staff.time_clock.start", "time_clock_sessions", result.meta.last_row_id, { shiftId: shift?.id || null, workLocationId: workLocation?.id || null });
+  return ok(await buildStaffDashboard(env, user, employee));
+}
+
+async function endTimeClock(request, env, user) {
+  const body = await readJson(request);
+  const employee = await employeeForUser(env, user.id);
+  if (!employee) return fail(403, "This account is not linked to a staff employee record.");
+  const session = await getActiveSession(env, employee.id);
+  if (!session) return fail(404, "No active shift is in progress.");
+  const workLocation = session.work_location_id
+    ? await env.DB.prepare("SELECT * FROM work_locations WHERE id = ?").bind(session.work_location_id).first()
+    : await defaultWorkLocation(env);
+  const locationCheck = validateClockLocation(body, workLocation);
+  if (locationCheck.error) return fail(400, locationCheck.error);
+  const timestamp = new Date().toISOString();
+  await env.DB.prepare(`
+    UPDATE time_clock_sessions
+    SET status = 'finished',
+      clock_out_at = ?,
+      clock_out_latitude = ?,
+      clock_out_longitude = ?,
+      clock_out_accuracy_meters = ?,
+      clock_out_distance_meters = ?,
+      updated_at = ?
+    WHERE id = ?
+  `).bind(timestamp, locationCheck.latitude, locationCheck.longitude, locationCheck.accuracy, locationCheck.distance, timestamp, session.id).run();
+  await audit(env, user.id, "staff.time_clock.end", "time_clock_sessions", session.id, { workLocationId: workLocation?.id || null });
+  return ok(await buildStaffDashboard(env, user, employee));
+}
+
+async function employeeForUser(env, userId) {
+  return env.DB.prepare(`
+    SELECT employees.*, departments.name AS department_name
+    FROM employees
+    LEFT JOIN departments ON departments.id = employees.department_id
+    WHERE employees.user_id = ?
+  `).bind(userId).first();
+}
+
+async function assignedShiftsForEmployee(env, employeeId) {
+  const { results } = await env.DB.prepare(`
+    SELECT shifts.*, departments.name AS department_name
+    FROM rota_assignments
+    JOIN shifts ON shifts.id = rota_assignments.shift_id
+    LEFT JOIN departments ON departments.id = shifts.department_id
+    WHERE rota_assignments.employee_id = ?
+    ORDER BY shifts.date, shifts.start_time
+  `).bind(employeeId || 0).all();
+  return results;
+}
+
+async function getActiveSession(env, employeeId) {
+  return env.DB.prepare(`
+    SELECT time_clock_sessions.*, shifts.title AS shift_title, shifts.date AS shift_date,
+      shifts.start_time AS shift_start_time, shifts.end_time AS shift_end_time,
+      work_locations.name AS work_location_name, work_locations.radius_meters AS work_location_radius
+    FROM time_clock_sessions
+    LEFT JOIN shifts ON shifts.id = time_clock_sessions.shift_id
+    LEFT JOIN work_locations ON work_locations.id = time_clock_sessions.work_location_id
+    WHERE time_clock_sessions.employee_id = ? AND time_clock_sessions.status = 'in_progress'
+    ORDER BY time_clock_sessions.clock_in_at DESC
+    LIMIT 1
+  `).bind(employeeId || 0).first();
+}
+
+async function getLastSession(env, employeeId) {
+  return env.DB.prepare(`
+    SELECT time_clock_sessions.*, shifts.title AS shift_title, work_locations.name AS work_location_name
+    FROM time_clock_sessions
+    LEFT JOIN shifts ON shifts.id = time_clock_sessions.shift_id
+    LEFT JOIN work_locations ON work_locations.id = time_clock_sessions.work_location_id
+    WHERE time_clock_sessions.employee_id = ? AND time_clock_sessions.status = 'finished'
+    ORDER BY time_clock_sessions.clock_out_at DESC
+    LIMIT 1
+  `).bind(employeeId || 0).first();
+}
+
+async function defaultWorkLocation(env) {
+  return env.DB.prepare("SELECT * FROM work_locations WHERE active = 1 ORDER BY id LIMIT 1").first();
+}
+
+async function resolveWorkLocation(env, workLocationId, shift) {
+  if (workLocationId) {
+    const selected = await env.DB.prepare("SELECT * FROM work_locations WHERE id = ? AND active = 1").bind(Number(workLocationId)).first();
+    if (selected) return selected;
+  }
+  if (shift?.location) {
+    const byName = await env.DB.prepare("SELECT * FROM work_locations WHERE lower(name) = lower(?) AND active = 1").bind(shift.location).first();
+    if (byName) return byName;
+  }
+  return defaultWorkLocation(env);
+}
+
+function validateClockLocation(body, workLocation) {
+  if (!workLocation || workLocation.latitude == null || workLocation.longitude == null) {
+    return { latitude: null, longitude: null, accuracy: null, distance: null };
+  }
+  const latitude = Number(body.latitude);
+  const longitude = Number(body.longitude);
+  const accuracy = body.accuracy == null ? null : Number(body.accuracy);
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return { error: "Location is required before clocking in or out." };
+  const distance = distanceMeters(latitude, longitude, Number(workLocation.latitude), Number(workLocation.longitude));
+  const radius = Number(workLocation.radius_meters || 100);
+  if (distance > radius) return { error: `You must be within ${radius}m of ${workLocation.name} to clock in or out.` };
+  return { latitude, longitude, accuracy: Number.isFinite(accuracy) ? accuracy : null, distance: Math.round(distance) };
+}
+
+async function workedHoursForRange(env, employeeId, startIso, endIso) {
+  const { results } = await env.DB.prepare(`
+    SELECT clock_in_at, clock_out_at, status
+    FROM time_clock_sessions
+    WHERE employee_id = ? AND clock_in_at >= ? AND clock_in_at < ?
+  `).bind(employeeId, startIso, endIso).all();
+  return results.reduce((total, session) => total + sessionHours(session), 0);
+}
+
+async function leaveForEmployee(env, employeeId, today) {
+  const { results } = await env.DB.prepare(`
+    SELECT start_date AS startDate, end_date AS endDate, leave_type AS leaveType, status, notes
+    FROM leave_requests
+    WHERE employee_id = ? AND end_date >= ? AND status = 'approved'
+    ORDER BY start_date
+    LIMIT 5
+  `).bind(employeeId, today).all();
+  return results;
+}
+
+async function timeOffCounts(env, employeeId, startDate, endDate) {
+  const { results } = await env.DB.prepare(`
+    SELECT entry_type AS entryType, COUNT(*) AS count
+    FROM time_off_entries
+    WHERE employee_id = ? AND end_date >= ? AND start_date <= ?
+    GROUP BY entry_type
+  `).bind(employeeId, startDate, endDate).all();
+  const counts = { unavailability: 0, leave: 0, absences: 0 };
+  for (const row of results) {
+    if (row.entryType === "unavailability") counts.unavailability = row.count;
+    if (row.entryType === "leave") counts.leave = row.count;
+    if (row.entryType === "absence") counts.absences = row.count;
+  }
+  return counts;
+}
+
+async function openDepartmentShifts(env, departmentId, today) {
+  const { results } = await env.DB.prepare(`
+    SELECT shifts.*
+    FROM shifts
+    LEFT JOIN rota_assignments ON rota_assignments.shift_id = shifts.id
+    WHERE shifts.department_id = ? AND shifts.date >= ? AND rota_assignments.id IS NULL
+    ORDER BY shifts.date, shifts.start_time
+    LIMIT 50
+  `).bind(departmentId, today).all();
+  return results;
+}
+
+function weekRange(base = new Date()) {
+  const start = new Date(base);
+  start.setHours(0, 0, 0, 0);
+  const day = start.getDay();
+  start.setDate(start.getDate() + (day === 0 ? -6 : 1 - day));
+  const end = new Date(start);
+  end.setDate(start.getDate() + 7);
+  return { start, end, startDate: isoDate(start), endDate: isoDate(addDays(end, -1)) };
+}
+
+function findCurrentShift(shifts) {
+  const nowDate = new Date();
+  const today = isoDate(nowDate);
+  const nowMinutes = nowDate.getHours() * 60 + nowDate.getMinutes();
+  return shifts.find((shift) => {
+    if (shift.date !== today) return false;
+    const start = minutesFromTime(shift.start_time);
+    const end = minutesFromTime(shift.end_time);
+    return start != null && end != null && nowMinutes >= start - 60 && nowMinutes <= end + 60;
+  }) || shifts.find((shift) => shift.date >= today) || null;
+}
+
+function countConflicts(shifts) {
+  let count = 0;
+  const byDate = new Map();
+  for (const shift of shifts) {
+    const list = byDate.get(shift.date) || [];
+    byDate.set(shift.date, list);
+    list.push(shift);
+  }
+  for (const list of byDate.values()) {
+    const sorted = list.slice().sort((a, b) => String(a.start_time).localeCompare(String(b.start_time)));
+    for (let index = 1; index < sorted.length; index += 1) {
+      if (minutesFromTime(sorted[index].start_time) < minutesFromTime(sorted[index - 1].end_time)) count += 1;
+    }
+  }
+  return count;
+}
+
+function shiftHours(shift) {
+  const start = minutesFromTime(shift.start_time);
+  const end = minutesFromTime(shift.end_time);
+  if (start == null || end == null) return 0;
+  let total = end - start;
+  if (total < 0) total += 24 * 60;
+  if (!shift.paid_break) total -= Number(shift.break_minutes || 0);
+  return Math.max(0, total / 60);
+}
+
+function sessionHours(session) {
+  const start = new Date(session.clock_in_at).getTime();
+  const end = session.clock_out_at ? new Date(session.clock_out_at).getTime() : Date.now();
+  if (!Number.isFinite(start) || !Number.isFinite(end)) return 0;
+  return Math.max(0, (end - start) / 3600000);
+}
+
+function minutesFromTime(value) {
+  const match = String(value || "").match(/^(\d{1,2}):(\d{2})/);
+  return match ? Number(match[1]) * 60 + Number(match[2]) : null;
+}
+
+function isoDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function addDays(date, count) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + count);
+  return next;
+}
+
+function formatShortDate(date) {
+  return new Intl.DateTimeFormat("en-GB", { day: "2-digit", month: "short" }).format(date);
+}
+
+function roundHours(value) {
+  return Math.round(Number(value || 0) * 10) / 10;
+}
+
+function distanceMeters(lat1, lon1, lat2, lon2) {
+  const toRad = (value) => (value * Math.PI) / 180;
+  const earthRadius = 6371000;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2
+    + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return earthRadius * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
 async function listShifts(request, env, user) {

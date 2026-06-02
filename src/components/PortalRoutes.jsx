@@ -8,22 +8,29 @@ import {
   ChevronLeft,
   ChevronRight,
   ClipboardList,
+  Clock3,
   FileImage,
+  Home,
   LayoutDashboard,
   ListChecks,
   LockKeyhole,
   LogOut,
   MapPin,
+  MoreHorizontal,
   Pencil,
+  Play,
   Plus,
+  RefreshCw,
   Save,
   Send,
   Settings,
   ShieldCheck,
+  Square,
   Ticket,
   Trash2,
   Upload,
   UserCog,
+  UserCircle,
   UserPlus,
   Users,
   Utensils,
@@ -693,7 +700,10 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
     jobTitle: "Ranger",
   });
   const [resetForm, setResetForm] = useState({ userId: "", password: "" });
+  const [roleFilter, setRoleFilter] = useState("");
   const [error, setError] = useState("");
+  const visibleUsers = roleFilter ? users.filter((user) => user.role === roleFilter) : users;
+  const userRoleFilters = [...new Set(users.map((user) => user.role).filter(Boolean))].sort();
 
   const createUser = async (event) => {
     event.preventDefault();
@@ -843,6 +853,15 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
         </div>
       )}
       {error && <p className="rounded-lg bg-red-50 p-3 text-sm font-bold text-red-700">{error}</p>}
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <label className="grid max-w-sm gap-2">
+          <span className="text-sm font-extrabold text-ink">Filter users by role</span>
+          <select className="focus-ring min-h-12 rounded-lg border border-slate-300 bg-white px-3" value={roleFilter} onChange={(event) => setRoleFilter(event.target.value)}>
+            <option value="">All roles</option>
+            {userRoleFilters.map((role) => <option key={role} value={role}>{role}</option>)}
+          </select>
+        </label>
+      </div>
       <div className="overflow-auto rounded-lg border border-slate-200 bg-white">
         <table className="w-full min-w-[920px] text-left text-sm">
           <thead className="bg-mist text-ink">
@@ -856,7 +875,7 @@ function UsersManager({ users, departments, setData, setSaveMessage, currentUser
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {visibleUsers.map((user) => (
               <tr key={user.id} className="border-t border-slate-200">
                 <td className="p-3">
                   <p className="font-black text-ink">{user.name}</p>
@@ -1148,6 +1167,25 @@ function EventsManager({ events, setData, setSaveMessage }) {
 
 function OpeningManager({ openingTimes, setData, setSaveMessage }) {
   const [form, setForm] = useState({ date: "", status: "closed", season_label: "Park Closed", open_time: "", close_time: "", notes: "" });
+  const monthKeys = useMemo(() => [...new Set(openingTimes.map((row) => String(row.date || "").slice(0, 7)).filter(Boolean))].sort(), [openingTimes]);
+  const [activeMonthKey, setActiveMonthKey] = useState(monthKeys[0] || "");
+  const [selectedDate, setSelectedDate] = useState(openingTimes[0]?.date || "");
+  useEffect(() => {
+    if (!activeMonthKey && monthKeys[0]) setActiveMonthKey(monthKeys[0]);
+  }, [activeMonthKey, monthKeys]);
+  const monthRows = useMemo(() => openingTimes.filter((row) => String(row.date || "").startsWith(activeMonthKey)), [openingTimes, activeMonthKey]);
+  const rowByDate = useMemo(() => new Map(monthRows.map((row) => [row.date, row])), [monthRows]);
+  const selectedRow = openingTimes.find((row) => row.date === selectedDate) || monthRows[0] || openingTimes[0];
+  const activeMonthDate = activeMonthKey ? new Date(`${activeMonthKey}-01T12:00:00`) : new Date();
+  const openingCalendarDays = useMemo(() => buildMonthDays(activeMonthDate), [activeMonthKey]);
+  const moveMonth = (direction) => {
+    if (!monthKeys.length) return;
+    const currentIndex = Math.max(0, monthKeys.indexOf(activeMonthKey));
+    const nextKey = monthKeys[(currentIndex + direction + monthKeys.length) % monthKeys.length];
+    setActiveMonthKey(nextKey);
+    const nextRow = openingTimes.find((row) => String(row.date || "").startsWith(nextKey));
+    if (nextRow) setSelectedDate(nextRow.date);
+  };
   const createOpening = async (event) => {
     event.preventDefault();
     const data = await apiRequest("/admin/opening-times", { method: "POST", body: JSON.stringify(form) });
@@ -1183,17 +1221,68 @@ function OpeningManager({ openingTimes, setData, setSaveMessage }) {
         <AdminTextarea label="Notes" value={form.notes} onChange={(value) => setForm((current) => ({ ...current, notes: value }))} />
         <CreateButton label="Create Opening Date" />
       </form>
-      {openingTimes.map((row) => (
-        <EditorPreviewGrid
-          key={row.id}
-          editor={(
-            <EditableCard title={row.date}>
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(420px,0.55fr)]">
+        <section className="rounded-lg border border-slate-200 bg-mist p-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <button type="button" onClick={() => moveMonth(-1)} className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white text-ink ring-1 ring-slate-200 hover:bg-sunshine" aria-label="Previous month">
+              <ChevronLeft aria-hidden="true" size={18} />
+            </button>
+            <div className="text-center">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-berry">Calendar Editor</p>
+              <h3 className="font-display text-3xl font-black text-ink">{monthTitle(activeMonthDate)}</h3>
+            </div>
+            <button type="button" onClick={() => moveMonth(1)} className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white text-ink ring-1 ring-slate-200 hover:bg-sunshine" aria-label="Next month">
+              <ChevronRight aria-hidden="true" size={18} />
+            </button>
+          </div>
+          <div className="mt-5 grid grid-cols-7 gap-2 text-center text-xs font-black uppercase tracking-wide text-slate-600">
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((label) => <span key={label}>{label}</span>)}
+          </div>
+          <div className="mt-2 grid grid-cols-7 gap-2">
+            {openingCalendarDays.map((day) => {
+              const dateKey = toIsoDate(day);
+              const row = rowByDate.get(dateKey);
+              const isCurrentMonth = dateKey.startsWith(activeMonthKey);
+              const active = row?.date === selectedRow?.date;
+              return (
+                <button
+                  key={dateKey}
+                  type="button"
+                  disabled={!row}
+                  onClick={() => row && setSelectedDate(row.date)}
+                  className={`focus-ring flex aspect-square min-h-12 items-center justify-center rounded-full border-4 text-sm font-black transition ${row ? openingStatusClass(row.status) : "border-slate-100 bg-white text-slate-300"} ${active ? "scale-105 shadow-button ring-4 ring-woodpink/30" : ""} ${!isCurrentMonth ? "opacity-35" : ""}`}
+                  aria-label={row ? `${row.date} ${openingStatusLabel(row.status)}` : dateKey}
+                >
+                  {day.getDate()}
+                </button>
+              );
+            })}
+          </div>
+          <div className="mt-5 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+            {[
+              ["Main Season", "main"],
+              ["Off Peak", "off-peak"],
+              ["Winter Fun", "winter"],
+              ["Closed", "closed"],
+            ].map(([label, status]) => (
+              <span key={status} className="inline-flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-xs font-black uppercase tracking-wide text-ink">
+                <span className={`inline-flex h-5 w-5 rounded-full border-2 ${openingStatusClass(status)}`} />
+                {label}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        {selectedRow && (
+          <div key={selectedRow.id} className="grid gap-4">
+            <div>
+            <EditableCard title={selectedRow.date}>
               <label className="grid gap-2">
                 <span className="text-sm font-extrabold text-ink">Status</span>
                 <select
                   className="focus-ring min-h-12 rounded-lg border border-slate-300 px-3"
-                  value={row.status}
-                  onChange={(event) => setData((current) => updateRecord(current, "openingTimes", row.id, { status: event.target.value }))}
+                  value={selectedRow.status}
+                  onChange={(event) => setData((current) => updateRecord(current, "openingTimes", selectedRow.id, { status: event.target.value }))}
                 >
                   <option value="main">Main Season</option>
                   <option value="off-peak">Off Peak Weekdays</option>
@@ -1201,19 +1290,22 @@ function OpeningManager({ openingTimes, setData, setSaveMessage }) {
                   <option value="closed">Park Closed</option>
                 </select>
               </label>
-              <AdminInput label="Open Time" value={row.open_time || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", row.id, { open_time: value }))} />
-              <AdminInput label="Close Time" value={row.close_time || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", row.id, { close_time: value }))} />
-              <AdminInput label="Season Label" value={row.season_label || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", row.id, { season_label: value }))} />
-              <AdminTextarea label="Notes" value={row.notes || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", row.id, { notes: value }))} />
+              <AdminInput label="Open Time" value={selectedRow.open_time || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", selectedRow.id, { open_time: value }))} />
+              <AdminInput label="Close Time" value={selectedRow.close_time || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", selectedRow.id, { close_time: value }))} />
+              <AdminInput label="Season Label" value={selectedRow.season_label || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", selectedRow.id, { season_label: value }))} />
+              <AdminTextarea label="Notes" value={selectedRow.notes || ""} onChange={(value) => setData((current) => updateRecord(current, "openingTimes", selectedRow.id, { notes: value }))} />
               <ActionRow>
-                <SaveButton onClick={() => updateOpening(row)} />
-                <DeleteButton onClick={() => deleteOpening(row)} />
+                <SaveButton onClick={() => updateOpening(selectedRow)} />
+                <DeleteButton onClick={() => deleteOpening(selectedRow)} />
               </ActionRow>
             </EditableCard>
-          )}
-          preview={<AdminOpeningPreview row={row} />}
-        />
-      ))}
+            </div>
+            <div className="admin-preview-window">
+              <AdminOpeningPreview row={selectedRow} />
+            </div>
+          </div>
+        )}
+      </div>
     </ManagerPanel>
   );
 }
@@ -1626,13 +1718,15 @@ function StaffPortal({ path, onNavigate }) {
 
   return (
     <>
-      <PortalHero
-        eyebrow="staff.woodlandspark.com"
-        title="Staff Portal"
-        description="Secure staff area for rota links, announcements, documents and payroll access."
-        roles={["employee", "supervisor", "manager", "payroll-admin", "super-admin"]}
-      />
-      <PortalShell wide={isRotaRoute}>
+      {isRotaRoute && (
+        <PortalHero
+          eyebrow="staff.woodlandspark.com"
+          title="Staff Portal"
+          description="Secure staff area for rota links, announcements, documents and payroll access."
+          roles={["employee", "supervisor", "manager", "payroll-admin", "super-admin"]}
+        />
+      )}
+      <PortalShell wide={isRotaRoute || !loading}>
         {loading ? (
           <LoadingCard label="Loading staff portal..." />
         ) : !isAllowed(user, staffRoles) ? (
@@ -1645,66 +1739,370 @@ function StaffPortal({ path, onNavigate }) {
             <StaffRotaManager path={path} user={user} onNavigate={onNavigate} />
           </div>
         ) : (
-          <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-            <aside className="rounded-lg border-2 border-sunshine bg-white p-5 shadow-sm">
-              <ShieldCheck aria-hidden="true" className="text-berry" />
-              <h2 className="mt-3 font-display text-3xl font-black text-ink">Hello, {user.name}</h2>
-              <p className="mt-2 text-sm font-bold text-slate-700">Role: {user.role}</p>
-              <button className="focus-ring mt-4 inline-flex min-h-10 items-center gap-2 rounded-lg bg-mist px-4 py-2 text-xs font-black uppercase tracking-wide text-ink hover:bg-sunshine" type="button" onClick={logout}>
-                <LogOut aria-hidden="true" size={16} />
-                Logout
-              </button>
-              {dashboard?.employee && (
-                <p className="mt-2 text-sm font-bold text-slate-700">
-                  {dashboard.employee.job_title} - {dashboard.employee.department_name}
-                </p>
-              )}
-              <AppLink href="/staff/rota" onNavigate={onNavigate} className="focus-ring mt-5 inline-flex min-h-12 items-center gap-2 rounded-lg bg-sunshine px-5 py-3 text-sm font-extrabold uppercase tracking-wide text-ink shadow-button">
-                <CalendarClock aria-hidden="true" size={18} />
-                Rota / Shifts
-              </AppLink>
-            </aside>
-            <div className="grid gap-5">
-              <StaffSection title="Announcements">
-                {dashboard?.announcements?.map((announcement) => (
-                  <article key={announcement.title} className="rounded-lg bg-mist p-4">
-                    <h3 className="font-display text-xl font-black text-ink">{announcement.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-700">{announcement.body}</p>
-                  </article>
-                ))}
-              </StaffSection>
-              <StaffSection title="Documents & Payslips">
-                <div className="grid gap-3 md:grid-cols-2">
-                  {dashboard?.documents?.map((document) => (
-                    <article key={document.title} className="rounded-lg bg-mist p-4">
-                      <p className="text-sm font-black uppercase tracking-wide text-berry">{document.documentType}</p>
-                      <h3 className="mt-2 font-display text-xl font-black text-ink">{document.title}</h3>
-                      <p className="mt-2 text-sm leading-6 text-slate-700">{document.description}</p>
-                    </article>
-                  ))}
-                </div>
-                <p className="mt-4 rounded-lg bg-sunshine/30 p-3 text-sm font-bold text-ink">
-                  Payslip access requires secure payroll integration, private storage and audit logging.
-                </p>
-              </StaffSection>
-              {dashboard?.managerView?.length > 0 && (
-                <StaffSection title="Manager View">
-                  <div className="grid gap-3 md:grid-cols-2">
-                    {dashboard.managerView.map((employee) => (
-                      <article key={employee.id} className="rounded-lg bg-mist p-4">
-                        <h3 className="font-display text-xl font-black text-ink">{employee.name}</h3>
-                        <p className="mt-1 text-sm font-bold text-slate-700">{employee.role} - {employee.department}</p>
-                      </article>
-                    ))}
-                  </div>
-                </StaffSection>
-              )}
-            </div>
-          </div>
+          <StaffDashboardHome
+            dashboard={dashboard}
+            path={path}
+            user={user}
+            onNavigate={onNavigate}
+            onRefresh={loadStaff}
+            onLogout={logout}
+            setDashboard={setDashboard}
+          />
         )}
       </PortalShell>
     </>
   );
+}
+
+function StaffDashboardHome({ dashboard, path, user, onNavigate, onRefresh, onLogout, setDashboard }) {
+  const [nowValue, setNowValue] = useState(new Date());
+  const [busy, setBusy] = useState("");
+  const [error, setError] = useState("");
+  const pageMode = path?.endsWith("/time-clock") ? "time-clock" : path?.endsWith("/timesheets") ? "timesheets" : path?.endsWith("/more") ? "more" : "dashboard";
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setNowValue(new Date()), 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const refresh = async () => {
+    setError("");
+    try {
+      await onRefresh();
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const clockAction = async (action) => {
+    setBusy(action);
+    setError("");
+    try {
+      const position = await getCurrentPosition();
+      const next = await apiRequest(`/staff/time-clock/${action}`, {
+        method: "POST",
+        body: JSON.stringify({
+          latitude: position.latitude,
+          longitude: position.longitude,
+          accuracy: position.accuracy,
+          shiftId: dashboard?.currentShift?.id || dashboard?.activeSession?.shift_id || "",
+        }),
+      });
+      setDashboard(next);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setBusy("");
+    }
+  };
+
+  return (
+    <div className="staff-mobile-shell mx-auto min-h-[760px] max-w-6xl overflow-hidden rounded-[1.6rem] bg-[#f3f1f6] pb-24 shadow-lift lg:pb-8">
+      <header className="bg-[#24133d] px-5 py-5 text-white sm:px-7">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-sunshine">Woodlands Staff</p>
+            <h1 className="mt-1 font-display text-3xl font-black">{pageMode === "time-clock" ? "Time Clock" : pageMode === "timesheets" ? "Timesheets" : pageMode === "more" ? "More" : "Dashboard"}</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <button type="button" className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20" onClick={refresh} aria-label="Refresh dashboard">
+              <RefreshCw aria-hidden="true" size={18} />
+            </button>
+            <button type="button" className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20" aria-label="Help">
+              <ShieldCheck aria-hidden="true" size={18} />
+            </button>
+            <button type="button" className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#24133d]" aria-label="Profile">
+              <UserCircle aria-hidden="true" size={24} />
+            </button>
+          </div>
+        </div>
+        <div className="mt-5 rounded-2xl bg-white/10 p-4">
+          <p className="text-sm font-semibold text-white/80">Welcome back,</p>
+          <p className="font-display text-2xl font-black">{user.name}</p>
+          <p className="mt-1 text-sm font-semibold text-white/85">{formatStaffDate(nowValue)}</p>
+        </div>
+      </header>
+
+      <main className="grid gap-4 px-4 py-5 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.85fr)]">
+        {error && <p className="rounded-2xl bg-red-50 p-4 text-sm font-black text-red-700 lg:col-span-2">{error}</p>}
+        {(pageMode === "dashboard" || pageMode === "time-clock") && (
+          <StaffClockCard dashboard={dashboard} nowValue={nowValue} busy={busy} onStart={() => clockAction("start")} onEnd={() => clockAction("end")} />
+        )}
+        {(pageMode === "dashboard" || pageMode === "timesheets") && (
+          <StaffWeekCard dashboard={dashboard} onNavigate={onNavigate} />
+        )}
+        {(pageMode === "dashboard") && (
+          <>
+            <StaffScheduleOverview dashboard={dashboard} onNavigate={onNavigate} />
+            <StaffAvailableShifts dashboard={dashboard} />
+            <StaffLeaveCard dashboard={dashboard} />
+            <StaffTimeOffCard dashboard={dashboard} />
+          </>
+        )}
+        {pageMode === "time-clock" && (
+          <StaffClockDetailCard dashboard={dashboard} />
+        )}
+        {pageMode === "timesheets" && (
+          <StaffTimesheetDetail dashboard={dashboard} />
+        )}
+        {pageMode === "more" && (
+          <StaffMorePanel dashboard={dashboard} user={user} onLogout={onLogout} onNavigate={onNavigate} />
+        )}
+      </main>
+
+      <StaffBottomNav path={path} onNavigate={onNavigate} />
+    </div>
+  );
+}
+
+function StaffClockCard({ dashboard, nowValue, busy, onStart, onEnd }) {
+  const session = dashboard?.activeSession;
+  const status = session ? "In Progress" : dashboard?.lastSession ? "Finished" : "Not started";
+  const timer = session?.clock_in_at ? formatElapsed(new Date(session.clock_in_at), nowValue) : "00:00:00";
+  const shift = dashboard?.currentShift;
+  return (
+    <section className="staff-dashboard-card lg:col-span-2">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-berry">Shift Status</p>
+          <h2 className="mt-1 font-display text-3xl font-black text-ink">{status}</h2>
+          <p className="mt-1 text-sm font-semibold text-slate-600">{shift ? `${shift.title} - ${formatDateLabel(shift.date)}` : "No scheduled shift selected"}</p>
+        </div>
+        <span className={`rounded-full px-3 py-1.5 text-xs font-black uppercase tracking-wide ${session ? "bg-leaf/15 text-canopy" : "bg-slate-100 text-slate-700"}`}>{status}</span>
+      </div>
+      <div className="mt-5 rounded-2xl bg-[#24133d] p-5 text-white">
+        <p className="text-xs font-black uppercase tracking-[0.16em] text-sunshine">Live Timer</p>
+        <p className="mt-1 font-display text-5xl font-black tabular-nums">{timer}</p>
+        <p className="mt-2 text-sm font-semibold text-white/80">
+          {session?.clock_in_at ? `Clocked in at ${formatTimeStamp(session.clock_in_at)}` : "Clock in when you are at the approved work location."}
+        </p>
+      </div>
+      <details className="mt-4 rounded-2xl bg-mist p-4">
+        <summary className="cursor-pointer text-sm font-black uppercase tracking-wide text-ink">Break details</summary>
+        <p className="mt-3 text-sm font-semibold leading-6 text-slate-700">
+          Scheduled break: {Number(shift?.break_minutes || 0)} minutes {shift?.paid_break ? "paid" : "unpaid"}.
+        </p>
+      </details>
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        <button type="button" onClick={onStart} disabled={Boolean(session) || busy === "start"} className="focus-ring inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-woodpink px-5 py-3 text-sm font-black uppercase tracking-wide text-white shadow-button disabled:cursor-not-allowed disabled:opacity-55">
+          <Play aria-hidden="true" size={18} />
+          {busy === "start" ? "Starting..." : "Start Shift"}
+        </button>
+        <button type="button" onClick={onEnd} disabled={!session || busy === "end"} className="focus-ring inline-flex min-h-14 items-center justify-center gap-2 rounded-2xl bg-[#24133d] px-5 py-3 text-sm font-black uppercase tracking-wide text-white shadow-button disabled:cursor-not-allowed disabled:opacity-55">
+          <Square aria-hidden="true" size={17} />
+          {busy === "end" ? "Ending..." : "End Shift"}
+        </button>
+      </div>
+    </section>
+  );
+}
+
+function StaffWeekCard({ dashboard, onNavigate }) {
+  const summary = dashboard?.weekSummary || {};
+  return (
+    <section className="staff-dashboard-card">
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="font-display text-2xl font-black text-ink">My Current Week</h2>
+        <CalendarClock aria-hidden="true" className="text-berry" />
+      </div>
+      <div className="mt-4 grid grid-cols-3 gap-3">
+        <StaffMetric label="Scheduled" value={`${summary.scheduledHours || 0}h`} />
+        <StaffMetric label="Worked" value={`${summary.workedHours || 0}h`} />
+        <StaffMetric label="Shifts" value={summary.shiftCount || 0} />
+      </div>
+      <AppLink href="/staff/rota/calendar" onNavigate={onNavigate} className="focus-ring mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-sunshine px-4 py-2 text-sm font-black uppercase tracking-wide text-ink">
+        View Schedule
+        <ArrowRight aria-hidden="true" size={17} />
+      </AppLink>
+    </section>
+  );
+}
+
+function StaffScheduleOverview({ dashboard, onNavigate }) {
+  const overview = dashboard?.scheduleOverview || {};
+  return (
+    <section className="staff-dashboard-card">
+      <h2 className="font-display text-2xl font-black text-ink">Schedule Overview</h2>
+      <p className="mt-1 text-sm font-bold text-slate-600">{overview.dateRange || "This week"}</p>
+      <div className="mt-4 grid gap-3">
+        <StaffRow label="Upcoming shifts" value={overview.upcomingShiftsCount || 0} />
+        <StaffRow label="Unconfirmed shifts" value={overview.unconfirmedShiftsCount || 0} />
+        <StaffRow label="Shift conflicts" value={overview.shiftConflictsCount || 0} />
+      </div>
+      <AppLink href="/staff/rota/calendar" onNavigate={onNavigate} className="focus-ring mt-5 inline-flex text-sm font-black text-berry underline">Open calendar</AppLink>
+    </section>
+  );
+}
+
+function StaffAvailableShifts({ dashboard }) {
+  return (
+    <section className="staff-dashboard-card">
+      <h2 className="font-display text-2xl font-black text-ink">Available Shifts</h2>
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <StaffMetric label="Offers" value={dashboard?.availableShifts?.shiftOffersCount || 0} />
+        <StaffMetric label="Open" value={dashboard?.availableShifts?.openShiftsCount || 0} />
+      </div>
+    </section>
+  );
+}
+
+function StaffLeaveCard({ dashboard }) {
+  const items = dashboard?.upcomingLeave || [];
+  return (
+    <section className="staff-dashboard-card">
+      <h2 className="font-display text-2xl font-black text-ink">Upcoming Leave</h2>
+      <div className="mt-4 grid gap-3">
+        {items.map((item) => (
+          <article key={`${item.startDate}-${item.endDate}-${item.leaveType}`} className="rounded-xl bg-mist p-3">
+            <p className="font-black text-ink">{item.leaveType}</p>
+            <p className="text-sm font-semibold text-slate-600">{item.startDate} - {item.endDate}</p>
+            <span className="mt-2 inline-flex rounded-lg bg-leaf/10 px-2 py-1 text-xs font-black uppercase text-canopy">{item.status}</span>
+          </article>
+        ))}
+        {!items.length && <p className="rounded-xl bg-mist p-3 text-sm font-bold text-slate-600">No approved leave coming up.</p>}
+      </div>
+    </section>
+  );
+}
+
+function StaffTimeOffCard({ dashboard }) {
+  const summary = dashboard?.timeOffSummary || {};
+  return (
+    <section className="staff-dashboard-card">
+      <h2 className="font-display text-2xl font-black text-ink">Time Off</h2>
+      <div className="mt-4 grid grid-cols-3 gap-3">
+        <StaffMetric label="Unavailable" value={summary.unavailability || 0} />
+        <StaffMetric label="Leave" value={summary.leave || 0} />
+        <StaffMetric label="Absences" value={summary.absences || 0} />
+      </div>
+    </section>
+  );
+}
+
+function StaffClockDetailCard({ dashboard }) {
+  const location = dashboard?.activeSession?.work_location_name || dashboard?.workLocation?.name || "Approved work location";
+  return (
+    <section className="staff-dashboard-card lg:col-span-2">
+      <h2 className="font-display text-2xl font-black text-ink">Location Check</h2>
+      <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
+        Clock-in and clock-out requests are accepted only when the browser location is within the configured radius for {location}.
+      </p>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <StaffRow label="Work location" value={location} />
+        <StaffRow label="Allowed radius" value={`${dashboard?.activeSession?.work_location_radius || dashboard?.workLocation?.radius_meters || 100}m`} />
+      </div>
+    </section>
+  );
+}
+
+function StaffTimesheetDetail({ dashboard }) {
+  return (
+    <section className="staff-dashboard-card lg:col-span-2">
+      <h2 className="font-display text-2xl font-black text-ink">Timesheet Summary</h2>
+      <div className="mt-4 grid gap-3 sm:grid-cols-3">
+        <StaffMetric label="Scheduled" value={`${dashboard?.weekSummary?.scheduledHours || 0}h`} />
+        <StaffMetric label="Worked" value={`${dashboard?.weekSummary?.workedHours || 0}h`} />
+        <StaffMetric label="Shifts" value={dashboard?.weekSummary?.shiftCount || 0} />
+      </div>
+    </section>
+  );
+}
+
+function StaffMorePanel({ dashboard, user, onLogout, onNavigate }) {
+  return (
+    <section className="staff-dashboard-card lg:col-span-2">
+      <h2 className="font-display text-2xl font-black text-ink">More</h2>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <AppLink href="/staff/rota" onNavigate={onNavigate} className="staff-more-link"><CalendarClock aria-hidden="true" size={18} /> Rota / Shifts</AppLink>
+        <AppLink href="/staff/rota/reports" onNavigate={onNavigate} className="staff-more-link"><BarChart3 aria-hidden="true" size={18} /> Reports</AppLink>
+        <button type="button" onClick={onLogout} className="staff-more-link text-left"><LogOut aria-hidden="true" size={18} /> Logout {user.email}</button>
+      </div>
+      <div className="mt-5 grid gap-3">
+        {(dashboard?.announcements || []).slice(0, 3).map((announcement) => (
+          <article key={announcement.title} className="rounded-xl bg-mist p-3">
+            <h3 className="font-display text-xl font-black text-ink">{announcement.title}</h3>
+            <p className="mt-1 text-sm leading-6 text-slate-700">{announcement.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function StaffMetric({ label, value }) {
+  return (
+    <div className="rounded-2xl bg-mist p-3">
+      <p className="text-xs font-black uppercase tracking-wide text-slate-500">{label}</p>
+      <p className="mt-1 font-display text-2xl font-black text-ink">{value}</p>
+    </div>
+  );
+}
+
+function StaffRow({ label, value }) {
+  return (
+    <div className="flex items-center justify-between gap-3 rounded-xl bg-mist p-3 text-sm">
+      <span className="font-bold text-slate-600">{label}</span>
+      <span className="font-black text-ink">{value}</span>
+    </div>
+  );
+}
+
+function StaffBottomNav({ path, onNavigate }) {
+  const items = [
+    ["/staff/dashboard", "Home", Home],
+    ["/staff/rota/calendar", "Schedule", CalendarDays],
+    ["/staff/time-clock", "Time Clock", Clock3],
+    ["/staff/timesheets", "Timesheets", ClipboardList],
+    ["/staff/more", "More", MoreHorizontal],
+  ];
+  return (
+    <nav className="sticky bottom-3 z-40 mx-auto mt-2 grid max-w-xl grid-cols-5 rounded-2xl bg-white p-2 shadow-lift ring-1 ring-slate-200" aria-label="Staff portal">
+      {items.map(([href, label, Icon]) => {
+        const active = path === href || (href === "/staff/dashboard" && (path === "/staff" || !path));
+        return (
+          <AppLink key={href} href={href} onNavigate={onNavigate} className={`focus-ring flex min-h-14 flex-col items-center justify-center gap-1 rounded-xl text-[11px] font-black uppercase tracking-wide ${active ? "bg-woodpink text-white" : "text-slate-600 hover:bg-mist"}`}>
+            <Icon aria-hidden="true" size={18} />
+            {label}
+          </AppLink>
+        );
+      })}
+    </nav>
+  );
+}
+
+function getCurrentPosition() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error("Location is not available in this browser."));
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => resolve({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        accuracy: position.coords.accuracy,
+      }),
+      () => reject(new Error("Allow location access to clock in or out.")),
+      { enableHighAccuracy: true, timeout: 12000, maximumAge: 30000 },
+    );
+  });
+}
+
+function formatElapsed(start, end) {
+  const seconds = Math.max(0, Math.floor((end.getTime() - start.getTime()) / 1000));
+  const hours = String(Math.floor(seconds / 3600)).padStart(2, "0");
+  const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+  const secs = String(seconds % 60).padStart(2, "0");
+  return `${hours}:${minutes}:${secs}`;
+}
+
+function formatTimeStamp(value) {
+  if (!value) return "";
+  return new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit" }).format(new Date(value));
+}
+
+function formatStaffDate(date) {
+  return new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "2-digit", month: "long", year: "numeric" }).format(date);
 }
 
 function StaffSessionBar({ user, onLogout }) {

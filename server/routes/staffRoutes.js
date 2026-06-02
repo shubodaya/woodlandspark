@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { dashboard } from "../controllers/staffController.js";
+import { dashboard, endShift, startShift, timeClock } from "../controllers/staffController.js";
 import { assignShift, createShift, deleteShift, listShifts, removeAssignment, updateShift } from "../controllers/shiftController.js";
 import { attachUser, requireRoles, staffRoles } from "../middleware/auth.js";
 import { asyncHandler } from "../utils/responses.js";
@@ -10,6 +10,9 @@ const assignRoles = ["manager", "admin", "super_admin"];
 
 staffRoutes.use(attachUser, requireRoles(staffRoles));
 staffRoutes.get("/dashboard", asyncHandler(dashboard));
+staffRoutes.get("/time-clock", asyncHandler(timeClock));
+staffRoutes.post("/time-clock/start", asyncHandler(startShift));
+staffRoutes.post("/time-clock/end", asyncHandler(endShift));
 staffRoutes.get("/rota", asyncHandler(listShifts));
 staffRoutes.get("/rota/shifts", asyncHandler(listShifts));
 staffRoutes.post("/rota/shifts", requireRoles(createRoles), asyncHandler(createShift));

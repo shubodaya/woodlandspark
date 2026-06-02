@@ -18,11 +18,16 @@ function clearTables() {
   db.exec(`
     DELETE FROM audit_logs;
     DELETE FROM email_outbox;
+    DELETE FROM time_clock_breaks;
+    DELETE FROM time_clock_sessions;
+    DELETE FROM leave_requests;
+    DELETE FROM time_off_entries;
     DELETE FROM payslip_placeholders;
     DELETE FROM staff_documents;
     DELETE FROM announcements;
     DELETE FROM rota_assignments;
     DELETE FROM shifts;
+    DELETE FROM work_locations;
     DELETE FROM employees;
     DELETE FROM departments;
     DELETE FROM availability;
@@ -242,6 +247,11 @@ function seedFood() {
 }
 
 function seedStaffData(ids) {
+  db.prepare(`
+    INSERT OR IGNORE INTO work_locations (id, name, description, latitude, longitude, radius_meters, active)
+    VALUES (1, 'Woodlands Family Theme Park', 'Default staff clock-in geofence for the Woodlands site. Admins or managers can replace this with more precise operational locations.', 50.3563, -3.6716, 100, 1)
+  `).run();
+
   const rangerEmployee = db.prepare("SELECT id FROM employees WHERE employee_code = 'RNG001'").get();
   const supervisorEmployee = db.prepare("SELECT id FROM employees WHERE employee_code = 'SUP001'").get();
   const managerEmployee = db.prepare("SELECT id FROM employees WHERE employee_code = 'MGR001'").get();
