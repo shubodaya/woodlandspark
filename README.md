@@ -2,7 +2,7 @@
 
 Modern React + Vite + Tailwind redesign for Woodlands Family Theme Park with route-based public pages, ticket reservations, admin and staff operations, cafe menu browsing, newsletter capture and local assets.
 
-Production target: `https://webdesignproject12.pages.com`
+Production target: `https://webdesignproject12.pages.dev`
 
 Cloudflare Pages project: `webdesignproject12`
 
